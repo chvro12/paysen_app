@@ -60,7 +60,7 @@ class OnboardBottomView extends StatelessWidget {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10.0),
                     color: selectedIndex == index 
-                    ? AppColors.pictonBlue
+                    ? AppColors.primaryColor
                     : AppColors.blackColor.withOpacity(0.2)
                   ),
                 );

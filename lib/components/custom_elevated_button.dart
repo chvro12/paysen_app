@@ -17,7 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
     super.key, 
     required this.btnLabel,
     this.onBtnPressed,
-    this.btnBGColor = AppColors.pictonBlue,
+    this.btnBGColor = AppColors.primaryColor,
     this.btnElevation = 0.0,
     this.btnFGColor = AppColors.whiteColor,
     this.btnPadding,
