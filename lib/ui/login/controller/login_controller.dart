@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:paysen/config/app_routes.dart';
 
 class LoginController extends GetxController {
 
@@ -25,7 +26,7 @@ class LoginController extends GetxController {
     update();
   }
 
-  Future<void> onLoginPressed() async {
-    
+  void onLoginPressed() {
+    Navigator.pushNamed(Get.context!, AppRoutes.otpRoute, arguments: '+221${mobileNoController.text}');
   }
 }

@@ -31,7 +31,11 @@ Map<String, String> get englishTranslation {
     'please_login_to_continue': 'Please login to continue',
     'login': 'Login',
     "don't_have_an_account": "Don't have an account? ",
-    'signup': 'Signup'
+    'signup': 'Signup',
+    'otp_header': 'Confirm the code received by SMS',
+    'otp_description': 'Please enter the 6-digit code that was sent to ',
+    "didn't_you_receive_the_code": "Didn't you receive the code? ",
+    'resend': 'Resend'
   };
 }
 
@@ -48,6 +52,10 @@ Map<String, String> get frenchTranslation {
     'please_login_to_continue': '',
     'login': 'Login',
     "don't_have_an_account": "",
-    'signup': ''
+    'signup': '',
+    'otp_header': '',
+    'otp_description': '',
+    "didn't_you_receive_the_code": "",
+    'resend': ''
   };
 }

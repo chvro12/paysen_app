@@ -22,36 +22,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             
-            Container(
-              height: 0.14.sh,
-              margin: Get.mediaQuery.padding,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  
-                  Container(
-                    padding: EdgeInsets.only(bottom: 0.01.sh),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.arrow_back_rounded),
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.zero,
-                      visualDensity: VisualDensity.adaptivePlatformDensity,
-                    ),
-                  ),
-                  
-                  SizedBox(width: 0.04.sw,),
-                  
-                  CustomText(
-                    label: 'login',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textSize: 30.sp,
-                  )
-            
-                ],
-              ),
-            ),
+            const CustomHeader(headerLabel: 'login'),
 
             Expanded(
               child: Container(
@@ -128,6 +99,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             )
+          
           ],
         ),
       ),
