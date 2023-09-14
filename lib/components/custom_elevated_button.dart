@@ -12,6 +12,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color btnFGColor;
   final EdgeInsetsGeometry? btnPadding;
   final double btnBorderRadius;
+  final bool? disableButton;
   
   const CustomElevatedButton({
     super.key, 
@@ -21,19 +22,39 @@ class CustomElevatedButton extends StatelessWidget {
     this.btnElevation = 0.0,
     this.btnFGColor = AppColors.whiteColor,
     this.btnPadding,
-    this.btnBorderRadius = 60.0
+    this.btnBorderRadius = 60.0,
+    this.disableButton
   });
 
   @override
   Widget build(BuildContext context) {
+    Set<MaterialState> interactiveStates = {};
+    if (disableButton != null && disableButton!) {
+      interactiveStates.add(MaterialState.disabled);
+    }
+
+    Color getBackgroundColor(Set<MaterialState> states) {
+      if (states.any(interactiveStates.contains)) {
+        return AppColors.borderColor;
+      }
+      return btnBGColor;
+    }
+
+    Color getForgroundColor(Set<MaterialState> states) {
+      if (states.any(interactiveStates.contains)) {
+        return AppColors.blackColor.withOpacity(0.3);
+      }
+      return btnFGColor;
+    }
+
     return ElevatedButton(
       onPressed: onBtnPressed,
       style: ButtonStyle(
         alignment: Alignment.center,
         animationDuration: const Duration(milliseconds: 800),
-        backgroundColor: MaterialStateProperty.all(btnBGColor),
+        backgroundColor: MaterialStateProperty.resolveWith(getBackgroundColor),
         elevation: MaterialStateProperty.all(btnElevation),
-        foregroundColor: MaterialStateProperty.all(btnFGColor),
+        foregroundColor: MaterialStateProperty.resolveWith(getForgroundColor),
         padding: MaterialStateProperty.all(btnPadding),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(btnBorderRadius)
@@ -41,7 +62,7 @@ class CustomElevatedButton extends StatelessWidget {
         tapTargetSize: MaterialTapTargetSize.padded,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textStyle: MaterialStateProperty.all(TextStyle(
-          fontSize: 18.sp,
+          fontSize: 20.sp,
           color: AppColors.whiteColor,
           fontWeight: FontWeight.w500
         ))

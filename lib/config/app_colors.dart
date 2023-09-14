@@ -15,4 +15,5 @@ class AppColors {
   static const blackColor = Color(0xff000000);
   static const errorColor = Color(0xffD8000C);
   static const onError = Color(0xffF7F7F7);
+  static const transparent = Colors.transparent;
 }

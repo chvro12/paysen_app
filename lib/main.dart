@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:paysen/config/app_colors.dart';
 import 'package:paysen/config/app_routes.dart';
 import 'package:paysen/config/app_translations.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -26,6 +29,24 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           theme: ThemeData(
             fontFamily: 'Folio-Std',
+            appBarTheme: AppBarTheme(
+              actionsIconTheme: const IconThemeData(
+                color: AppColors.blackColor,
+                size: 24.0
+              ),
+              elevation: 0.0,
+              backgroundColor: AppColors.transparent,
+              centerTitle: false,
+              foregroundColor: AppColors.blackColor,
+              systemOverlayStyle: SystemUiOverlayStyle.dark,
+              titleTextStyle: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blackColor
+              )
+            ),
+            materialTapTargetSize: MaterialTapTargetSize.padded,
+            scaffoldBackgroundColor: AppColors.background,
             colorScheme: const ColorScheme(
               brightness: Brightness.light,
               background: AppColors.background,

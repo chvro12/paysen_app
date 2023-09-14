@@ -26,7 +26,12 @@ Map<String, String> get englishTranslation {
     'paysen_for_business_description': 'A tailored platform designed to receive payments from your customers online',
     'paysen_money_transfer': 'PaySen money transfer',
     'paysen_money_transfer_description': 'Send money to your loved ones in several african countries instantly',
-    'get_started': 'Get started'
+    'get_started': 'Get started',
+    'welcome': 'Welcome',
+    'please_login_to_continue': 'Please login to continue',
+    'login': 'Login',
+    "don't_have_an_account": "Don't have an account? ",
+    'signup': 'Signup'
   };
 }
 
@@ -38,6 +43,11 @@ Map<String, String> get frenchTranslation {
     'paysen_for_business_description': '',
     'paysen_money_transfer': '',
     'paysen_money_transfer_description': '',
-    'get_started': ''
+    'get_started': '',
+    'welcome': '',
+    'please_login_to_continue': '',
+    'login': 'Login',
+    "don't_have_an_account": "",
+    'signup': ''
   };
 }

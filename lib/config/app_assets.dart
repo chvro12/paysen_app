@@ -11,4 +11,7 @@ class AppAssets {
   static const String onboardingFirstIMG = '$_prefix/onboarding_first_img.png';
   static const String onboardingSecondIMG = '$_prefix/onboarding_second_img.png';
   static const String onboardingThirdIMG = '$_prefix/onboarding_third_img.png';
+
+  /// LOGIN SCREEN
+  static const String senegalFlagIMG = '$_prefix/senegal_flag_img.png';
 }

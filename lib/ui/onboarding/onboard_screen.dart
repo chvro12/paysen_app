@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:paysen/components/index.dart';
 import 'package:paysen/config/app_assets.dart';
 import 'package:paysen/config/app_colors.dart';
+import 'package:paysen/config/app_routes.dart';
 
 import 'components/onboard_bottom_view.dart';
 import 'controller/onboard_controller.dart';
@@ -66,7 +67,7 @@ class OnBoardScreen extends StatelessWidget {
                     width: 0.9.sw,
                     child: CustomElevatedButton(
                       btnLabel: 'get_started',
-                      onBtnPressed: () {},
+                      onBtnPressed: () => Navigator.pushNamed(context, AppRoutes.loginRoute),
                     ),
                   )
 
