@@ -14,4 +14,7 @@ class AppAssets {
 
   /// LOGIN SCREEN
   static const String senegalFlagIMG = '$_prefix/senegal_flag_img.png';
+
+  /// SIGN UP SCREEN
+  static const String signupProfileIMG = '$_prefix/signup_profile_IMG.png';
 }

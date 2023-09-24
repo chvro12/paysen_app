@@ -2,10 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:paysen/config/app_routes.dart';
 
-class LoginController extends GetxController {
+import '../../../config/app_utils.dart';
+import '../repository/login_repo.dart';
+
+class LoginController extends GetxController with ProgressHUDMixin {
 
   final mobileNoController = TextEditingController();
 
+  final LoginRepo _loginRepo = LoginRepo();
   final RxBool shouldDisableBtn = RxBool(true);
 
   @override
@@ -26,7 +30,16 @@ class LoginController extends GetxController {
     update();
   }
 
-  void onLoginPressed() {
-    Navigator.pushNamed(Get.context!, AppRoutes.otpRoute, arguments: '+221${mobileNoController.text}');
+  Future<void> onLoginPressed(BuildContext context) async {
+    String phone = mobileNoController.text.trim();
+    
+    show(context);
+    final checkMobileResponse = await _loginRepo.checkMobile('221', phone);
+    dismiss();
+    if (!checkMobileResponse.isSuccess) {
+      ToastUtils.showToast(checkMobileResponse.message);
+      return;
+    }
+    Navigator.pushNamed(Get.context!, AppRoutes.otpRoute, arguments: checkMobileResponse);
   }
 }

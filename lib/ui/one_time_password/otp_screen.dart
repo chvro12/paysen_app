@@ -7,20 +7,24 @@ import 'package:pinput/pinput.dart';
 
 import '../../components/index.dart';
 import '../../config/app_colors.dart';
+import '../login/models/login_models.dart';
 
 class OtpScreen extends StatelessWidget {
 
-  final String mobileNoWithCountryCode;
+  final LoginModels loginModels;
 
   OtpScreen({
     super.key,
-    required this.mobileNoWithCountryCode
+    required this.loginModels
   });
 
   final otpController = Get.put(OtpController());
 
   @override
   Widget build(BuildContext context) {
+
+    final mobileNoWithCountryCode = '+${loginModels.userModels!.countryCode}${loginModels.userModels!.phone}';
+
     final pinTheme = PinTheme(
       constraints: BoxConstraints(
         minWidth: 0.14.sw, 
@@ -114,8 +118,8 @@ class OtpScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 length: 6,
                 submittedPinTheme: pinTheme.copyBorderWith(border: Border.all(color: AppColors.borderColor)),
-                onClipboardFound: (value) => otpController.onOtpSubmitted(value),
-                onCompleted: (value) => otpController.onOtpSubmitted(value),
+                onClipboardFound: (value) => otpController.onOtpSubmitted(value, mobileNoWithCountryCode),
+                onCompleted: (value) => otpController.onOtpSubmitted(value, mobileNoWithCountryCode),
                 pinAnimationType: PinAnimationType.fade,
                 textInputAction: TextInputAction.done,
               ),

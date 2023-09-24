@@ -35,7 +35,26 @@ Map<String, String> get englishTranslation {
     'otp_header': 'Confirm the code received by SMS',
     'otp_description': 'Please enter the 6-digit code that was sent to ',
     "didn't_you_receive_the_code": "Didn't you receive the code? ",
-    'resend': 'Resend'
+    'resend': 'Resend',
+    'signup_header': 'Create your account',
+    'signup_description': 'Fill in the information to complete the creation of your profile',
+    'signup_profile_description': 'Add your photo to keep it personal',
+    'signup_group1': 'FULL NAME & EMAIL',
+    'first_name': 'First Name',
+    'first_name_as_your_id': 'First Name as your ID',
+    'last_name': 'Last Name',
+    'last_name_as_your_id': 'Last Name as your ID',
+    'email': 'Email',
+    'email_example': 'example@gmail.com',
+    'signup_group2': 'OTHER INFO',
+    'activity': 'Activity',
+    'activity_as_your_id': 'Activity as your ID',
+    'register': 'Register',
+    'gender': 'Gender',
+    'male': 'Male',
+    'female': 'Female',
+    'ok': 'Okay',
+    'please_wait': 'Please wait ...'
   };
 }
 
@@ -56,6 +75,19 @@ Map<String, String> get frenchTranslation {
     'otp_header': '',
     'otp_description': '',
     "didn't_you_receive_the_code": "",
-    'resend': ''
+    'resend': '',
+    'signup_header': '',
+    'signup_description': '',
+    'signup_profile_description': '',
+    'signup_group1': '',
+    'first_name': '',
+    'first_name_as_your_id': '',
+    'last_name': 'Last Name',
+    'last_name_as_your_id': '',
+    'email': '',
+    'email_example': '',
+    'signup_group2': '',
+    'ok': '',
+    'please_wait': ''
   };
 }

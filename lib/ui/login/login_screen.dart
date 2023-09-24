@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                             mobileNoController: loginController.mobileNoController,
                             onFieldSubmitted: (value) {
                               if (!loginController.shouldDisableBtn.value) {
-                                loginController.onLoginPressed();
+                                loginController.onLoginPressed(context);
                               }
                             },
                           )
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                         disableButton: loginController.shouldDisableBtn.value,
                         onBtnPressed: loginController.shouldDisableBtn.value
                         ? null
-                        : loginController.onLoginPressed,
+                        : () => loginController.onLoginPressed(context),
                       )),
                     ),
                   ],
