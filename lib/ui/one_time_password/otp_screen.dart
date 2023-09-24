@@ -1,13 +1,14 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:paysen/ui/one_time_password/controller/otp_controller.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../components/index.dart';
 import '../../config/app_colors.dart';
 import '../login/models/login_models.dart';
+import 'controller/otp_controller.dart';
 
 class OtpScreen extends StatelessWidget {
 
@@ -24,6 +25,7 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final mobileNoWithCountryCode = '+${loginModels.userModels!.countryCode}${loginModels.userModels!.phone}';
+    String serverOtp = loginModels.userModels!.otp!.trim();
 
     final pinTheme = PinTheme(
       constraints: BoxConstraints(
@@ -45,6 +47,7 @@ class OtpScreen extends StatelessWidget {
         fontWeight: FontWeight.w300
       )
     );
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -111,6 +114,14 @@ class OtpScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
               child: Pinput(
                 autofocus: true,
+                errorPinTheme: pinTheme.copyBorderWith(border: Border.all(color: AppColors.errorColor)),
+                pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                validator: (value) {
+                  if (value != null && serverOtp.compareTo(value.trim()) != 0) {
+                    return 'otp_mismatch_description'.tr;
+                  }
+                  return null;
+                },
                 closeKeyboardWhenCompleted: true,
                 focusedPinTheme: pinTheme,
                 inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
@@ -118,8 +129,8 @@ class OtpScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 length: 6,
                 submittedPinTheme: pinTheme.copyBorderWith(border: Border.all(color: AppColors.borderColor)),
-                onClipboardFound: (value) => otpController.onOtpSubmitted(value, mobileNoWithCountryCode),
-                onCompleted: (value) => otpController.onOtpSubmitted(value, mobileNoWithCountryCode),
+                // onClipboardFound: (value) => onOtpSubmitted(serverOtp, value),
+                onCompleted: (value) => onOtpSubmitted(serverOtp, value),
                 pinAnimationType: PinAnimationType.fade,
                 textInputAction: TextInputAction.done,
               ),
@@ -133,6 +144,9 @@ class OtpScreen extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: 'resend'.tr ,
+                    recognizer: TapGestureRecognizer()..onTap = () {
+                      otpController.onOtpResend(context, loginModels);
+                    },
                     style: TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 16.sp,
@@ -156,5 +170,10 @@ class OtpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onOtpSubmitted(String serverOtp, String value) {
+    if (serverOtp.compareTo(value.trim()) != 0) return;
+    otpController.onOtpSubmitted(loginModels);
   }
 }

@@ -1,3 +1,5 @@
+enum UserType { newUser, oldUser }
+
 enum Gender { male, female, none }
 
 extension StringToEnum on String {
@@ -17,4 +19,16 @@ extension StringToEnum on String {
     }
   }
   
+  UserType get stringToUserType {
+    switch(this) {
+      case 'new':
+        return UserType.newUser;
+
+      case 'old':
+        return UserType.oldUser;
+
+      default:
+        throw Exception('Invalid value $this of enum type UserType');
+    }
+  }
 }

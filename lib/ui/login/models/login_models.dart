@@ -1,3 +1,4 @@
+import 'package:paysen/config/app_enums.dart';
 
 import '../../../models/common_api_response.dart';
 import '../../../models/user_models.dart';
@@ -14,7 +15,7 @@ class LoginModels extends CommonApiResponse {
     return LoginModels(
       data['is_success'], 
       data['message'],
-      userType: userType,
+      userType: userType?.stringToUserType,
       userModels: data.containsKey('data') && data['data'] != null 
       ? UserModels.fromOtp(data['data'])
       : null

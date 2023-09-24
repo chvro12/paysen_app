@@ -28,7 +28,7 @@ class AppRoutes {
     } else if (settings.name!.toLowerCase() == otpRoute) {
       route = OtpScreen(loginModels: args as LoginModels);
     } else if (settings.name!.toLowerCase() == signupRoute) {
-      route = SignupScreen(mobileNoWithCountryCode: args as String);
+      route = SignupScreen(loginModels: args as LoginModels);
     } else {
       throw Exception('Unknown route defined.');
     }

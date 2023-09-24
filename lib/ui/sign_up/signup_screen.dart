@@ -5,15 +5,16 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
+import '../login/models/login_models.dart';
 import 'controller/signup_controller.dart';
 
 class SignupScreen extends StatelessWidget {
 
-  final String mobileNoWithCountryCode;
+  final LoginModels loginModels;
 
   SignupScreen({
     super.key,
-    required this.mobileNoWithCountryCode
+    required this.loginModels
   });
 
   final signupController = Get.put(SignupController());

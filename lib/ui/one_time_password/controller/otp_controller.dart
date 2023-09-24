@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:paysen/config/app_routes.dart';
 
-class OtpController extends GetxController {
+import '../../../config/app_enums.dart';
+import '../../../config/app_routes.dart';
+import '../../../config/app_utils.dart';
+import '../../login/controller/login_controller.dart';
+import '../../login/models/login_models.dart';
+
+class OtpController extends GetxController with ProgressHUDMixin {
   
+  Future<void> onOtpSubmitted(LoginModels loginModels) async {
+    if (loginModels.userModels == null || loginModels.userModels!.otp == null) return;
 
-  Future<void> onOtpSubmitted(String otp, String mobileNoWithCountryCode) async {
-    Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: mobileNoWithCountryCode);
+    if (loginModels.userType == UserType.oldUser) {
+
+    } else {
+      Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: loginModels);
+    }
   }
 
-  Future<void> onOtpResend() async {}
+  Future<void> onOtpResend(BuildContext context, LoginModels loginModels) async {
+    if (loginModels.userModels == null) return;
+
+    FocusScope.of(context).unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
+    
+    LoginController loginController = Get.find();
+    loginController.mobileNoController.text = loginModels.userModels!.phone;
+
+    loginController.onLoginPressed(context);
+  }
 }
