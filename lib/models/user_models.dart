@@ -1,4 +1,5 @@
 import '../config/app_enums.dart';
+import 'dropdown_models.dart';
 
 class UserModels {
 
@@ -19,12 +20,26 @@ class UserModels {
   final Gender gender;
   final int isActive;
   final String lang;
-  final String fcmToken;
+  final String fcmToken;  
+  
+  UserModels({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.emailVerifiedAt,
+    required this.avatar,
+    required this.countryCode,
+    required this.phone,
+    required this.apiToken,
+    required this.activity,
+    required this.gender,
+    required this.isActive,
+    required this.lang,
+    required this.fcmToken,
+    this.otp
+  });
 
-  UserModels({required this.activity, required this.apiToken, required this.avatar, required this.countryCode,
-  required this.email, required this.emailVerifiedAt, required this.fcmToken, required this.firstName,
-  required this.gender, required this.id, required this.isActive, required this.lang,
-  required this.lastName, this.otp, required this.phone});
 
   factory UserModels.fromOtp(Map<String, dynamic> data) {
     final UserModels userModels = UserModels.fromJson(data);
@@ -48,6 +63,55 @@ class UserModels {
       lang: data['lang'], 
       lastName: data['last_name'], 
       phone: data['phone'],
+    );
+  }
+
+  Map<String, dynamic> toJson(DropdownModels dropdownModels) {
+    return {
+      'country_code': countryCode,
+      'phone': phone,
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
+      'city': dropdownModels.id.toString(),
+      'activity': activity,
+      'gender': gender.enumToString,
+    };
+  }
+  
+  UserModels copyWith({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? emailVerifiedAt,
+    String? avatar,
+    String? countryCode,
+    String? phone,
+    String? otp,
+    String? apiToken,
+    String? activity,
+    Gender? gender,
+    int? isActive,
+    String? lang,
+    String? fcmToken    
+  }) {
+    return UserModels(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      emailVerifiedAt: emailVerifiedAt ?? this.emailVerifiedAt,
+      avatar: avatar ?? this.avatar,
+      countryCode: countryCode ?? this.countryCode,
+      phone: phone ?? this.phone,
+      otp: otp ?? this.otp,
+      apiToken: apiToken ?? this.apiToken,
+      activity: activity ?? this.activity,
+      gender: gender ?? this.gender,
+      isActive: isActive ?? this.isActive,
+      lang: lang ?? this.lang,
+      fcmToken: fcmToken ?? this.fcmToken
     );
   }
 }

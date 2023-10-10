@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
-import '../login/models/login_models.dart';
+import 'models/login_models.dart';
 import 'controller/signup_controller.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -160,6 +160,15 @@ class SignupScreen extends StatelessWidget {
                         groupLabel: 'signup_group2',
                         multipleFields: [
 
+                          Obx(() => CustomDropDown(
+                            header: 'city',
+                            selectedValue: signupController.selectedCityDropDownModels.value,
+                            items: signupController.cityModels.value?.cityList ?? [],
+                            onDropDownValueChanged: signupController.onCitySelected,
+                            applyBottomMargin: true,
+                            dropDownHint: 'select_city',
+                          )),
+
                           CustomTextField(
                             header: 'activity',
                             editingController: signupController.activityController,
@@ -167,7 +176,16 @@ class SignupScreen extends StatelessWidget {
                             capitalization: TextCapitalization.words,
                             inputAction: TextInputAction.next,
                             textInputType: TextInputType.name,
+                            applyBottomMargin: true,
                           ),
+
+                          Obx(() => CustomDropDown(
+                            header: 'gender',
+                            selectedValue: signupController.selectedGenderDropDownModels.value,
+                            items: signupController.genderList,
+                            onDropDownValueChanged: signupController.onGenderSelected,
+                            dropDownHint: 'select_gender',
+                          )),
                           
                         ],
                       ),
@@ -180,7 +198,7 @@ class SignupScreen extends StatelessWidget {
                         child: CustomElevatedButton(
                           btnLabel: 'register',
                           btnBorderRadius: 60.0,
-                          onBtnPressed: () {},
+                          onBtnPressed: () => signupController.onRegisterPressed(context, loginModels),
                         ),
                       )
                               

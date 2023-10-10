@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../ui/login/login_screen.dart';
-import '../ui/login/models/login_models.dart';
+import '../ui/auth/login_screen.dart';
+import '../ui/auth/models/login_models.dart';
 import '../ui/onboarding/onboard_screen.dart';
-import '../ui/one_time_password/otp_screen.dart';
-import '../ui/sign_up/signup_screen.dart';
+import '../ui/auth/otp_screen.dart';
+import '../ui/auth/signup_screen.dart';
 import '../ui/splash/splash_screen.dart';
 
 class AppRoutes {

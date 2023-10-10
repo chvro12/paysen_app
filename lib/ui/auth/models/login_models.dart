@@ -21,4 +21,11 @@ class LoginModels extends CommonApiResponse {
       : null
     );
   }
+
+  LoginModels copyWith({ UserModels? userModels,}) {
+    return LoginModels(isSuccess, message, userModels: userModels ?? this.userModels,);
+  }
+
+  @override
+  String toString() => 'LoginModels(userModels: $userModels)';
 }

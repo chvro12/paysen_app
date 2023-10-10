@@ -55,7 +55,10 @@ Map<String, String> get englishTranslation {
     'female': 'Female',
     'ok': 'Okay',
     'please_wait': 'Please wait ...',
-    'otp_mismatch_description': "Oops! It seems the OTP you entered doesn't match. Please verify the code and try again. If the issue persists, request a new OTP."
+    'otp_mismatch_description': "Oops! It seems the OTP you entered doesn't match. Please verify the code and try again. If the issue persists, request a new OTP.",
+    'city': 'City',
+    'select_city': 'Select city',
+    'select_gender': 'Select gender'
   };
 }
 
@@ -90,6 +93,9 @@ Map<String, String> get frenchTranslation {
     'signup_group2': '',
     'ok': '',
     'please_wait': '',
-    'otp_mismatch_description': ""
+    'otp_mismatch_description': "",
+    'city': '',
+    'select_city': '',
+    'select_gender': ''
   };
 }

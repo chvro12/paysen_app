@@ -2,6 +2,23 @@ enum UserType { newUser, oldUser }
 
 enum Gender { male, female, none }
 
+extension EnumToString on Enum {
+
+  String get enumToString {
+    switch(this) {
+      case Gender.male:
+        return 'Male';
+
+      case Gender.female:
+        return 'Female';
+
+      default:
+        return 'None';    
+    }
+  }
+
+}
+
 extension StringToEnum on String {
 
   Gender get stringToGender {

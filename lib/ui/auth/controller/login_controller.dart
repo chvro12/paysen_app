@@ -1,15 +1,15 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:paysen/config/app_routes.dart';
 
+import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
-import '../repository/login_repo.dart';
+import '../repository/auth_repo.dart';
 
 class LoginController extends GetxController with ProgressHUDMixin {
 
   final mobileNoController = TextEditingController();
 
-  final LoginRepo _loginRepo = LoginRepo();
+  final AuthRepo _authRepo = AuthRepo();
   final RxBool shouldDisableBtn = RxBool(true);
 
   @override
@@ -34,7 +34,7 @@ class LoginController extends GetxController with ProgressHUDMixin {
     String phone = mobileNoController.text.trim();
     
     show(context);
-    final checkMobileResponse = await _loginRepo.checkMobile('221', phone);
+    final checkMobileResponse = await _authRepo.checkMobile('221', phone);
     dismiss();
     if (!checkMobileResponse.isSuccess) {
       ToastUtils.showToast(checkMobileResponse.message);

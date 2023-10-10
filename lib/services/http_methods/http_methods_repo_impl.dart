@@ -99,4 +99,20 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
         break;        
     }
   }
+  
+  @override
+  Future fileUploading(Uri uri, Map<String, dynamic> body, List<File> files) async {
+    final request = http.MultipartRequest('POST', uri);
+    request.headers.addAll(apisHeaders);
+
+    for (final file in files) {
+      request.files.add(http.MultipartFile.fromBytes('avatar', file.readAsBytesSync()));
+    }
+
+    final response = await request.send();
+    final responsed = await http.Response.fromStream(response);
+
+    AppLogger.d('path: $uri, body: $body', className: 'HttpMethodsReoImpl', methodName: 'fileUploading');
+    return _responseBody(responsed);
+  }
 }

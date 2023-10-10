@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../config/app_enums.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
-import '../../login/controller/login_controller.dart';
-import '../../login/models/login_models.dart';
+import 'login_controller.dart';
+import '../models/login_models.dart';
 
 class OtpController extends GetxController with ProgressHUDMixin {
   

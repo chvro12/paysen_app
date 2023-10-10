@@ -1,11 +1,11 @@
-abstract class DropdownModels {
+class DropdownModels {
   
-  final String _id;
-  final String _name;
+  final int id;
+  final String name;
 
-  DropdownModels(this._id, this._name);
+  DropdownModels(this.id, this.name);
 
-  String get name => _name;
-
-  String get id => _id;
+  factory DropdownModels.fromJson(Map<String, dynamic> data) {
+    return DropdownModels(data['id'], data['name']);
+  }
 }

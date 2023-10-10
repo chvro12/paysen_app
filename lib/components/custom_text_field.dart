@@ -114,8 +114,8 @@ class CustomTextField extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 16.sp,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.normal
               ),
               textAlign: TextAlign.start,
               textCapitalization: capitalization,

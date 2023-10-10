@@ -7,7 +7,7 @@ import 'package:pinput/pinput.dart';
 
 import '../../components/index.dart';
 import '../../config/app_colors.dart';
-import '../login/models/login_models.dart';
+import 'models/login_models.dart';
 import 'controller/otp_controller.dart';
 
 class OtpScreen extends StatelessWidget {

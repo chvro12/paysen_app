@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../config/app_colors.dart';
 import '../models/dropdown_models.dart';
@@ -12,6 +13,7 @@ class CustomDropDown extends StatelessWidget {
   final DropdownModels? selectedValue;
   final List<DropdownModels> items;
   final ValueChanged<DropdownModels?> onDropDownValueChanged;
+  final String dropDownHint;
 
   const CustomDropDown({
     super.key,
@@ -19,7 +21,8 @@ class CustomDropDown extends StatelessWidget {
     this.applyBottomMargin = true,
     this.selectedValue,
     required this.items,
-    required this.onDropDownValueChanged
+    required this.onDropDownValueChanged,
+    required this.dropDownHint
   });
 
   @override
@@ -51,14 +54,31 @@ class CustomDropDown extends StatelessWidget {
 
           SizedBox(height: 0.01.sh,),
 
-          Flexible(
+          SizedBox(
+            height: 0.024.sh,
             child: DropdownButtonHideUnderline(
               child: DropdownButton<DropdownModels>(
                 isExpanded: true,
                 isDense: true,
                 padding: EdgeInsets.zero,
                 value: selectedValue,
+                icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                hint: Text(
+                  dropDownHint.tr,
+                  style: TextStyle(
+                    color: AppColors.blackColor.withOpacity(0.5),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w300,
+                    fontStyle: FontStyle.normal
+                  ),
+                ),
                 borderRadius: BorderRadius.zero,
+                style: TextStyle(
+                  color: AppColors.blackColor,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal
+                ),
                 items: items.map((e) {
                   return DropdownMenuItem<DropdownModels>(
                     value: e,
