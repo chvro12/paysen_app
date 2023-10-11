@@ -16,4 +16,26 @@ class AppColors {
   static const errorColor = Color(0xffD8000C);
   static const onError = Color(0xffF7F7F7);
   static const transparent = Colors.transparent;
+
+  static const orchid = Color(0xFFD98DD4);
+  static const turkishRose = Color(0xFFAF648C);
+  static const cornflowerBlue = Color(0xFF6F90E6);
+  static const diamond = Color(0xFFC1E7FF);
+  static const freshAir = Color(0xFFAADDFD);
+  static const babyBlueEyes = Color(0xFF9DD5F8);
+  static const persianIndigo = Color(0xFF281777);
+  static const mediumPurple = Color(0xFF907EE6);
+  static const brightGray = Color(0xFFE7ECF4);
+  static const red = Color(0xFFFF0000);
+  static const water = Color(0xFFDAEBFF);
+
+  static const linearGradient1 = LinearGradient(
+    colors: [
+      freshAir,
+      primaryColor
+    ],
+    stops: [0.0, 0.7763],
+    begin: Alignment(-0.618, -0.785),
+    end: Alignment(0.618, 0.785),
+  );
 }

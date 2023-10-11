@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../ui/auth/login_screen.dart';
 import '../ui/auth/models/login_models.dart';
+import '../ui/dashboard/dashboard_screen.dart';
 import '../ui/onboarding/onboard_screen.dart';
 import '../ui/auth/otp_screen.dart';
 import '../ui/auth/signup_screen.dart';
-import '../ui/splash/splash_screen.dart';
 
 class AppRoutes {
 
@@ -20,7 +20,8 @@ class AppRoutes {
     Object? args = settings.arguments;
 
     if (settings.name == initialRoute) {
-      route = SplashScreen();
+      // route = SplashScreen();
+      route = DashboardScreen();
     } else if (settings.name!.toLowerCase() == onboardRoute) {
       route = OnBoardScreen();
     } else if (settings.name!.toLowerCase() == loginRoute) {

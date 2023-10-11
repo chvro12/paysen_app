@@ -78,10 +78,20 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/icons/
+    - assets/icons/bottom-navigation/
     - assets/1.5x/
+    - assets/1.5x/icons/
+    - assets/1.5x/icons/bottom-navigation/
     - assets/2.0x/
+    - assets/2.0x/icons/
+    - assets/2.0x/icons/bottom-navigation/
     - assets/3.0x/
+    - assets/3.0x/icons/
+    - assets/3.0x/icons/bottom-navigation/
     - assets/4.0x/
+    - assets/4.0x/icons/
+    - assets/4.0x/icons/bottom-navigation/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

@@ -14,8 +14,9 @@ class CustomText extends StatelessWidget {
   final TextDecorationStyle? textDecorationStyle;
   final double? textDecorationThickness;
   final double? textSize;
-  final FontStyle fontStyle;
-  final FontWeight fontWeight;
+  final FontStyle? fontStyle;
+  final FontWeight? fontWeight;
+  final double? textLetterSpacing;
 
   const CustomText({
     super.key,
@@ -29,7 +30,8 @@ class CustomText extends StatelessWidget {
     this.textDecorationThickness,
     this.textSize,
     this.fontStyle = FontStyle.normal,
-    this.fontWeight = FontWeight.w400
+    this.fontWeight = FontWeight.w400,
+    this.textLetterSpacing
   });
 
   @override
@@ -45,6 +47,7 @@ class CustomText extends StatelessWidget {
         decorationStyle: textDecorationStyle,
         decorationThickness: textDecorationThickness,
         fontFamily: 'Folio-Std',
+        letterSpacing: textLetterSpacing,
         fontSize: textSize ?? 14.sp,
         fontStyle: fontStyle,
         fontWeight: fontWeight

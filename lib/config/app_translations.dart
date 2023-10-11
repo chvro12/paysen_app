@@ -58,7 +58,17 @@ Map<String, String> get englishTranslation {
     'otp_mismatch_description': "Oops! It seems the OTP you entered doesn't match. Please verify the code and try again. If the issue persists, request a new OTP.",
     'city': 'City',
     'select_city': 'Select city',
-    'select_gender': 'Select gender'
+    'select_gender': 'Select gender',
+    'wallet': 'Wallet',
+    'cards': 'Cards',
+    'support': 'Support',
+    'account': 'Account',
+    'credit_card': 'Credit Card',
+    'withdrawal': 'Withdrawal',
+    'topup': 'Topup',
+    'transactions': 'Transactions',
+    'view_all_history': 'View All History',
+    'this_month': 'This month'
   };
 }
 
@@ -96,6 +106,13 @@ Map<String, String> get frenchTranslation {
     'otp_mismatch_description': "",
     'city': '',
     'select_city': '',
-    'select_gender': ''
+    'select_gender': '',
+    'wallet': '',
+    'cards': '',
+    'support': '',
+    'account': '',
+    'credit_card': '',
+    'withdrawal': '',
+    'topup': ''
   };
 }

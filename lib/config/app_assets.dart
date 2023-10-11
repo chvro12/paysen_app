@@ -3,6 +3,7 @@ class AppAssets {
   AppAssets._();
 
   static const String _prefix = 'assets';
+  static const String _prefixIcons = '$_prefix/icons';
 
   /// SPLASH SCREEN
   static const String splashBackgroundIMG = '$_prefix/splash_bg_img.png';
@@ -17,4 +18,28 @@ class AppAssets {
 
   /// SIGN UP SCREEN
   static const String signupProfileIMG = '$_prefix/signup_profile_IMG.png';
+
+  /// HOME SCREEN
+  static const String notificationIcon = '$_prefixIcons/notification-icon.png';
+  static const String creditCardBG = '$_prefix/credit-card-bg.png';
+  static const String creditCardPaysenLogo = '$_prefix/credit-card-paysen-logo.png';
+  static const String creditCardChip = '$_prefixIcons/credit-card-chip.png';
+  static const String creditCardMisc = '$_prefixIcons/credit-card-misc.png';
+  static const String homeScreenWithdrawalIcon = '$_prefixIcons/home-screen-withdrawal-icon.png';
+  static const String homeScreenTopupIcon = '$_prefixIcons/home-screen-topup-icon.png';
+  static const String arrowRightIcon = '$_prefixIcons/arrow-right-icon.png';
+  static const String transactionWithdrawIcon = '$_prefixIcons/transaction-withdraw-icon.png';
+  static const String transactionTopupIcon = '$_prefixIcons/transaction-topup-icon.png';
+
+  /// BOTTOM NAVIGATION BAR ICONS
+  static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';
+  static const String fabPaysenLogo = '$_prefixBottomNavigation/fab-paysen.png';
+  static const String walletActiveIcon = '$_prefixBottomNavigation/wallet-active-icon.png';
+  static const String walletInactiveIcon = '$_prefixBottomNavigation/wallet-inactive-icon.png';
+  static const String cardActiveIcon = '$_prefixBottomNavigation/card-active-icon.png';
+  static const String cardInactiveIcon = '$_prefixBottomNavigation/card-inactive-icon.png';
+  static const String supportActiveIcon = '$_prefixBottomNavigation/support-active-icon.png';
+  static const String supportInactiveIcon = '$_prefixBottomNavigation/support-inactive-icon.png';
+  static const String accountActiveIcon = '$_prefixBottomNavigation/account-active-icon.png';
+  static const String accountInactiveIcon = '$_prefixBottomNavigation/account-inactive-icon.png';
 }

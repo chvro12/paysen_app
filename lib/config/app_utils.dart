@@ -6,6 +6,8 @@ import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 
 import '../components/index.dart';
 
+typedef CustomListItemBuilder<T> = Widget Function(BuildContext context, int index, T value);
+
 mixin ProgressHUDMixin {
 
   void show(BuildContext context) {
