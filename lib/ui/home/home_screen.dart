@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
@@ -81,6 +82,7 @@ class HomeScreen extends StatelessWidget {
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.vertical(top: Radius.circular(40.0))
             ),
+            height: Get.height,
             padding: EdgeInsets.symmetric(horizontal: 0.04.sw, vertical: 0.02.sh),
             child: SingleChildScrollView(
               padding: EdgeInsets.only(bottom: 0.12.sh),
