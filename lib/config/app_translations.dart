@@ -70,7 +70,10 @@ Map<String, String> get englishTranslation {
     'view_all_history': 'View All History',
     'this_month': 'This month',
     'create_a_virtual_card': 'Create a virtual card',
-    'create_activate_physical_card': 'Create/activate physical card'
+    'create_activate_physical_card': 'Create/activate physical card',
+    'support_title': 'Hello',
+    'support_description': 'We simplify online payments for individuals and businesses. Do you have any questions?',
+    'access_chat': 'Access chat'
   };
 }
 
@@ -117,6 +120,9 @@ Map<String, String> get frenchTranslation {
     'withdrawal': '',
     'topup': '',
     'create_a_virtual_card': '',
-    'create_activate_physical_card': ''
+    'create_activate_physical_card': '',
+    'support_title': '',
+    'support_description': '',
+    'access_chat': ''
   };
 }

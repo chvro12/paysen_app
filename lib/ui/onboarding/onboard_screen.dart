@@ -63,7 +63,7 @@ class OnBoardScreen extends StatelessWidget {
                   ),
 
                   SizedBox(
-                    height: 0.06.sh,
+                    height: 0.07.sh,
                     width: 0.9.sw,
                     child: CustomElevatedButton(
                       btnLabel: 'get_started',

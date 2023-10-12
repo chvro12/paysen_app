@@ -4,13 +4,14 @@ import 'package:get/get.dart';
 import '../../../config/app_assets.dart';
 import '../../cards/cards_screen.dart';
 import '../../home/home_screen.dart';
+import '../../support/support_screen.dart';
 
 class DashboardController extends GetxController {
   
   final List<Widget> bottomNavigationBarBody = [
     const HomeScreen(),
     CardsScreen(),
-    Container(),
+    const SupportScreen(),
     Container()
   ];
   

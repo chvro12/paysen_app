@@ -37,6 +37,9 @@ class AppAssets {
   static const String createPhysicalCardIcon = '$_prefixIcons/create-physical-card-icon.png';
   static const String createVirtualCardIcon = '$_prefixIcons/create-virtual-card-icon.png';
 
+  /// SUPPORT SCREEN
+  static const String supportIMG = '$_prefix/support-img.png';
+
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';
   static const String fabPaysenLogo = '$_prefixBottomNavigation/fab-paysen.png';

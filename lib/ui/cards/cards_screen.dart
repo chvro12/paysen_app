@@ -47,33 +47,35 @@ class CardsScreen extends StatelessWidget {
             ),
             height: Get.height,
             padding: EdgeInsets.symmetric(horizontal: 0.04.sw, vertical: 0.08.sh),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-
-                CardView(
-                  linearGradientColor: const [
-                    AppColors.darkCerulean,
-                    AppColors.celestialBlue
-                  ],
-                  assetIMG: AppAssets.createVirtualCardIcon,
-                  label: 'create_a_virtual_card',
-                  onPressed: () {},
-                ),
-
-                SizedBox(height: 0.04.sh,),
-
-                CardView(
-                  linearGradientColor: const [
-                    AppColors.turkishRose,
-                    AppColors.pastelPink
-                  ],
-                  assetIMG: AppAssets.createPhysicalCardIcon,
-                  label: 'create_activate_physical_card',
-                  onPressed: () {},
-                )
-
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+            
+                  CardView(
+                    linearGradientColor: const [
+                      AppColors.darkCerulean,
+                      AppColors.celestialBlue
+                    ],
+                    assetIMG: AppAssets.createVirtualCardIcon,
+                    label: 'create_a_virtual_card',
+                    onPressed: () {},
+                  ),
+            
+                  SizedBox(height: 0.04.sh,),
+            
+                  CardView(
+                    linearGradientColor: const [
+                      AppColors.turkishRose,
+                      AppColors.pastelPink
+                    ],
+                    assetIMG: AppAssets.createPhysicalCardIcon,
+                    label: 'create_activate_physical_card',
+                    onPressed: () {},
+                  )
+            
+                ],
+              ),
             ),
           ),
         )
