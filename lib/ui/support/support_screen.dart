@@ -20,6 +20,8 @@ class SupportScreen extends StatelessWidget {
           headerLabel: 'support',
         ),
 
+        SizedBox(height: 24.h,),
+
         Flexible(
           child: Container(
             decoration: const BoxDecoration(
@@ -59,7 +61,10 @@ class SupportScreen extends StatelessWidget {
 
                   SizedBox(height: 0.02.sh,),
 
-                  Image.asset(AppAssets.supportIMG),
+                  Image.asset(
+                    AppAssets.supportIMG,
+                    height: 200.h,
+                  ),
 
                   SizedBox(height: 0.06.sh,),
 

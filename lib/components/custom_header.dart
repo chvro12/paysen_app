@@ -11,7 +11,6 @@ class CustomHeader extends StatelessWidget {
   final Widget? childBeforeTitle;
   final double? headerFontSize;
   final List<Widget> actionButton;
-  final double? headerHeight;
 
   const CustomHeader({
     super.key, 
@@ -20,14 +19,13 @@ class CustomHeader extends StatelessWidget {
     this.childBeforeTitle,
     this.headerFontSize,
     this.actionButton = const [],
-    this.headerHeight
   });
   
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: Get.mediaQuery.padding,
-      height: headerHeight ?? 0.08.sh,
+      height: 0.08.sh,
       alignment: Alignment.bottomCenter,
       child: Row(
         mainAxisSize: MainAxisSize.max,

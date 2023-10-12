@@ -39,6 +39,8 @@ class CardsScreen extends StatelessWidget {
           ],
         ),
 
+        SizedBox(height: 24.h,),
+
         Flexible(
           child: Container(
             decoration: const BoxDecoration(
