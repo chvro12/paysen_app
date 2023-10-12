@@ -23,7 +23,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 0.12.sh,
+      height: 80.h,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -31,15 +31,16 @@ class CustomBottomNavigationBar extends StatelessWidget {
           CustomPaint(
             isComplex: true,
             painter: RPSCustomPainter(Theme.of(context).scaffoldBackgroundColor),
-            size: Size(Get.width, 0.12.sh),
+            size: Size(Get.width, 100.h),
           ),
 
           Positioned(
             left: 0.0,
             right: 0.0,
+            bottom: 40.h,
             child: CustomShaderMask(
               child: Container(
-                width: 60.0, // Adjust the width and height as needed
+                width: 60.0, 
                 height: 60.0,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
@@ -52,6 +53,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           Positioned(
             left: 0.0,
             right: 0.0,
+            bottom: 40.h,
             child: SizedBox(
               height: 60.0,
               width: 60.0,
@@ -63,8 +65,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             bottom: 0.0,
             child: Container(
               width: Get.width,
-              height: 0.08.sh,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              height: 54.h,
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +88,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                           
                           Image.asset(icon,),
                           
-                          const SizedBox(height: 8.0,),
+                          SizedBox(height: 8.h,),
                               
                           CustomText(
                             label: title,
@@ -106,11 +108,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
 
           Positioned(
-            top: 0.04.sh,
+            top: 26.h,
             child: Container(
-              height: 2.0,
+              height: 2.h,
               width: Get.width,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,8 +124,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     flex: title == 'Cards' || title == 'Support' ? 2 : 1,
                     child: Center(
                       child: Container(
-                        width: 0.06.sw,
-                        height: 0.04.sh,
+                        width: 24.w,
+                        height: 28.h,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: isSelected ? AppColors.quaternaryColor : AppColors.transparent,
