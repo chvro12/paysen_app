@@ -61,7 +61,7 @@ class CardsScreen extends StatelessWidget {
                   onPressed: () {},
                 ),
 
-                SizedBox(height: 0.02.sh,),
+                SizedBox(height: 0.04.sh,),
 
                 CardView(
                   linearGradientColor: const [
