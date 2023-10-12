@@ -73,7 +73,19 @@ Map<String, String> get englishTranslation {
     'create_activate_physical_card': 'Create/activate physical card',
     'support_title': 'Hello',
     'support_description': 'We simplify online payments for individuals and businesses. Do you have any questions?',
-    'access_chat': 'Access chat'
+    'access_chat': 'Access chat',
+    'premium': 'Premium',
+    'active': 'Active',
+    'profile_details': 'Profile details',
+    'change_plan': 'Change Plan',
+    'select_language': 'Select Language',
+    'change_passcode': 'Change pass-code',
+    'invite_friends': 'Invite friends',
+    'verification_status': 'Verification status',
+    'merchant_details': 'Merchant details',
+    'request_crypto_account': 'Request crypto account',
+    'terms_and_conditions': 'Terms and conditions',
+    'logout': 'Logout'
   };
 }
 
@@ -123,6 +135,18 @@ Map<String, String> get frenchTranslation {
     'create_activate_physical_card': '',
     'support_title': '',
     'support_description': '',
-    'access_chat': ''
+    'access_chat': '',
+    'premium': '',
+    'active': '',
+    'profile_details': '',
+    'change_plan': '',
+    'select_language': '',
+    'change_passcode': '',
+    'invite_friends': '',
+    'verification_status': '',
+    'merchant_details': '',
+    'request_crypto_account': '',
+    'terms_and_conditions': '',
+    'logout': ''
   };
 }

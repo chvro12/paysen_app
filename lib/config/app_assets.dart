@@ -40,6 +40,19 @@ class AppAssets {
   /// SUPPORT SCREEN
   static const String supportIMG = '$_prefix/support-img.png';
 
+  /// ACCOUNT SCREEN
+  static const String profileDetailsIcon = '$_prefixIcons/profile-details-icon.png';
+  static const String changePlanIcon = '$_prefixIcons/change-plan-icon.png';
+  static const String selectLanguageIcon = '$_prefixIcons/select-language-icon.png';
+  static const String changePasscodeIcon = '$_prefixIcons/change-passcode-icon.png';
+  static const String inviteFriendsIcon = '$_prefixIcons/invite-friends-icon.png';
+  static const String verificationStatusIcon = '$_prefixIcons/verification-status-icon.png';
+  static const String merchantDetailsIcon = '$_prefixIcons/merchant-details-icon.png';
+  static const String requestCryptoAccountIcon = '$_prefixIcons/request-crypto-account-icon.png';
+  static const String termsAndConditionsIcon = '$_prefixIcons/terms-and-conditions-icon.png';
+  static const String logoutIcon = '$_prefixIcons/logout-icon.png';
+  static const String arrowRight2Icon = '$_prefixIcons/arrow-right2-icon.png';
+
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';
   static const String fabPaysenLogo = '$_prefixBottomNavigation/fab-paysen.png';
