@@ -28,6 +28,9 @@ class AppColors {
   static const brightGray = Color(0xFFE7ECF4);
   static const red = Color(0xFFFF0000);
   static const water = Color(0xFFDAEBFF);
+  static const darkCerulean = Color(0xFF094970);
+  static const celestialBlue = Color(0xFF4B93D8);
+  static const pastelPink = Color(0xFFD8A3AA);
 
   static const linearGradient1 = LinearGradient(
     colors: [

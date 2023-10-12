@@ -18,63 +18,36 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
 
-        SizedBox(height: 0.02.sh,),
-
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-        
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-        
-                    CircleAvatar(
-                      radius: 24.0,
-                      backgroundColor: AppColors.transparent,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: AppColors.whiteColor),
-                          shape: BoxShape.circle,
-                          color: AppColors.quaternaryColor
-                        ),
-                        height: double.infinity,
-                        width: double.infinity,
-                        child: Image.asset(AppAssets.fabPaysenLogo),
-                      ),
-                    ),
-        
-                    SizedBox(width: 0.04.sw,),
-        
-                    CustomText(
-                      label: 'Samba Thiam',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      textColor: AppColors.blackColor,
-                      textSize: 20.sp,
-                    ),
-        
-                  ],
+          child: CustomHeader(
+            showBackButton: false,
+            headerLabel: 'Samba Thiam',
+            headerFontSize: 20.sp,
+            childBeforeTitle: CircleAvatar(
+              radius: 24.0,
+              backgroundColor: AppColors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.whiteColor),
+                  shape: BoxShape.circle,
+                  color: AppColors.quaternaryColor
                 ),
+                height: double.infinity,
+                width: double.infinity,
+                child: Image.asset(AppAssets.fabPaysenLogo),
               ),
-        
+            ),
+            actionButton: [
               CircularIconButton(
                 assetIMG: AppAssets.notificationIcon,
                 onCircularBtnPressed: () {},
               ),
-        
             ],
           ),
         ),
 
-        SizedBox(height: 0.02.sh,),
-
         const CreditCardView(),
-
-        SizedBox(height: 0.02.sh,),
 
         Flexible(
           child: Container(

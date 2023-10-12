@@ -31,6 +31,12 @@ class AppAssets {
   static const String transactionWithdrawIcon = '$_prefixIcons/transaction-withdraw-icon.png';
   static const String transactionTopupIcon = '$_prefixIcons/transaction-topup-icon.png';
 
+  /// CARD SCREEN
+  static const String addCircleIcon = '$_prefixIcons/add-circle-icon.png';
+  static const String upDownArrowIcon = '$_prefixIcons/up-down-arrow-icon.png';
+  static const String createPhysicalCardIcon = '$_prefixIcons/create-physical-card-icon.png';
+  static const String createVirtualCardIcon = '$_prefixIcons/create-virtual-card-icon.png';
+
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';
   static const String fabPaysenLogo = '$_prefixBottomNavigation/fab-paysen.png';

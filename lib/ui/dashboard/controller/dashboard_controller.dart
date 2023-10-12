@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/app_assets.dart';
+import '../../cards/cards_screen.dart';
 import '../../home/home_screen.dart';
 
 class DashboardController extends GetxController {
   
   final List<Widget> bottomNavigationBarBody = [
     const HomeScreen(),
-    Container(),
+    CardsScreen(),
     Container(),
     Container()
   ];

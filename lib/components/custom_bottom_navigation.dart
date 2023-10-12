@@ -122,7 +122,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     flex: title == 'Cards' || title == 'Support' ? 2 : 1,
                     child: Center(
                       child: Container(
-                        width: 0.1.sw,
+                        width: 0.06.sw,
                         height: 0.04.sh,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(

@@ -20,9 +20,13 @@ class LoginScreen extends StatelessWidget {
         height: 1.sh,
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             
-            const CustomHeader(headerLabel: 'login'),
+            const CustomHeader(
+              headerLabel: 'login',
+              showBackButton: true,
+            ),
 
             Expanded(
               child: Container(

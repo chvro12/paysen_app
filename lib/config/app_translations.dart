@@ -68,7 +68,9 @@ Map<String, String> get englishTranslation {
     'topup': 'Topup',
     'transactions': 'Transactions',
     'view_all_history': 'View All History',
-    'this_month': 'This month'
+    'this_month': 'This month',
+    'create_a_virtual_card': 'Create a virtual card',
+    'create_activate_physical_card': 'Create/activate physical card'
   };
 }
 
@@ -113,6 +115,8 @@ Map<String, String> get frenchTranslation {
     'account': '',
     'credit_card': '',
     'withdrawal': '',
-    'topup': ''
+    'topup': '',
+    'create_a_virtual_card': '',
+    'create_activate_physical_card': ''
   };
 }
