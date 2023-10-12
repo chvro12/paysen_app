@@ -47,7 +47,11 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
+        SizedBox(height: 12.h,),
+
         const CreditCardView(),
+
+        SizedBox(height: 12.h,),
 
         Flexible(
           child: Container(
@@ -89,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
             
-                  SizedBox(height: 0.02.sh,),
+                  SizedBox(height: 12.h,),
             
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -125,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
             
-                  SizedBox(height: 0.02.sh,),
+                  SizedBox(height: 12.h,),
             
                   CustomChoiceChip(
                     label: 'this_month', 
@@ -141,7 +145,7 @@ class HomeScreen extends StatelessWidget {
                     onValueSelected: (value) {},
                   ),
             
-                  SizedBox(height: 0.02.sh,),
+                  SizedBox(height: 12.h,),
                   
                 ],
               ),

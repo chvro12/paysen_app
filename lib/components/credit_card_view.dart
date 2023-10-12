@@ -22,7 +22,8 @@ class CreditCardView extends StatelessWidget {
           Image.asset(
             AppAssets.creditCardBG, 
             width: double.infinity, 
-            fit: BoxFit.fitWidth,
+            height: double.infinity, 
+            fit: BoxFit.fill,
           ),
 
           Positioned(
@@ -118,7 +119,7 @@ class CreditCardView extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: 0.032.sh,
+            bottom: 0.02.sh,
             left: 0.05.sw,
             child: CustomText(
               label: 'Samba Thiam',

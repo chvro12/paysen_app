@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paysen/components/index.dart';
 
+import '../../../components/index.dart';
 import '../../../config/app_assets.dart';
 import '../../../config/app_colors.dart';
 
@@ -23,12 +23,12 @@ class WithdrawTopupView extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 0.128.sh,
+        height: 100.h,
         decoration: BoxDecoration(
           gradient: AppColors.linearGradient1,
           borderRadius: BorderRadius.circular(16.0)
         ),
-        padding: EdgeInsets.symmetric(vertical: 0.02.sh, horizontal: 0.04.sw),
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 14.4.w),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,8 +36,8 @@ class WithdrawTopupView extends StatelessWidget {
           children: [
     
             Container(
-              width: 0.1.sw,
-              height: 0.1.sw,
+              width: 36.w,
+              height: 36.w,
               padding: EdgeInsets.all(0.001.sh),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6.0),
