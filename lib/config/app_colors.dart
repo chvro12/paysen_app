@@ -35,6 +35,8 @@ class AppColors {
   static const cultured = Color(0xFFF6F7F9);
   static const apple = Color(0xFF4CAF50);
   static const antiFlashWhite = Color(0xFFF6EBF4);
+  static const lightSilver = Color(0xFFD9D9D9);
+  static const bottomSheetBarrierColor = Colors.black54;
 
   static const linearGradient1 = LinearGradient(
     colors: [

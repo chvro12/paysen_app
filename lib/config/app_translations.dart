@@ -85,7 +85,19 @@ Map<String, String> get englishTranslation {
     'merchant_details': 'Merchant details',
     'request_crypto_account': 'Request crypto account',
     'terms_and_conditions': 'Terms and conditions',
-    'logout': 'Logout'
+    'logout': 'Logout',
+    'withdrawal_methods': 'Withdrawal methods',
+    'mobile_money_withdrawal': 'Mobile money withdrawal',
+    'distributor_withdrawal': 'Distributor withdrawal',
+    'money_withdraw': 'Money withdraw',
+    'change': 'Change',
+    'paysen_fees': 'PaySen fees',
+    'operator_fees': 'Operator fees',
+    'withdraw': 'Withdraw',
+    'retailer_withdrawal': 'Retailer withdrawal',
+    'scan_qr_code': 'Scan QR Code',
+    'scan_qr_code_description': 'Point the camera at the code to proceed with the payment',
+    'scan': 'Scan'
   };
 }
 
@@ -147,6 +159,18 @@ Map<String, String> get frenchTranslation {
     'merchant_details': '',
     'request_crypto_account': '',
     'terms_and_conditions': '',
-    'logout': ''
+    'logout': '',
+    'withdrawal_methods': '',
+    'mobile_money_withdrawal': '',
+    'distributor_withdrawal': '',
+    'money_withdraw': '',
+    'change': '',
+    'paysen_fees': '',
+    'operator_fees': '',
+    'withdraw': '',
+    'retailer_withdrawal': '',
+    'scan_qr_code': '',
+    'scan_qr_code_description': '',
+    'scan': ''
   };
 }

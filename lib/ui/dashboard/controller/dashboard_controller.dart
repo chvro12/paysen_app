@@ -9,8 +9,11 @@ import '../../support/support_screen.dart';
 
 class DashboardController extends GetxController {
   
-  final List<Widget> bottomNavigationBarBody = [
-    const HomeScreen(),
+  List<Widget> get bottomNavigationBarBody => [
+    HomeScreen(
+      showTopBottomSheet: onTopupBottomSheetChanged, 
+      showWithdrawaBottomSheet: onWithdrawBottomSheetChanged
+    ),
     CardsScreen(),
     const SupportScreen(),
     AccountScreen()
@@ -23,10 +26,26 @@ class DashboardController extends GetxController {
     {'title': 'account'.tr, 'active_icon': AppAssets.accountActiveIcon, 'inactive_icon': AppAssets.accountInactiveIcon},
   ];
 
+  final showWithdrawaBottomSheet = false.obs;
+  final showTopBottomSheet = false.obs;
   final selectedBottomNavigationBarIndex = 0.obs;
 
   void onBottomNavigationBarItemChanged(int value) {
     selectedBottomNavigationBarIndex.value = value;
+
+    onTopupBottomSheetChanged(false);
+    onWithdrawBottomSheetChanged(false);
+
+    update();
+  }
+
+  void onWithdrawBottomSheetChanged(bool value) {
+    showWithdrawaBottomSheet.value = value;
+    update();
+  }
+
+  void onTopupBottomSheetChanged(bool value) {
+    showTopBottomSheet.value = value;
     update();
   }
 }

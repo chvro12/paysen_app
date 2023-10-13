@@ -30,6 +30,10 @@ class AppAssets {
   static const String arrowRightIcon = '$_prefixIcons/arrow-right-icon.png';
   static const String transactionWithdrawIcon = '$_prefixIcons/transaction-withdraw-icon.png';
   static const String transactionTopupIcon = '$_prefixIcons/transaction-topup-icon.png';
+  static const String mobileMoneyWithdrawalIcon = '$_prefixIcons/mobile-money-withdrawal-icon.png';
+  static const String distributorWithdrawalIcon = '$_prefixIcons/distributor-withdrawal-icon.png';
+  static const String mobileIcon = '$_prefixIcons/mobile-icon.png';
+  static const String retailerWithdrawalIcon = '$_prefixIcons/retailer-withdrawal-icon.png';
 
   /// CARD SCREEN
   static const String addCircleIcon = '$_prefixIcons/add-circle-icon.png';

@@ -6,7 +6,6 @@ import '../config/app_assets.dart';
 import '../config/app_colors.dart';
 import 'index.dart';
 
-
 class CustomBottomNavigationBar extends StatelessWidget {
 
   final List<Map<String, String>> bottomNavigationBarItems;
@@ -23,17 +22,20 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80.h,
+      height: 56.h,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          
-          CustomPaint(
-            isComplex: true,
-            painter: RPSCustomPainter(Theme.of(context).scaffoldBackgroundColor),
-            size: Size(Get.width, 100.h),
+    
+          ClipPath(
+            clipper: RPSCustomClipper(Theme.of(context).scaffoldBackgroundColor),
+            child: Container(
+              height: 56.h,
+              width: Get.width,
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
           ),
-
+    
           Positioned(
             left: 0.0,
             right: 0.0,
@@ -49,7 +51,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ),
           ),
-
+    
           Positioned(
             left: 0.0,
             right: 0.0,
@@ -60,7 +62,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               child: Image.asset(AppAssets.fabPaysenLogo),
             ),
           ),
-
+    
           Positioned(
             bottom: 0.0,
             child: Container(
@@ -106,9 +108,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ),
           ),
-
+    
           Positioned(
-            top: 26.h,
+            top: 0.0,
             child: Container(
               height: 2.h,
               width: Get.width,
@@ -142,6 +144,38 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class RPSCustomClipper extends CustomClipper<Path> {
+
+  final Color color;
+
+  RPSCustomClipper(this.color);
+
+  @override
+  Path getClip(Size size) {
+    Path path_0 = Path();
+    path_0.moveTo(size.width * 0.5572243, size.height * 0.2546772);
+    path_0.cubicTo(size.width * 0.5735217, size.height * 0.1629329, size.width * 0.5929863, size.height * 0.05335481, size.width * 0.6430206, 0);
+    path_0.lineTo(size.width * 0.9450801, 0);
+    path_0.cubicTo(size.width * 0.9754119, 0, size.width, size.height * 0.1360152, size.width, size.height * 0.3037975);
+    path_0.lineTo(size.width, size.height * 1.012658);
+    path_0.lineTo(0, size.height * 1.012658);
+    path_0.lineTo(0, size.height * 0.3037975);
+    path_0.cubicTo(0, size.height * 0.1360152, size.width * 0.02458856, 0, size.width * 0.05491991, 0);
+    path_0.lineTo(size.width * 0.3592677, 0);
+    path_0.cubicTo(size.width * 0.4068513, size.height * 0.04724456, size.width * 0.4282723, size.height * 0.1592633, size.width * 0.4463021, size.height * 0.2535532);
+    path_0.cubicTo(size.width * 0.4620870, size.height * 0.3361038, size.width * 0.4752723, size.height * 0.4050633, size.width * 0.5011442, size.height * 0.4050633);
+    path_0.cubicTo(size.width * 0.5305103, size.height * 0.4050633, size.width * 0.5425904, size.height * 0.3370608, size.width * 0.5572243, size.height * 0.2546772);
+    path_0.close();
+
+    return path_0;
+  }
+  
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return oldClipper != this;
   }
 }
 
