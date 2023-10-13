@@ -97,7 +97,10 @@ Map<String, String> get englishTranslation {
     'retailer_withdrawal': 'Retailer withdrawal',
     'scan_qr_code': 'Scan QR Code',
     'scan_qr_code_description': 'Point the camera at the code to proceed with the payment',
-    'scan': 'Scan'
+    'scan': 'Scan',
+    'payment_methods': 'Payment methods',
+    'mobile_money_bank_card': 'Mobile money / bank card',
+    'coupons': 'Coupons'
   };
 }
 
@@ -171,6 +174,9 @@ Map<String, String> get frenchTranslation {
     'retailer_withdrawal': '',
     'scan_qr_code': '',
     'scan_qr_code_description': '',
-    'scan': ''
+    'scan': '',
+    'payment_methods': '',
+    'mobile_money_bank_card': '',
+    'coupons': ''
   };
 }

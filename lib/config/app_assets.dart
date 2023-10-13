@@ -56,6 +56,8 @@ class AppAssets {
   static const String termsAndConditionsIcon = '$_prefixIcons/terms-and-conditions-icon.png';
   static const String logoutIcon = '$_prefixIcons/logout-icon.png';
   static const String arrowRight2Icon = '$_prefixIcons/arrow-right2-icon.png';
+  static const String mobileMoneyOrBankCardIcon = '$_prefixIcons/mobile-money-or-bank-card-icon.png';
+  static const String couponsIcon = '$_prefixIcons/coupons-icon.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

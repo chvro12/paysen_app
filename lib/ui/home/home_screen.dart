@@ -107,7 +107,9 @@ class HomeScreen extends StatelessWidget {
                             child: WithdrawTopupView(
                               assetIMG: AppAssets.homeScreenTopupIcon,
                               label: 'topup',
-                              onPressed: () {},
+                              onPressed: () {
+                                showTopBottomSheet(true);
+                              },
                             ),
                           ),
                 

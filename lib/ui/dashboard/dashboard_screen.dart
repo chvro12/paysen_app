@@ -40,6 +40,21 @@ class DashboardScreen extends StatelessWidget {
                 label2: 'distributor_withdrawal',
                 onPressed2: () {},
               )),
+            ),
+
+            Positioned(
+              bottom: 0.0,
+              child: Obx(() => !dashboardController.showTopBottomSheet.value
+              ? const SizedBox.shrink()
+              : TwoOptionsBottomSheet(
+                header: 'payment_methods',
+                assetIMG1: AppAssets.mobileMoneyOrBankCardIcon,
+                label1: 'mobile_money_bank_card',
+                onPressed1: () {},
+                assetIMG2: AppAssets.couponsIcon,
+                label2: 'coupons',
+                onPressed2: () {},
+              )),
             )
       
           ],
