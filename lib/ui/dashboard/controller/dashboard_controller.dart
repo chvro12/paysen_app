@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../config/app_assets.dart';
-import '../../account/account_screen.dart';
-import '../../cards/cards_screen.dart';
-import '../../home/home_screen.dart';
-import '../../support/support_screen.dart';
+import '../../../main.dart';
+import '../../../nested_navigator.dart';
 
 class DashboardController extends GetxController {
   
   List<Widget> get bottomNavigationBarBody => [
-    HomeScreen(
-      showTopBottomSheet: onTopupBottomSheetChanged, 
+    WalletNestedNavigator(
+      showTopBottomSheet: onTopupBottomSheetChanged,
       showWithdrawaBottomSheet: onWithdrawBottomSheetChanged
     ),
-    CardsScreen(),
-    const SupportScreen(),
-    AccountScreen()
+    const CardNestedNavigator(),
+    const SupportNestedNavigator(),
+    const AccountNestedNavigator()
+  ];
+
+  final List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    walletNavigatorKey,
+    cardsNavigatorKey,
+    supportNavigatorKey,
+    accountNavigatorKey
   ];
   
   final List<Map<String, String>> bottomNavigationBarItems = [
@@ -47,5 +53,14 @@ class DashboardController extends GetxController {
   void onTopupBottomSheetChanged(bool value) {
     showTopBottomSheet.value = value;
     update();
+  }
+
+  Future<bool> onSystemBackButtonPressed() {
+    if (_navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.canPop() == true) {
+      _navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.pop(_navigatorKeys[selectedBottomNavigationBarIndex.value].currentContext);
+    } else {
+      SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
+    }
+    return Future.value(false);
   }
 }

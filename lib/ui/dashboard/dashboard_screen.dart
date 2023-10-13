@@ -13,51 +13,57 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Obx(() => CustomBottomNavigationBar(
-        bottomNavigationBarItems: dashboardController.bottomNavigationBarItems,
-        onBottomNavigationBarItemChanged: dashboardController.onBottomNavigationBarItemChanged,
-        selectedBottomNavigationBarItem: dashboardController.selectedBottomNavigationBarIndex.value,
-      )),
-      extendBody: true,
-      body: SizedBox(
-        height: Get.height,
-        child: Stack(
-          children: [
-      
-            Obx(() => dashboardController.bottomNavigationBarBody[dashboardController.selectedBottomNavigationBarIndex.value]),
-      
-            Positioned(
-              bottom: 0.0,
-              child: Obx(() => !dashboardController.showWithdrawaBottomSheet.value
-              ? const SizedBox.shrink()
-              : TwoOptionsBottomSheet(
-                header: 'withdrawal_methods',
-                assetIMG1: AppAssets.mobileMoneyWithdrawalIcon,
-                label1: 'mobile_money_withdrawal',
-                onPressed1: () {},
-                assetIMG2: AppAssets.distributorWithdrawalIcon,
-                label2: 'distributor_withdrawal',
-                onPressed2: () {},
+    return WillPopScope(
+      onWillPop: dashboardController.onSystemBackButtonPressed,
+      child: Scaffold(
+        bottomNavigationBar: Obx(() => CustomBottomNavigationBar(
+          bottomNavigationBarItems: dashboardController.bottomNavigationBarItems,
+          onBottomNavigationBarItemChanged: dashboardController.onBottomNavigationBarItemChanged,
+          selectedBottomNavigationBarItem: dashboardController.selectedBottomNavigationBarIndex.value,
+        )),
+        extendBody: true,
+        body: SizedBox(
+          height: Get.height,
+          child: Stack(
+            children: [
+    
+              Obx(() => IndexedStack(
+                index: dashboardController.selectedBottomNavigationBarIndex.value,
+                children: dashboardController.bottomNavigationBarBody,
               )),
-            ),
-
-            Positioned(
-              bottom: 0.0,
-              child: Obx(() => !dashboardController.showTopBottomSheet.value
-              ? const SizedBox.shrink()
-              : TwoOptionsBottomSheet(
-                header: 'payment_methods',
-                assetIMG1: AppAssets.mobileMoneyOrBankCardIcon,
-                label1: 'mobile_money_bank_card',
-                onPressed1: () {},
-                assetIMG2: AppAssets.couponsIcon,
-                label2: 'coupons',
-                onPressed2: () {},
-              )),
-            )
-      
-          ],
+        
+              Positioned(
+                bottom: 0.0,
+                child: Obx(() => !dashboardController.showWithdrawaBottomSheet.value
+                ? const SizedBox.shrink()
+                : TwoOptionsBottomSheet(
+                  header: 'withdrawal_methods',
+                  assetIMG1: AppAssets.mobileMoneyWithdrawalIcon,
+                  label1: 'mobile_money_withdrawal',
+                  onPressed1: () {},
+                  assetIMG2: AppAssets.distributorWithdrawalIcon,
+                  label2: 'distributor_withdrawal',
+                  onPressed2: () {},
+                )),
+              ),
+    
+              Positioned(
+                bottom: 0.0,
+                child: Obx(() => !dashboardController.showTopBottomSheet.value
+                ? const SizedBox.shrink()
+                : TwoOptionsBottomSheet(
+                  header: 'payment_methods',
+                  assetIMG1: AppAssets.mobileMoneyOrBankCardIcon,
+                  label1: 'mobile_money_bank_card',
+                  onPressed1: () {},
+                  assetIMG2: AppAssets.couponsIcon,
+                  label2: 'coupons',
+                  onPressed2: () {},
+                )),
+              )
+        
+            ],
+          ),
         ),
       ),
     );

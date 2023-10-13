@@ -12,6 +12,11 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+final GlobalKey<NavigatorState> walletNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> cardsNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> supportNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> accountNavigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
 
   const MyApp({super.key});
