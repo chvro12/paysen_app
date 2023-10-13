@@ -31,12 +31,7 @@ class TwoOptionsBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        DashboardController dashboardController = Get.find();
-
-        dashboardController.onTopupBottomSheetChanged(false);
-        dashboardController.onWithdrawBottomSheetChanged(false);
-      },
+      onTap: _onCloseTwoOptionBottomSheet,
       child: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -94,7 +89,10 @@ class TwoOptionsBottomSheet extends StatelessWidget {
                           child: _TwoOptionBottomSheetItemView(
                             assetIMG: assetIMG1,
                             label: label1,
-                            onPressed: onPressed1,
+                            onPressed: () {
+                              _onCloseTwoOptionBottomSheet();
+                              onPressed1();
+                            },
                           ),
                         ),
                         
@@ -104,7 +102,10 @@ class TwoOptionsBottomSheet extends StatelessWidget {
                           child: _TwoOptionBottomSheetItemView(
                             assetIMG: assetIMG2,
                             label: label2,
-                            onPressed: onPressed2,
+                            onPressed: () {
+                              _onCloseTwoOptionBottomSheet();
+                              onPressed2();
+                            },
                           ),
                         )
     
@@ -120,6 +121,13 @@ class TwoOptionsBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onCloseTwoOptionBottomSheet() {
+    DashboardController dashboardController = Get.find();
+
+    dashboardController.onTopupBottomSheetChanged(false);
+    dashboardController.onWithdrawBottomSheetChanged(false);
   }
 }
 

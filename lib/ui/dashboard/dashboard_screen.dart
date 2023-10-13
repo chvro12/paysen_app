@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
+import '../../config/app_routes.dart';
+import '../../main.dart';
 import 'controller/dashboard_controller.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -40,7 +42,9 @@ class DashboardScreen extends StatelessWidget {
                   header: 'withdrawal_methods',
                   assetIMG1: AppAssets.mobileMoneyWithdrawalIcon,
                   label1: 'mobile_money_withdrawal',
-                  onPressed1: () {},
+                  onPressed1: () {
+                    walletNavigatorKey.currentState?.pushNamed(AppRoutes.moneyWithdraw);
+                  },
                   assetIMG2: AppAssets.distributorWithdrawalIcon,
                   label2: 'distributor_withdrawal',
                   onPressed2: () {},

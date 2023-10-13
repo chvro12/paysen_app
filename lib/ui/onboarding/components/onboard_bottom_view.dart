@@ -48,7 +48,7 @@ class OnboardBottomView extends StatelessWidget {
           
           Container(
             alignment: Alignment.center,
-            height: 0.12.sh,
+            height: 80.h,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: List.generate(3, (index) {

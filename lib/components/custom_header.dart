@@ -68,24 +68,16 @@ class CustomHeader extends StatelessWidget {
                     ),
                   ),
                 
-                if (headerLabel != null)
-                  Flexible(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        
-                        if (!showBackButton && childBeforeTitle == null)
-                          SizedBox(width: 0.04.sw,),
+                if (!showBackButton && childBeforeTitle == null && headerLabel != null)
+                  SizedBox(width: 0.04.sw,),
 
-                        CustomText(
-                          label: headerLabel!,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          textSize: headerFontSize ?? 30.sp,
-                        )
-                      ],
-                    ),
-                  ),
+                if (headerLabel != null) 
+                  CustomText(
+                    label: headerLabel!,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    textSize: headerFontSize ?? 30.sp,
+                  )
               ],
             ),
           ),

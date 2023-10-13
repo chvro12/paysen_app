@@ -100,7 +100,8 @@ Map<String, String> get englishTranslation {
     'scan': 'Scan',
     'payment_methods': 'Payment methods',
     'mobile_money_bank_card': 'Mobile money / bank card',
-    'coupons': 'Coupons'
+    'coupons': 'Coupons',
+    'final_amount': 'Final Amount'
   };
 }
 
@@ -177,6 +178,7 @@ Map<String, String> get frenchTranslation {
     'scan': '',
     'payment_methods': '',
     'mobile_money_bank_card': '',
-    'coupons': ''
+    'coupons': '',
+    'final_amount': ''
   };
 }

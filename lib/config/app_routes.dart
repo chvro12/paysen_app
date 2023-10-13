@@ -15,6 +15,9 @@ class AppRoutes {
   static const String otpRoute = '/otp';
   static const String signupRoute = '/signup';
 
+  /// WALLET NESTED NAVIGATOR ROUTE
+  static const String moneyWithdraw = '/money-withdraw';
+
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;
     Object? args = settings.arguments;
