@@ -5,6 +5,7 @@ import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/cards/cards_screen.dart';
 import 'ui/home/home_screen.dart';
+import 'ui/home/modules/distributor_withdrawal/distributor_withdrawal_screen.dart';
 import 'ui/home/modules/mobile_money_with_withdrawal/mobile_money_with_withdrawal_screen.dart';
 import 'ui/support/support_screen.dart';
 
@@ -35,6 +36,8 @@ class WalletNestedNavigator extends StatelessWidget {
 
         } else if (settings.name == AppRoutes.moneyWithdraw) {
           route = MobileMoneyWithWithdrawalScreen();
+        } else if (settings.name == AppRoutes.distributorWithdrawal) {
+          route = const DistributorWithdrawalScreen();
         } else {
           throw Exception('Unknown route defined.');
         }

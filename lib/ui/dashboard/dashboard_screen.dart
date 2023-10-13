@@ -47,7 +47,9 @@ class DashboardScreen extends StatelessWidget {
                   },
                   assetIMG2: AppAssets.distributorWithdrawalIcon,
                   label2: 'distributor_withdrawal',
-                  onPressed2: () {},
+                  onPressed2: () {
+                    walletNavigatorKey.currentState?.pushNamed(AppRoutes.distributorWithdrawal);
+                  },
                 )),
               ),
     

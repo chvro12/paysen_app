@@ -34,6 +34,7 @@ class AppAssets {
   static const String distributorWithdrawalIcon = '$_prefixIcons/distributor-withdrawal-icon.png';
   static const String mobileIcon = '$_prefixIcons/mobile-icon.png';
   static const String retailerWithdrawalIcon = '$_prefixIcons/retailer-withdrawal-icon.png';
+  static const String scanQREdges = '$_prefix/scan_qr_edges_img.png';
 
   /// CARD SCREEN
   static const String addCircleIcon = '$_prefixIcons/add-circle-icon.png';
