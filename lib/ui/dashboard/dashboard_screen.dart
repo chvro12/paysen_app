@@ -61,7 +61,9 @@ class DashboardScreen extends StatelessWidget {
                   header: 'payment_methods',
                   assetIMG1: AppAssets.mobileMoneyOrBankCardIcon,
                   label1: 'mobile_money_bank_card',
-                  onPressed1: () {},
+                  onPressed1: () {
+                    walletNavigatorKey.currentState?.pushNamed(AppRoutes.mobileMoneyBankCard);
+                  },
                   assetIMG2: AppAssets.couponsIcon,
                   label2: 'coupons',
                   onPressed2: () {},

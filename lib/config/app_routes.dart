@@ -18,6 +18,7 @@ class AppRoutes {
   /// WALLET NESTED NAVIGATOR ROUTE
   static const String moneyWithdraw = '/money-withdraw';
   static const String distributorWithdrawal = '/distributor-withdrawal';
+  static const String mobileMoneyBankCard = '/mobile-money-bank-card';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

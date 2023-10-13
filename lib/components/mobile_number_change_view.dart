@@ -12,13 +12,15 @@ class MobileNumberChangeView extends StatelessWidget {
   final VoidCallback onMobileNoChange;
   final ValueChanged<String> onAmountChange;
   final TextEditingController editingController;
+  final bool useSpacer;
 
   const MobileNumberChangeView({
     super.key,
     required this.mobileNoWithCountryCode,
     required this.onMobileNoChange,
     required this.onAmountChange,
-    required this.editingController
+    required this.editingController,
+    this.useSpacer = true
   });
 
   @override
@@ -161,7 +163,8 @@ class MobileNumberChangeView extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 24.h,),
+        if (useSpacer) 
+          SizedBox(height: 24.h,),
 
       ],
     );
