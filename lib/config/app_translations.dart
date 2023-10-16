@@ -124,7 +124,21 @@ Map<String, String> get englishTranslation {
     'order_details': 'Order details',
     'automatic': 'automatic',
     'securely_via_paysen': 'Securely via PaySen',
-    'share': 'Share'
+    'share': 'Share',
+    'service_not_available': 'Service not available',
+    'settings': 'Settings',
+    'permission_error_title': 'Error',
+    'permission_error_description': "To use this feature, we need your permission. Please go to your phone's settings, find our app, and turn on the necessary permission",
+    'image_option': 'Image Options',
+    'capture_from_camera': 'Capture from camera',
+    'pick_from_gallery': 'Pick from gallery',
+    'first_name_empty_message': 'First name should not be empty',
+    'last_name_empty_message': 'Last name should not be empty',
+    'email_empty_message': 'Email should not be empty',
+    'activity_empty_message': 'Activity should not be empty',
+    'gender_not_selected': 'Please select gender',
+    'city_not_selected': 'Please select city',
+    'profile_image_not_captured': 'Compulsory to have profile image.'
   };
 }
 
@@ -225,6 +239,20 @@ Map<String, String> get frenchTranslation {
     'order_details': '',
     'automatic': '',
     'securely_via_paysen': '',
-    'share': ''
+    'share': '',
+    'service_not_available': '',
+    'settings': '',
+    'permission_error_title': '',
+    'permission_error_description': '',
+    'image_option': '',
+    'capture_from_camera': '',
+    'pick_from_gallery': '',
+    'first_name_empty_message': '',
+    'last_name_empty_message': '',
+    'email_empty_message': '',
+    'activity_empty_message': '',
+    'gender_not_selected': '',
+    'city_not_selected': '',
+    'profile_image_not_captured': ''
   };
 }

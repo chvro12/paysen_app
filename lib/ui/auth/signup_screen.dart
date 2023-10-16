@@ -29,12 +29,17 @@ class SignupScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
 
-            const CustomHeader(headerLabel: 'signup',),
+            const CustomHeader(
+              headerLabel: 'signup',
+              showBackButton: true,
+            ),
+
+            SizedBox(height: 24.h,),
 
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40.0),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(40.0)),
                   shape: BoxShape.rectangle,
                   color: Colors.white
                 ),
@@ -90,15 +95,27 @@ class SignupScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                 
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                shape: BoxShape.rectangle,
-                                color: AppColors.primaryColor
+                            GestureDetector(
+                              onTap: () => signupController.onPermissionReq(context),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  shape: BoxShape.rectangle,
+                                  color: AppColors.primaryColor
+                                ),
+                                height: 0.08.sh,
+                                width: 0.08.sh,
+                                padding: const EdgeInsets.all(1.0),
+                                child: Obx(() => signupController.profileIMG.value == null
+                                ? Image.asset(AppAssets.signupProfileIMG)
+                                : ClipRRect(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  child: Image.file(
+                                    signupController.profileIMG.value!,
+                                    fit: BoxFit.fill,
+                                  ),
+                                )),
                               ),
-                              height: 0.08.sh,
-                              width: 0.08.sh,
-                              child: Image.asset(AppAssets.signupProfileIMG),
                             ),
                 
                             SizedBox(width: 0.034.sw,),

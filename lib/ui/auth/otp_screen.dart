@@ -58,7 +58,9 @@ class OtpScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
 
-            const CustomHeader(),
+            const CustomHeader(
+              showBackButton: true,
+            ),
 
             SizedBox(height: 0.06.sh,),
 

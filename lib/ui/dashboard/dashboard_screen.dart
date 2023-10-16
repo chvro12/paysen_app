@@ -66,7 +66,9 @@ class DashboardScreen extends StatelessWidget {
                   },
                   assetIMG2: AppAssets.couponsIcon,
                   label2: 'coupons',
-                  onPressed2: () {},
+                  onPressed2: () {
+                    // ToastUtils.showToast('service_not_available');
+                  },
                 )),
               )
         

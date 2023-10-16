@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../config/app_assets.dart';
 import '../config/app_colors.dart';
+import '../config/app_logger.dart';
 import '../ui/dashboard/controller/dashboard_controller.dart';
 import 'index.dart';
 
@@ -12,10 +13,16 @@ class TwoOptionsBottomSheet extends StatelessWidget {
   final String header;
   final String assetIMG1;
   final String label1;
+  final Size? iMGSize1;
+  final Color? iMGColor1;
   final VoidCallback onPressed1;
   final String assetIMG2;
   final String label2;
+  final Size? iMGSize2;
+  final Color? iMGColor2;
   final VoidCallback onPressed2;
+  final double bottomSheetHeight;
+  final VoidCallback? onCloseBottomSheet;
 
   const TwoOptionsBottomSheet({
     super.key,
@@ -25,13 +32,29 @@ class TwoOptionsBottomSheet extends StatelessWidget {
     required this.label1,
     required this.label2,
     required this.onPressed1,
-    required this.onPressed2
+    required this.onPressed2,
+    this.iMGSize1,
+    this.iMGSize2,
+    this.bottomSheetHeight = 320.0,
+    this.iMGColor1,
+    this.iMGColor2,
+    this.onCloseBottomSheet
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _onCloseTwoOptionBottomSheet,
+      onTap: () {
+        if (onCloseBottomSheet != null) {
+          onCloseBottomSheet!();
+          return;
+        }
+        try {
+          _onCloseTwoOptionBottomSheet();
+        } on Exception catch (e) {
+          AppLogger.e('Exception: $e', e);  
+        }
+      },
       child: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -40,14 +63,14 @@ class TwoOptionsBottomSheet extends StatelessWidget {
           fit: StackFit.loose,
           children: [
     
-            Container(
-              color: AppColors.bottomSheetBarrierColor,
-            ),
+            // Container(
+            //   color: AppColors.bottomSheetBarrierColor,
+            // ),
     
             Positioned(
               bottom: 0.0,
               child: Container(
-                height: 320.h,
+                height: bottomSheetHeight.h,
                 width: Get.width,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(40.0)),
@@ -89,8 +112,20 @@ class TwoOptionsBottomSheet extends StatelessWidget {
                           child: _TwoOptionBottomSheetItemView(
                             assetIMG: assetIMG1,
                             label: label1,
+                            iMGSize: iMGSize1,
+                            iMGColor: iMGColor1,
                             onPressed: () {
-                              _onCloseTwoOptionBottomSheet();
+                              if (onCloseBottomSheet != null) {
+                                onCloseBottomSheet!();
+                                onPressed1();
+                                return;
+                              }
+
+                              try {
+                                _onCloseTwoOptionBottomSheet();
+                              } on Exception catch (e) {
+                                AppLogger.e('Exception: $e', e);  
+                              }
                               onPressed1();
                             },
                           ),
@@ -102,8 +137,20 @@ class TwoOptionsBottomSheet extends StatelessWidget {
                           child: _TwoOptionBottomSheetItemView(
                             assetIMG: assetIMG2,
                             label: label2,
+                            iMGSize: iMGSize2,
+                            iMGColor: iMGColor2,
                             onPressed: () {
-                              _onCloseTwoOptionBottomSheet();
+                              if (onCloseBottomSheet != null) {
+                                onCloseBottomSheet!();
+                                onPressed1();
+                                return;
+                              }
+                              
+                              try {
+                                _onCloseTwoOptionBottomSheet();
+                              } on Exception catch (e) {
+                                AppLogger.e('Exception: $e', e);  
+                              }
                               onPressed2();
                             },
                           ),
@@ -136,11 +183,15 @@ class _TwoOptionBottomSheetItemView extends StatelessWidget {
   final String assetIMG;
   final String label;
   final VoidCallback onPressed;
+  final Size? iMGSize;
+  final Color? iMGColor;
 
   const _TwoOptionBottomSheetItemView({
     required this.assetIMG,
     required this.label,
-    required this.onPressed
+    required this.onPressed,
+    this.iMGSize,
+    this.iMGColor
   });
 
   @override
@@ -170,7 +221,12 @@ class _TwoOptionBottomSheetItemView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
     
-              Image.asset(assetIMG),
+              Image.asset(
+                assetIMG,
+                height: iMGSize?.height,
+                width: iMGSize?.width,
+                color: iMGColor,
+              ),
     
               Row(
                 mainAxisSize: MainAxisSize.max,

@@ -101,12 +101,19 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   }
   
   @override
-  Future fileUploading(Uri uri, Map<String, dynamic> body, List<File> files) async {
+  Future fileUploading(Uri uri, Map<String, String> body, List<File> files) async {
     final request = http.MultipartRequest('POST', uri);
     request.headers.addAll(apisHeaders);
 
-    for (final file in files) {
-      request.files.add(http.MultipartFile.fromBytes('avatar', file.readAsBytesSync()));
+    request.fields.addEntries(body.entries);
+    if (files.length > 1) {
+      
+      for (final file in files) {
+        request.files.add(await http.MultipartFile.fromPath('avatar', file.path));
+      }
+
+    } else if (files.length == 1) {
+      request.files.add(await http.MultipartFile.fromPath('avatar', files.first.path));
     }
 
     final response = await request.send();

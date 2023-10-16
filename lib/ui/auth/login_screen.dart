@@ -28,6 +28,8 @@ class LoginScreen extends StatelessWidget {
               showBackButton: true,
             ),
 
+            SizedBox(height: 24.h,),
+
             Expanded(
               child: Container(
                 decoration: BoxDecoration(

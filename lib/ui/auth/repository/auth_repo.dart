@@ -4,6 +4,7 @@ import '../../../services/http_baseurl.dart';
 import '../../../services/http_methods/http_methods_repo_impl.dart';
 import '../models/city_models.dart';
 import '../models/login_models.dart';
+import '../models/register_models.dart';
 
 class AuthRepo {
 
@@ -19,8 +20,8 @@ class AuthRepo {
     return CityModels.fromJson(response);
   }
 
-  Future register(Map<String, dynamic> body, List<File> files) async {
-    final response = await _httpMethodsReoImpl.fileUploading(Uri.parse('${HttpBaseUrl.baseUrl}register'), body, files);
-    return response;
+  Future<RegisterModels> register(Map<String, String> body, List<File> files) async {
+    final response = await _httpMethodsReoImpl.fileUploading(Uri.parse('${HttpBaseUrl.baseUrl}/register'), body, files);
+    return RegisterModels.fromJson(response);
   }
 }

@@ -6,6 +6,7 @@ import '../ui/dashboard/dashboard_screen.dart';
 import '../ui/onboarding/onboard_screen.dart';
 import '../ui/auth/otp_screen.dart';
 import '../ui/auth/signup_screen.dart';
+import '../ui/splash/splash_screen.dart';
 
 class AppRoutes {
 
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String loginRoute = '/login';
   static const String otpRoute = '/otp';
   static const String signupRoute = '/signup';
+  static const String dashboard = '/dashboard';
 
   /// WALLET NESTED NAVIGATOR ROUTE
   static const String moneyWithdraw = '/money-withdraw';
@@ -25,8 +27,7 @@ class AppRoutes {
     Object? args = settings.arguments;
 
     if (settings.name == initialRoute) {
-      // route = SplashScreen();
-      route = DashboardScreen();
+      route = SplashScreen();
     } else if (settings.name!.toLowerCase() == onboardRoute) {
       route = OnBoardScreen();
     } else if (settings.name!.toLowerCase() == loginRoute) {
@@ -35,6 +36,8 @@ class AppRoutes {
       route = OtpScreen(loginModels: args as LoginModels);
     } else if (settings.name!.toLowerCase() == signupRoute) {
       route = SignupScreen(loginModels: args as LoginModels);
+    } else if (settings.name!.toLowerCase() == dashboard) {
+      route = DashboardScreen();
     } else {
       throw Exception('Unknown route defined.');
     }
