@@ -11,7 +11,6 @@ export 'custom_drop_down.dart';
 export 'custom_bottom_navigation.dart';
 export 'custom_shader_mask.dart';
 export 'circular_icon_button.dart';
-export 'credit_card_view.dart';
 export 'custom_choice_chip.dart';
 export 'custom_listview_builder.dart';
 export 'circle_avatar_with_details.dart';

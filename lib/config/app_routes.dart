@@ -22,6 +22,9 @@ class AppRoutes {
   static const String distributorWithdrawal = '/distributor-withdrawal';
   static const String mobileMoneyBankCard = '/mobile-money-bank-card';
 
+  /// CARD NESTED NAVIGATOR ROUTE
+  static const String virtualCardInDollar = '/virtual-card-in-dollar';
+
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;
     Object? args = settings.arguments;

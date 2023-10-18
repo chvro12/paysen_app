@@ -7,10 +7,12 @@ import 'index.dart';
 class MoneyOverview extends StatelessWidget {
 
   final List<Widget> moneyOverviewItems;
+  final Color? containerBGColor;
 
   const MoneyOverview({
     super.key,
-    required this.moneyOverviewItems
+    required this.moneyOverviewItems,
+    this.containerBGColor
   });
 
   @override
@@ -21,7 +23,8 @@ class MoneyOverview extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
         border: Border.all(color: AppColors.brightGray),
-        shape: BoxShape.rectangle
+        shape: BoxShape.rectangle,
+        color: containerBGColor
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -50,7 +53,7 @@ class MoneyOverviewItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
+      height: 35.h,
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
         border: showBorder
@@ -77,8 +80,10 @@ class MoneyOverviewItemView extends StatelessWidget {
             CustomText(
               label: value,
               fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
-              textColor: AppColors.blackColor.withOpacity(0.5),
+              // fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w300,
+              // textColor: AppColors.blackColor.withOpacity(0.5),
+              textColor: AppColors.blackColor,
               textSize: 16.sp,
             ),
         ],

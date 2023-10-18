@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
+import '../../config/app_routes.dart';
 import 'controller/card_view.dart';
 import 'controller/cards_controller.dart';
 
@@ -61,7 +62,9 @@ class CardsScreen extends StatelessWidget {
                     ],
                     assetIMG: AppAssets.createVirtualCardIcon,
                     label: 'create_a_virtual_card',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.virtualCardInDollar);
+                    },
                   ),
             
                   SizedBox(height: 0.04.sh,),

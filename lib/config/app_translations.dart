@@ -138,7 +138,16 @@ Map<String, String> get englishTranslation {
     'activity_empty_message': 'Activity should not be empty',
     'gender_not_selected': 'Please select gender',
     'city_not_selected': 'Please select city',
-    'profile_image_not_captured': 'Compulsory to have profile image.'
+    'profile_image_not_captured': 'Compulsory to have profile image.',
+    'virtual_card_in_dollars': 'Virtual card in dollars',
+    'validity': 'Validity',
+    'price': 'Price',
+    'transaction_fee': 'Transaction fee',
+    'transaction_limit': 'Transaction limit',
+    'generate_card': 'Generate card',
+    'virtual_card': 'Virtual Card',
+    'card_holder': 'Card Holder',
+    'expire': 'Expire'
   };
 }
 
@@ -253,6 +262,15 @@ Map<String, String> get frenchTranslation {
     'activity_empty_message': '',
     'gender_not_selected': '',
     'city_not_selected': '',
-    'profile_image_not_captured': ''
+    'profile_image_not_captured': '',
+    'virtual_card_in_dollars': '',
+    'validity': '',
+    'price': '',
+    'transaction_fee': '',
+    'transaction_limit': '',
+    'generate_card': '',
+    'virtual_card': '',
+    'card_holder': '',
+    'expire': ''
   };
 }

@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:paysen/components/index.dart';
 
-import '../config/app_assets.dart';
-import '../config/app_colors.dart';
+import '../../../config/app_assets.dart';
+import '../../../config/app_colors.dart';
 
 class CreditCardView extends StatelessWidget {
 
