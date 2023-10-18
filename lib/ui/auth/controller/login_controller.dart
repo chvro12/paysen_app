@@ -36,10 +36,8 @@ class LoginController extends GetxController with ProgressHUDMixin {
     show(context);
     final checkMobileResponse = await _authRepo.checkMobile('221', phone);
     dismiss();
-    if (!checkMobileResponse.isSuccess) {
-      ToastUtils.showToast(checkMobileResponse.message);
-      return;
-    }
+    ToastUtils.showToast(checkMobileResponse.message);
+    if (!checkMobileResponse.isSuccess) return;
     Navigator.pushNamed(Get.context!, AppRoutes.otpRoute, arguments: checkMobileResponse);
   }
 }

@@ -37,7 +37,7 @@ class AppRoutes {
     } else if (settings.name!.toLowerCase() == signupRoute) {
       route = SignupScreen(loginModels: args as LoginModels);
     } else if (settings.name!.toLowerCase() == dashboard) {
-      route = DashboardScreen();
+      route = DashboardScreen(initialIndex: args as int?,);
     } else {
       throw Exception('Unknown route defined.');
     }

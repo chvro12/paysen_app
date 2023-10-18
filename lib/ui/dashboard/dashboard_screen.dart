@@ -9,12 +9,13 @@ import 'controller/dashboard_controller.dart';
 
 class DashboardScreen extends StatelessWidget {
 
-  DashboardScreen({super.key});
+  final int? initialIndex;
 
-  final dashboardController = Get.put(DashboardController());
+  const DashboardScreen({super.key, this.initialIndex});
 
   @override
   Widget build(BuildContext context) {
+    final dashboardController = Get.put(DashboardController(initialIndex));
     return WillPopScope(
       onWillPop: dashboardController.onSystemBackButtonPressed,
       child: Scaffold(

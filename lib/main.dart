@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:paysen/config/app_colors.dart';
 import 'package:paysen/config/app_routes.dart';
 import 'package:paysen/config/app_translations.dart';
+import 'package:paysen/services/shared_pref_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  SharedPrefService.initSharedPrefs();
   runApp(const MyApp());
 }
 

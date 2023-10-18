@@ -13,7 +13,7 @@ class OtpController extends GetxController with ProgressHUDMixin {
     if (loginModels.userModels == null || loginModels.userModels!.otp == null) return;
 
     if (loginModels.userType == UserType.oldUser) {
-
+      Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false, arguments: 1);
     } else {
       Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: loginModels);
     }

@@ -7,7 +7,14 @@ import '../../../main.dart';
 import '../../../nested_navigator.dart';
 
 class DashboardController extends GetxController {
-  
+
+  DashboardController([int? initialIndex]) {
+    if (initialIndex != null) {
+      selectedBottomNavigationBarIndex.value = initialIndex;
+      disableWallet = true;
+    }
+  }
+
   List<Widget> get bottomNavigationBarBody => [
     WalletNestedNavigator(
       showTopBottomSheet: onTopupBottomSheetChanged,
@@ -32,8 +39,9 @@ class DashboardController extends GetxController {
     {'title': 'account'.tr, 'active_icon': AppAssets.accountActiveIcon, 'inactive_icon': AppAssets.accountInactiveIcon},
   ];
 
-  final showWithdrawaBottomSheet = false.obs;
-  final showTopBottomSheet = false.obs;
+  final showWithdrawaBottomSheet = false.obs,
+         showTopBottomSheet = false.obs;
+  bool disableWallet = false;       
   final selectedBottomNavigationBarIndex = 0.obs;
 
   void onBottomNavigationBarItemChanged(int value) {
