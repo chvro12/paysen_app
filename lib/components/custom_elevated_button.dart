@@ -13,6 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
   final EdgeInsetsGeometry? btnPadding;
   final double btnBorderRadius;
   final bool? disableButton;
+  final BorderSide? btnBorder;
   
   const CustomElevatedButton({
     super.key, 
@@ -23,7 +24,8 @@ class CustomElevatedButton extends StatelessWidget {
     this.btnFGColor = AppColors.whiteColor,
     this.btnPadding,
     this.btnBorderRadius = 60.0,
-    this.disableButton
+    this.disableButton,
+    this.btnBorder
   });
 
   @override
@@ -56,6 +58,7 @@ class CustomElevatedButton extends StatelessWidget {
         elevation: MaterialStateProperty.all(btnElevation),
         foregroundColor: MaterialStateProperty.resolveWith(getForgroundColor),
         padding: MaterialStateProperty.all(btnPadding),
+        side: MaterialStateProperty.all(btnBorder),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(btnBorderRadius)
         )),

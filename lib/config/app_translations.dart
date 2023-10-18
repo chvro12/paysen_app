@@ -147,7 +147,11 @@ Map<String, String> get englishTranslation {
     'generate_card': 'Generate card',
     'virtual_card': 'Virtual Card',
     'card_holder': 'Card Holder',
-    'expire': 'Expire'
+    'expire': 'Expire',
+    'physical_card': 'Physical card',
+    'order_a_card': 'Order a card',
+    'physical_card_description': "Before PaySen can issue your card, you may need to provide additional identity information, such as government ID/ or proof of residence, if this is required we'll let you know by email",
+    'activate_card': 'Activate card'
   };
 }
 
@@ -271,6 +275,10 @@ Map<String, String> get frenchTranslation {
     'generate_card': '',
     'virtual_card': '',
     'card_holder': '',
-    'expire': ''
+    'expire': '',
+    'physical_card': '',
+    'order_a_card': '',
+    'physical_card_description': "",
+    'activate_card': ''
   };
 }

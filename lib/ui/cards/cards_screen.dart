@@ -76,7 +76,9 @@ class CardsScreen extends StatelessWidget {
                     ],
                     assetIMG: AppAssets.createPhysicalCardIcon,
                     label: 'create_activate_physical_card',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.physicalCard);
+                    },
                   )
             
                 ],

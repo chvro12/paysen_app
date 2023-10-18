@@ -24,6 +24,7 @@ class AppRoutes {
 
   /// CARD NESTED NAVIGATOR ROUTE
   static const String virtualCardInDollar = '/virtual-card-in-dollar';
+  static const String physicalCard = '/physical-card';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../components/index.dart';
-import '../../../config/app_colors.dart';
-import '../components/virtual_card_view.dart';
+import '../../../../components/index.dart';
+import '../../../../config/app_colors.dart';
+import '../../components/virtual_card_view.dart';
 import 'controller/virtual_card_in_dollar_controller.dart';
 
 class VirtualCardInDollarScreen extends StatelessWidget {

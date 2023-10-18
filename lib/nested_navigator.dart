@@ -4,7 +4,8 @@ import 'config/app_routes.dart';
 import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/cards/cards_screen.dart';
-import 'ui/cards/modules/virtual_card_in_dollar_screen.dart';
+import 'ui/cards/modules/physical_card/physical_card_screen.dart';
+import 'ui/cards/modules/virtual_card_in_dollar/virtual_card_in_dollar_screen.dart';
 import 'ui/home/home_screen.dart';
 import 'ui/home/modules/distributor_withdrawal/distributor_withdrawal_screen.dart';
 import 'ui/home/modules/mobile_money_bank_card/mobile_money_bank_card_screen.dart';
@@ -66,6 +67,8 @@ class CardNestedNavigator extends StatelessWidget {
           route = CardsScreen();
         } else if (settings.name == AppRoutes.virtualCardInDollar) {
           route = VirtualCardInDollarScreen();
+        } else if (settings.name == AppRoutes.physicalCard) {
+          route = const PhysicalCardScreen();
         } else {
           throw Exception('Unknown route defined.');
         }
