@@ -21,12 +21,12 @@ class SharedPrefService {
     return _sharedPreferences.clear();
   }
 
-  Future<bool> setUserAuthentication(String value) async {
+  static Future<bool> setUserAuthentication(String value) async {
     await initSharedPrefs();
     return _sharedPreferences.setString(_userAuthentication, value);
   }
 
-  Future<UserModels?> get userAuthentication async {
+  static Future<UserModels?> get userAuthentication async {
     await initSharedPrefs();
     String? value = _sharedPreferences.getString(_userAuthentication);
     if (value != null) {

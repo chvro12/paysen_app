@@ -8,4 +8,11 @@ class DropdownModels {
   factory DropdownModels.fromJson(Map<String, dynamic> data) {
     return DropdownModels(data['id'], data['name']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name
+    };
+  }
 }

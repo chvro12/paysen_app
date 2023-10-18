@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/app_enums.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
+import '../../../services/shared_pref_service.dart';
 import 'login_controller.dart';
 import '../models/login_models.dart';
 
@@ -13,6 +16,8 @@ class OtpController extends GetxController with ProgressHUDMixin {
     if (loginModels.userModels == null || loginModels.userModels!.otp == null) return;
 
     if (loginModels.userType == UserType.oldUser) {
+      final value = jsonEncode(loginModels.userModels?.toSecondJson());
+      await SharedPrefService.setUserAuthentication(value);
       Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false, arguments: 1);
     } else {
       Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: loginModels);

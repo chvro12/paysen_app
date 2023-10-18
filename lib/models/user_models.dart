@@ -100,6 +100,36 @@ class UserModels {
     );
   }
 
+  Map<String, dynamic> toSecondJson() {
+    return {
+      'id': id,
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
+      'email_verified_at': emailVerifiedAt,
+      'avatar': avatar,
+      'country_code': countryCode,
+      'phone': phone,
+      'otp': otp,
+      'email_otp': emailOtp,
+      'api_token': apiToken,
+      'city': city,
+      'activity': activity,
+      'gender': gender.enumToString,
+      'is_active': isActive,
+      'lang': lang,
+      'fcm_token': fcmToken,
+      'platform': platform,
+      'device': device,
+      'plan_id': planId,
+      'plan_expired_date': planExpiredDate,
+      'company_name': companyName,
+      'email_verify': emailVerify,
+      'city_details': cityDetails?.toJson(),
+      'plan_details': planDetails
+    };
+  }
+
   Map<String, String> toJson(DropdownModels dropdownModels) {
     return {
       'country_code': countryCode,
