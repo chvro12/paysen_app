@@ -1,6 +1,16 @@
+import 'package:intl/intl.dart';
+
 enum UserType { newUser, oldUser }
 
 enum Gender { male, female, none }
+
+extension ServerUTCDate on String? {
+  DateTime? get stringUtcToDateTime {
+    if (this == null) return null;
+    final String value = DateTime.tryParse(this!)!.toString();
+    return DateFormat('yyyy-MM-dd HH:mm').parse(value);
+  }
+}
 
 extension EnumToString on Enum {
 

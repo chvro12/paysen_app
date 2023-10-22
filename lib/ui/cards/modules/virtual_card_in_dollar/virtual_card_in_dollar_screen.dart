@@ -66,7 +66,7 @@ class VirtualCardInDollarScreen extends StatelessWidget {
             width: double.infinity,
             child: CustomElevatedButton(
               btnLabel: 'generate_card',
-              onBtnPressed: () {},
+              onBtnPressed: () => virtualCardInDollarController.onGenerateVirtualCard(context),
             ),
           )
     

@@ -8,5 +8,7 @@ abstract class HttpMethodsRepo {
   Future partialUpdate(String path, {Map<String, String>? body, Map<String, String>? queryParameter});
   Future fileUploading(Uri uri, Map<String, String> body, List<File> files);
 
-  Map<String, String> get apisHeaders;
+  Future<Map<String, String>> get apisHeaders;
+
+  
 }

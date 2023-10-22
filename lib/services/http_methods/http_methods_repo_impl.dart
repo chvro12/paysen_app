@@ -3,11 +3,12 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:paysen/config/app_logger.dart';
-import 'package:paysen/services/http_baseurl.dart';
-import 'package:paysen/services/http_methods/http_methods_repo.dart';
 
 import '../../components/index.dart';
+import '../../config/app_logger.dart';
+import '../http_baseurl.dart';
+import '../shared_pref_service.dart';
+import 'http_methods_repo.dart';
 
 class HttpMethodsReoImpl implements HttpMethodsRepo {
 
@@ -17,7 +18,7 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   Future create(String path, Map<String, String> body, {Map<String, String>? queryParameter}) async {
     AppLogger.d('path: /api/$path, body: $body, queryParameter: $queryParameter', className: 'HttpMethodsReoImpl', methodName: 'create');
     final response = await http.post(Uri.https(_authority, '/api/$path', queryParameter), 
-    headers: apisHeaders,
+    headers: await apisHeaders,
     body: body);
 
     return _responseBody(response);
@@ -36,7 +37,7 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   Future fetch(String path, {Map<String, String>? queryParameter}) async {
     AppLogger.d('path: /api/$path, queryParameter: $queryParameter', className: 'HttpMethodsReoImpl', methodName: 'fetch');
     final response = await http.get(Uri.https(_authority, '/api/$path', queryParameter), 
-    headers: apisHeaders);
+    headers: await apisHeaders);
 
     return _responseBody(response);
   }
@@ -45,26 +46,17 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   Future update(String path, {Map<String, String>? body, Map<String, String>? queryParameter}) async {
     AppLogger.d('path: /api/$path, body: $body, queryParameter: $queryParameter', className: 'HttpMethodsReoImpl', methodName: 'update');
     final response = await http.put(Uri.https(_authority, '/api/$path', queryParameter), 
-    headers: apisHeaders,
+    headers: await apisHeaders,
     body: body);
 
     return _responseBody(response);
   }
   
   @override
-  Map<String, String> get apisHeaders {
-    Map<String, String> headers = {};
-    
-    headers.addEntries({ HttpHeaders.acceptHeader: 'application/json' }.entries);
-
-    return headers;
-  }
-  
-  @override
   Future partialUpdate(String path, {Map<String, String>? body, Map<String, String>? queryParameter}) async {
     AppLogger.d('path: /api/$path, body: $body, queryParameter: $queryParameter', className: 'HttpMethodsReoImpl', methodName: 'partialUpdate');
     final response = await http.patch(Uri.https(_authority, '/api/$path', queryParameter), 
-    headers: apisHeaders,
+    headers: await apisHeaders,
     body: body);
 
     return _responseBody(response);
@@ -103,7 +95,7 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   @override
   Future fileUploading(Uri uri, Map<String, String> body, List<File> files) async {
     final request = http.MultipartRequest('POST', uri);
-    request.headers.addAll(apisHeaders);
+    request.headers.addAll(await apisHeaders);
 
     request.fields.addEntries(body.entries);
     if (files.length > 1) {
@@ -121,5 +113,17 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
 
     AppLogger.d('path: $uri, body: $body', className: 'HttpMethodsReoImpl', methodName: 'fileUploading');
     return _responseBody(responsed);
+  }
+  
+  @override
+  Future<Map<String, String>> get apisHeaders async {
+    Map<String, String> headers = {};
+    headers.addEntries({ HttpHeaders.acceptHeader: 'application/json' }.entries);
+
+    final userModels = await SharedPrefService.userAuthentication;
+    if (userModels != null) {
+      headers.addEntries({ HttpHeaders.authorizationHeader : 'Bearer ${userModels.apiToken}'}.entries);
+    }
+    return headers;
   }
 }
