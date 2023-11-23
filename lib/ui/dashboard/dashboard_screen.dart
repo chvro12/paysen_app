@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_routes.dart';
+import '../../config/app_utils.dart';
 import '../../main.dart';
 import 'controller/dashboard_controller.dart';
 
@@ -68,7 +69,7 @@ class DashboardScreen extends StatelessWidget {
                   assetIMG2: AppAssets.couponsIcon,
                   label2: 'coupons',
                   onPressed2: () {
-                    // ToastUtils.showToast('service_not_available');
+                    ToastUtils.showToast('service_not_available');
                   },
                 )),
               )

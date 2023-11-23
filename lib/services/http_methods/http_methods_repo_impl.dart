@@ -34,12 +34,15 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   }
 
   @override
-  Future fetch(String path, {Map<String, String>? queryParameter}) async {
+  Future fetch(String path, {Map<String, String>? queryParameter, bool withDecodedResponse = true}) async {
     AppLogger.d('path: /api/$path, queryParameter: $queryParameter', className: 'HttpMethodsReoImpl', methodName: 'fetch');
     final response = await http.get(Uri.https(_authority, '/api/$path', queryParameter), 
     headers: await apisHeaders);
 
-    return _responseBody(response);
+    if (withDecodedResponse) {
+      return _responseBody(response);
+    }
+    return response;
   }
 
   @override
@@ -124,6 +127,7 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
     if (userModels != null) {
       headers.addEntries({ HttpHeaders.authorizationHeader : 'Bearer ${userModels.apiToken}'}.entries);
     }
+    AppLogger.d('headers: $headers');
     return headers;
   }
 }

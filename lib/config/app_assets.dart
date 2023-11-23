@@ -37,6 +37,8 @@ class AppAssets {
   static const String scanQREdges = '$_prefix/scan_qr_edges_img.png';
   static const String cameraIcon = '$_prefixIcons/camera-icon.png';
   static const String galleryIcon = '$_prefixIcons/gallery-icon.png';
+  static const String noTransactionIcon = '$_prefixIcons/no-transaction-icon.png';
+  static const String paysenLogo1 = '$_prefix/paysen-logo1.png';
 
   /// CARD SCREEN
   static const String addCircleIcon = '$_prefixIcons/add-circle-icon.png';

@@ -5,7 +5,18 @@ import 'package:paysen/config/app_colors.dart';
 
 class CircleAvatarWithDetails extends StatelessWidget {
 
-  const CircleAvatarWithDetails({super.key});
+  final String? profilePic;
+  final String? name;
+  final String? countryCode;
+  final String? mobileNo;
+
+  const CircleAvatarWithDetails({
+    super.key, 
+    this.profilePic,
+    this.countryCode,
+    this.mobileNo,
+    this.name
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +29,24 @@ class CircleAvatarWithDetails extends StatelessWidget {
     
           CircleAvatar(
             radius: 38.w,
+            child: profilePic == null 
+            ? const SizedBox.shrink()
+            : Container(
+              padding: const EdgeInsets.all(4.0),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.whiteColor
+              ),
+              child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(profilePic!),
+                  fit: BoxFit.cover
+                )
+              ),
+            ),
+            ),
           ),
 
           SizedBox(width: 12.w,),
@@ -30,7 +59,7 @@ class CircleAvatarWithDetails extends StatelessWidget {
               children: [
 
                 CustomText(
-                  label: 'Samba Thiam',
+                  label: name ?? '',
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                   textColor: AppColors.blackColor,
@@ -40,7 +69,7 @@ class CircleAvatarWithDetails extends StatelessWidget {
                 SizedBox(height: 4.h,),
 
                 CustomText(
-                  label: '+221 781949324',
+                  label: '+$countryCode $mobileNo',
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                   textColor: AppColors.blackColor,

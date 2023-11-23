@@ -1,13 +1,63 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../../../components/index.dart';
 import '../../../../config/app_assets.dart';
 import '../../../../config/app_colors.dart';
+import '../../../../config/app_utils.dart';
 
-class DistributorWithdrawalScreen extends StatelessWidget {
+class DistributorWithdrawalScreen extends StatefulWidget {
 
   const DistributorWithdrawalScreen({super.key});
+
+  @override
+  State<DistributorWithdrawalScreen> createState() => _DistributorWithdrawalScreenState();
+}
+
+class _DistributorWithdrawalScreenState extends State<DistributorWithdrawalScreen> with WidgetsBindingObserver {
+
+  Barcode? result;
+  QRViewController? controller;
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  bool? _cameraPermissionStatus;
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    }
+    controller!.resumeCamera();
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _initialize();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+      controller?.pauseCamera();
+    } else if (state == AppLifecycleState.resumed) {
+      controller?.resumeCamera();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +72,40 @@ class DistributorWithdrawalScreen extends StatelessWidget {
             showBackButton: true,
           ),
 
-          SizedBox(height: 12.h,),
+          SizedBox(height: 24.h,),
 
           Image.asset(AppAssets.retailerWithdrawalIcon),
 
-          SizedBox(height: 36.h,),
+          SizedBox(height: 24.h,),
 
           Container(
-            height: 140.h, 
+            width: 182.w,
+            height: 152.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: AppColors.blackColor.withOpacity(0.8),
+              color: _cameraPermissionStatus == null || _cameraPermissionStatus == false 
+              ? AppColors.blackColor.withOpacity(0.8)
+              : null,
               shape: BoxShape.rectangle
             ),
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              AppAssets.scanQREdges,
-              fit: BoxFit.fill,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+
+                if (_cameraPermissionStatus != null && _cameraPermissionStatus == true)
+                  _buildQrView(context),
+
+                Positioned.fill(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      AppAssets.scanQREdges,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
 
@@ -90,5 +157,45 @@ class DistributorWithdrawalScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildQrView(BuildContext context) {
+    return QRView(
+      key: qrKey,
+      onQRViewCreated: _onQRViewCreated,
+    );    
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    setState(() {
+      this.controller = controller;
+    });
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        result = scanData;
+      });
+    });
+  }
+
+  Future _initialize() async {
+    PermissionUtils permissionUtils = PermissionUtils([Permission.camera]);
+    _cameraPermissionStatus = await permissionUtils.validatePermissionStatus();
+    Widget? alertDialogWidget = PermissionDialog(
+      description: 'permission_error_description', 
+      title: 'permission_error_title',
+      visibleSettingBtn: _cameraPermissionStatus == null,
+    );
+    
+    
+    if (_cameraPermissionStatus == true) {
+      alertDialogWidget = null;
+    }
+
+    if (alertDialogWidget != null) {
+      if (!mounted) return;
+      showDialog(context: context, builder: (context) => alertDialogWidget ?? const SizedBox.shrink(),);
+    }
+    if (!mounted) return;
+    setState(() {});
   }
 }

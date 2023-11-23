@@ -8,7 +8,16 @@ import '../../../config/app_colors.dart';
 
 class CreditCardView extends StatelessWidget {
 
-  const CreditCardView({super.key});
+  final String last4CardNo;
+  final String cardHolderName;
+  final String validThru;
+
+  const CreditCardView({
+    super.key,
+    required this.last4CardNo,
+    required this.cardHolderName,
+    required this.validThru
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +69,7 @@ class CreditCardView extends StatelessWidget {
 
                 Expanded(
                   child: CustomText(
-                    label: '1234',
+                    label: '****',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.whiteColor,
@@ -71,7 +80,7 @@ class CreditCardView extends StatelessWidget {
 
                 Expanded(
                   child: CustomText(
-                    label: '5678 ',
+                    label: '****',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.whiteColor,
@@ -82,7 +91,7 @@ class CreditCardView extends StatelessWidget {
 
                 Expanded(
                   child: CustomText(
-                    label: '9012 ',
+                    label: '****',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.whiteColor,
@@ -93,7 +102,7 @@ class CreditCardView extends StatelessWidget {
                 
                 Expanded(
                   child: CustomText(
-                    label: '3456',
+                    label: last4CardNo,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.whiteColor,
@@ -105,24 +114,24 @@ class CreditCardView extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            top: 0.164.sh,
-            left: 0.05.sw,
-            child: CustomText(
-              label: '0123',
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
-              textColor: AppColors.whiteColor,
-              textSize: 12.sp,
-              textLetterSpacing: 2.0,
-            ),
-          ),
+          // Positioned(
+          //   top: 0.164.sh,
+          //   left: 0.05.sw,
+          //   child: CustomText(
+          //     label: '0123',
+          //     fontStyle: FontStyle.normal,
+          //     fontWeight: FontWeight.w500,
+          //     textColor: AppColors.whiteColor,
+          //     textSize: 12.sp,
+          //     textLetterSpacing: 2.0,
+          //   ),
+          // ),
 
           Positioned(
             bottom: 0.02.sh,
             left: 0.05.sw,
             child: CustomText(
-              label: 'Samba Thiam',
+              label: cardHolderName,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               textColor: AppColors.whiteColor,
@@ -147,7 +156,7 @@ class CreditCardView extends StatelessWidget {
                 Image.asset(AppAssets.creditCardMisc),
                 const SizedBox(width: 4.0,),
                 CustomText(
-                  label: '01/80',
+                  label: validThru,
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
                   textColor: AppColors.whiteColor,

@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../config/app_enums.dart';
+import 'card_detail_models.dart';
 import 'dropdown_models.dart';
 
 class UserModels {
@@ -31,6 +33,7 @@ class UserModels {
   final String? emailVerify;
   final DropdownModels? cityDetails;
   final String? planDetails;
+  final CardDetailModel? cardDetail;
   
   UserModels({
     required this.id,
@@ -57,14 +60,18 @@ class UserModels {
     this.companyName,
     this.emailVerify,
     this.cityDetails,
-    this.planDetails
+    this.planDetails,
+    this.cardDetail
   });
 
 
   factory UserModels.fromOtp(Map<String, dynamic> data) {
-    final UserModels userModels = UserModels.fromJson(data);
-    userModels.otp = data['otp'];
-    userModels.emailOtp = data['email_otp'];
+    UserModels userModels = UserModels.fromJson(data);
+    userModels = userModels.copyWith(
+      otp: data['otp'],
+      emailOtp: data['email_otp'],
+      cardDetail: CardDetailModel.fromJson(data['card_details'])
+    );
     return userModels;
   }
 
@@ -96,7 +103,10 @@ class UserModels {
       cityDetails: data['city_details'] is Map<String, dynamic>
       ? DropdownModels.fromJson(data['city_details'])
       : null,
-      planDetails: data['plan_details']
+      planDetails: data['plan_details'],
+      cardDetail: data.containsKey('card_details')
+      ? CardDetailModel.fromJson(data['card_details'])
+      : null
     );
   }
 
@@ -143,6 +153,8 @@ class UserModels {
     };
   }
   
+  
+
   UserModels copyWith({
     int? id,
     String? firstName,
@@ -153,12 +165,23 @@ class UserModels {
     String? countryCode,
     String? phone,
     String? otp,
+    String? emailOtp,
     String? apiToken,
     String? activity,
     Gender? gender,
     int? isActive,
     String? lang,
-    String? fcmToken    
+    String? fcmToken,
+    String? city,
+    String? platform,
+    String? device,
+    String? planId,
+    String? planExpiredDate,
+    String? companyName,
+    String? emailVerify,
+    DropdownModels? cityDetails,
+    String? planDetails,
+    CardDetailModel? cardDetail,
   }) {
     return UserModels(
       id: id ?? this.id,
@@ -170,22 +193,28 @@ class UserModels {
       countryCode: countryCode ?? this.countryCode,
       phone: phone ?? this.phone,
       otp: otp ?? this.otp,
+      emailOtp: emailOtp ?? this.emailOtp,
       apiToken: apiToken ?? this.apiToken,
       activity: activity ?? this.activity,
       gender: gender ?? this.gender,
       isActive: isActive ?? this.isActive,
       lang: lang ?? this.lang,
       fcmToken: fcmToken ?? this.fcmToken,
-      city: city,
-      cityDetails: cityDetails,
-      companyName: companyName,
-      device: device,
-      emailOtp: emailOtp,
-      emailVerify: emailVerify,
-      planDetails: planDetails,
-      planExpiredDate: planExpiredDate,
-      planId: planId,
-      platform: platform
+      city: city ?? this.city,
+      platform: platform ?? this.platform,
+      device: device ?? this.device,
+      planId: planId ?? this.planId,
+      planExpiredDate: planExpiredDate ?? this.planExpiredDate,
+      companyName: companyName ?? this.companyName,
+      emailVerify: emailVerify ?? this.emailVerify,
+      cityDetails: cityDetails ?? this.cityDetails,
+      planDetails: planDetails ?? this.planDetails,
+      cardDetail: cardDetail ?? this.cardDetail,
     );
+  }
+
+  @override
+  String toString() {
+    return 'UserModels(id: $id, firstName: $firstName, lastName: $lastName, email: $email, emailVerifiedAt: $emailVerifiedAt, avatar: $avatar, countryCode: $countryCode, phone: $phone, otp: $otp, emailOtp: $emailOtp, apiToken: $apiToken, activity: $activity, gender: $gender, isActive: $isActive, lang: $lang, fcmToken: $fcmToken, city: $city, platform: $platform, device: $device, planId: $planId, planExpiredDate: $planExpiredDate, companyName: $companyName, emailVerify: $emailVerify, cityDetails: $cityDetails, planDetails: $planDetails, cardDetail: $cardDetail)';
   }
 }

@@ -33,7 +33,7 @@ class CustomChoiceChip extends StatelessWidget {
     return ChoiceChip(
       label: CustomText(
         label: label,
-        textColor: AppColors.whiteColor,
+        textColor: chipLabelStyle?.color ?? AppColors.whiteColor,
       ),
       selected: isSelected,
       backgroundColor: chipBGColor ?? AppColors.tertiaryColor.withOpacity(0.3),
@@ -45,6 +45,7 @@ class CustomChoiceChip extends StatelessWidget {
       selectedColor: chipSelectedBGColor,
       showCheckmark: false,
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      labelStyle: chipLabelStyle,
     );
   }
 }

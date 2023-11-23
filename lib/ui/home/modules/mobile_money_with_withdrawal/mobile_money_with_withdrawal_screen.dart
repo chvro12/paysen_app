@@ -26,6 +26,8 @@ class MobileMoneyWithWithdrawalScreen extends StatelessWidget {
             showBackButton: true,
           ),
 
+          SizedBox(height: 24.h,),
+
           Flexible(
             child: SingleChildScrollView(
               child: Column(
@@ -34,10 +36,12 @@ class MobileMoneyWithWithdrawalScreen extends StatelessWidget {
                 children: [
 
                   MobileNumberChangeView(
-                    mobileNoWithCountryCode: '+221 78194324',
+                    mobileNoWithCountryCode: '+221',
                     onMobileNoChange: () {},
                     editingController: mobileMoneyWithWithdrawalController.amountController,
                     onAmountChange: mobileMoneyWithWithdrawalController.onAmountChange,
+                    isUpdatingMobileNo: false,
+                    mobileNoController: mobileMoneyWithWithdrawalController.mobileNoController,
                   ),
 
                   MoneyOverview(

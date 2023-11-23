@@ -25,6 +25,8 @@ class MobileMoneyBankCardScreen extends StatelessWidget {
             showBackButton: true,
           ),
 
+          SizedBox(height: 24.h,),
+
           Flexible(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -32,13 +34,15 @@ class MobileMoneyBankCardScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
 
-                  MobileNumberChangeView(
-                    mobileNoWithCountryCode: '+221 78194324', 
+                  Obx(() => MobileNumberChangeView(
+                    mobileNoWithCountryCode: '+221', 
                     onMobileNoChange: mobileMoneyBankCardController.onMobileNoChange, 
                     onAmountChange: mobileMoneyBankCardController.onAmountChange, 
                     editingController: mobileMoneyBankCardController.amountController,
                     useSpacer: false,
-                  ),
+                    mobileNoController: mobileMoneyBankCardController.mobileNoController,
+                    isUpdatingMobileNo: mobileMoneyBankCardController.isUpdatingMobileNo.value,
+                  )),
 
                   SizedBox(height: 12.h,),
 

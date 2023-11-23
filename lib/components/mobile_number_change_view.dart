@@ -12,7 +12,9 @@ class MobileNumberChangeView extends StatelessWidget {
   final VoidCallback onMobileNoChange;
   final ValueChanged<String> onAmountChange;
   final TextEditingController editingController;
+  final TextEditingController mobileNoController;
   final bool useSpacer;
+  final bool isUpdatingMobileNo;
 
   const MobileNumberChangeView({
     super.key,
@@ -20,7 +22,9 @@ class MobileNumberChangeView extends StatelessWidget {
     required this.onMobileNoChange,
     required this.onAmountChange,
     required this.editingController,
-    this.useSpacer = true
+    this.useSpacer = true,
+    required this.isUpdatingMobileNo,
+    required this.mobileNoController
   });
 
   @override
@@ -61,11 +65,43 @@ class MobileNumberChangeView extends StatelessWidget {
                       SizedBox(width: 12.w,),
         
                       CustomText(
-                        label: mobileNoWithCountryCode,
+                        // label: mobileNoWithCountryCode,
+                        label: '+221',
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.w500,
                         textSize: 18.sp,
-                      )
+                      ),
+
+                      SizedBox(width: 4.w,),
+
+                      Flexible(
+                        child: TextField(
+                          autocorrect: false,
+                          controller: mobileNoController,
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                            disabledBorder: InputBorder.none,
+                            enabled: isUpdatingMobileNo,
+                            errorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                          ),
+                          enableIMEPersonalizedLearning: true,
+                          enableInteractiveSelection: true,
+                          enableSuggestions: true,
+                          inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FontStyle.normal,
+                            color: AppColors.blackColor
+                          ),
+                        ),
+                      ),
         
                     ],
                   ),
@@ -74,7 +110,7 @@ class MobileNumberChangeView extends StatelessWidget {
                 GestureDetector(
                   onTap: onMobileNoChange,
                   child: CustomText(
-                    label: 'change',
+                    label: !isUpdatingMobileNo ? 'change' : 'save',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.tertiaryColor,

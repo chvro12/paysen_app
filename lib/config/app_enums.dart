@@ -12,6 +12,12 @@ extension ServerUTCDate on String? {
   }
 }
 
+extension ReadableDate on DateTime {
+  String humanReadableFormat(String format) {
+    return DateFormat(format).format(this);
+  }
+}
+
 extension EnumToString on Enum {
 
   String get enumToString {

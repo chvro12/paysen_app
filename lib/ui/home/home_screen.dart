@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:paysen/config/app_enums.dart';
 
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
+import '../../config/app_routes.dart';
+import '../../main.dart';
 import '../cards/components/credit_card_view.dart';
+import '../transaction/components/transaction_item_view.dart';
 import 'components/withdraw_topup_view.dart';
 import 'controller/home_controller.dart';
 
@@ -69,7 +73,20 @@ class HomeScreen extends StatelessWidget {
       
             SizedBox(height: 12.h,),
       
-            const CreditCardView(),
+            Obx(() {
+              String? last4CardNo, cardHolderName, validThru;
+              if (homeController.profileDetails.value?.userModels.cardDetail != null) {
+                final dateTime = DateTime(int.parse(homeController.profileDetails.value!.userModels.cardDetail!.expYear));
+                last4CardNo = homeController.profileDetails.value!.userModels.cardDetail!.cardNumber;
+                cardHolderName = '${homeController.profileDetails.value!.userModels.firstName} ${homeController.profileDetails.value!.userModels.lastName}';
+                validThru = '${homeController.profileDetails.value!.userModels.cardDetail!.expMonth}/${dateTime.humanReadableFormat('yy')}';
+              }
+              return CreditCardView(
+                last4CardNo: last4CardNo ?? '',
+                cardHolderName: cardHolderName ?? '',
+                validThru: validThru ?? '',
+              );
+            },),
       
             SizedBox(height: 12.h,),
       
@@ -132,22 +149,25 @@ class HomeScreen extends StatelessWidget {
                             textSize: 22.sp,
                           ),
                 
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CustomText(
-                                label: 'view_all_history',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500,
-                                textColor: AppColors.persianIndigo,
-                                textSize: 14.sp,
-                              ),
-                              SizedBox(width: 0.01.sw,),
-                              Image.asset(
-                                AppAssets.arrowRightIcon,
-                                color: AppColors.persianIndigo,
-                              )
-                            ],
+                          GestureDetector(
+                            onTap: () => walletNavigatorKey.currentState?.pushNamed(AppRoutes.transactionHistory),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CustomText(
+                                  label: 'view_all_history',
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w500,
+                                  textColor: AppColors.persianIndigo,
+                                  textSize: 14.sp,
+                                ),
+                                SizedBox(width: 0.01.sw,),
+                                Image.asset(
+                                  AppAssets.arrowRightIcon,
+                                  color: AppColors.persianIndigo,
+                                )
+                              ],
+                            ),
                           )
                 
                         ],
@@ -170,6 +190,18 @@ class HomeScreen extends StatelessWidget {
                       ),
                 
                       SizedBox(height: 12.h,),
+
+                      CustomListviewBuilder<Map<String, dynamic>>(
+                        listOfItems: homeController.dummyTransaction,
+                        scrollPhysics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        customListItemBuilder: (context, index, value) {
+                          return TransactionItemView(
+                            amount: value['amount'],
+                            type: value['type'],
+                          );
+                        },
+                      )
                       
                     ],
                   ),

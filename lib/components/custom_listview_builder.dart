@@ -7,13 +7,15 @@ class CustomListviewBuilder<T> extends StatelessWidget {
   final ScrollPhysics? scrollPhysics;
   final Axis scrollDirection; 
   final CustomListItemBuilder<T> customListItemBuilder;
+  final EdgeInsetsGeometry? padding;
 
   const CustomListviewBuilder({
     super.key,
     required this.listOfItems,
     this.scrollPhysics,
     this.scrollDirection = Axis.vertical,
-    required this.customListItemBuilder
+    required this.customListItemBuilder,
+    this.padding
   });
 
   @override
@@ -21,7 +23,7 @@ class CustomListviewBuilder<T> extends StatelessWidget {
     return ListView.builder(
       itemCount: listOfItems.length,
       physics: scrollPhysics,
-      padding: EdgeInsets.zero,
+      padding: padding ?? EdgeInsets.zero,
       scrollDirection: scrollDirection,
       shrinkWrap: true,
       itemBuilder: (context, index) {

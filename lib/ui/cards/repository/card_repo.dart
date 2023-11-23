@@ -1,7 +1,7 @@
-import '../../../../../services/http_methods/http_methods_repo_impl.dart';
-import '../models/virtual_card_model.dart';
+import '../../../services/http_methods/http_methods_repo_impl.dart';
+import '../modules/virtual_card_in_dollar/models/virtual_card_model.dart';
 
-class VirtualCardRepo {
+class CardRepo {
 
   final HttpMethodsReoImpl _httpMethodsReoImpl = HttpMethodsReoImpl();
 

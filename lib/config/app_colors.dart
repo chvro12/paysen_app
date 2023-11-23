@@ -37,11 +37,22 @@ class AppColors {
   static const antiFlashWhite = Color(0xFFF6EBF4);
   static const lightSilver = Color(0xFFD9D9D9);
   static const bottomSheetBarrierColor = Colors.black54;
+  static const gray = Color(0xFF808080);
 
   static const linearGradient1 = LinearGradient(
     colors: [
       freshAir,
       primaryColor
+    ],
+    stops: [0.0, 0.7763],
+    begin: Alignment(-0.618, -0.785),
+    end: Alignment(0.618, 0.785),
+  );
+
+  static const linearGradient2 = LinearGradient(
+    colors: [
+      secondaryColor,
+      primaryColor,
     ],
     stops: [0.0, 0.7763],
     begin: Alignment(-0.618, -0.785),

@@ -25,6 +25,8 @@ class VirtualCardInDollarScreen extends StatelessWidget {
             headerLabel: 'virtual_card_in_dollars',
             showBackButton: true,
           ),
+
+          SizedBox(height: 24.h,),
     
           const VirtualCardView(),
     

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:paysen/ui/account/components/other_modules_view.dart';
 
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
+import '../../config/app_routes.dart';
+import '../../services/shared_pref_service.dart';
+import 'components/other_modules_view.dart';
 import 'controller/account_controller.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -27,7 +29,12 @@ class AccountScreen extends StatelessWidget {
 
         SizedBox(height: 24.h,),
 
-        const CircleAvatarWithDetails(),
+        Obx(() => CircleAvatarWithDetails(
+          profilePic: accountController.profileDetails.value?.userModels.avatar,
+          countryCode: accountController.profileDetails.value?.userModels.countryCode,
+          mobileNo: accountController.profileDetails.value?.userModels.phone,
+          name: '${accountController.profileDetails.value?.userModels.firstName} ${accountController.profileDetails.value?.userModels.lastName}',
+        ),),
 
         SizedBox(height: 24.h,),
 
@@ -146,7 +153,10 @@ class AccountScreen extends StatelessWidget {
                         OtherModulesView(
                           assetIMG: AppAssets.logoutIcon, 
                           label: 'logout',
-                          onPressed: () {},
+                          onPressed: () async {
+                            await SharedPrefService.clearSharedPrefs();
+                            Get.offAllNamed(AppRoutes.loginRoute);
+                          },
                         ),
 
                       ],

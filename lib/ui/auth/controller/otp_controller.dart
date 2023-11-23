@@ -18,7 +18,11 @@ class OtpController extends GetxController with ProgressHUDMixin {
     if (loginModels.userType == UserType.oldUser) {
       final value = jsonEncode(loginModels.userModels?.toSecondJson());
       await SharedPrefService.setUserAuthentication(value);
-      Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false, arguments: 1);
+      int? args;
+      if (loginModels.userModels?.cardDetail == null) {
+        args = 1;
+      }
+      Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false, arguments: args);
     } else {
       Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: loginModels);
     }

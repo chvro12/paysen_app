@@ -43,7 +43,7 @@ class OnBoardScreen extends StatelessWidget {
                 color: AppColors.whiteColor,
                 shape: BoxShape.rectangle
               ),
-              height: 0.4.sh,
+              height: 0.42.sh,
               width: 1.sw,
               padding: EdgeInsets.symmetric(vertical: 0.05.sh),
               child: Column(

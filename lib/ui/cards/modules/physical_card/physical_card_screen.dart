@@ -15,6 +15,7 @@ class PhysicalCardScreen extends StatelessWidget {
       color: AppColors.whiteColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        padding: EdgeInsets.only(bottom: 92.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -23,6 +24,8 @@ class PhysicalCardScreen extends StatelessWidget {
               headerLabel: 'physical_card',
               showBackButton: true,
             ),
+
+            SizedBox(height: 24.h,),
       
             Image.asset(AppAssets.physicalCardIMG),
       
@@ -76,7 +79,7 @@ class PhysicalCardScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 24.h,),
+                  SizedBox(height: 12.h,),
 
                   SizedBox(
                     height: 0.07.sh,

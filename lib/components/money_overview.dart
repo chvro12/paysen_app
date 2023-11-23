@@ -8,17 +8,19 @@ class MoneyOverview extends StatelessWidget {
 
   final List<Widget> moneyOverviewItems;
   final Color? containerBGColor;
+  final EdgeInsetsGeometry? containerMargin;
 
   const MoneyOverview({
     super.key,
     required this.moneyOverviewItems,
-    this.containerBGColor
+    this.containerBGColor,
+    this.containerMargin
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.w),
+      margin: containerMargin ?? EdgeInsets.symmetric(horizontal: 12.w),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -39,19 +41,78 @@ class MoneyOverviewItemView extends StatelessWidget {
 
   final bool showBorder;
   final String label;
+  final TextStyle? labelTextStyle;
   final String value;
+  final TextStyle? valueTextStyle;
   final Widget? replaceValueWidget;
+  final Widget? extraWidget;
 
   const MoneyOverviewItemView({
     super.key,
     this.showBorder = true,
     required this.label,
     required this.value,
-    this.replaceValueWidget
+    this.replaceValueWidget,
+    this.labelTextStyle,
+    this.valueTextStyle,
+    this.extraWidget
   });
 
   @override
   Widget build(BuildContext context) {
+    Widget rowWidget = Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        
+        Padding(
+          padding: EdgeInsets.only(left: 18.w),
+          child: CustomText(
+            label: label,
+            fontStyle: labelTextStyle?.fontStyle ?? FontStyle.normal,
+            fontWeight: labelTextStyle?.fontWeight ?? FontWeight.w300,
+            textColor: labelTextStyle?.color ?? AppColors.blackColor,
+            textSize: 16.sp,
+          ),
+        ),
+
+        if (replaceValueWidget != null)
+          Padding(
+            padding: EdgeInsets.only(right: 18.w),
+            child: replaceValueWidget ?? const SizedBox.shrink(),
+          )
+        else  
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(right: 18.w),
+              child: CustomText(
+                label: value,
+                maximumLines: 1,
+                fontStyle: valueTextStyle?.fontStyle ?? FontStyle.normal,
+                // fontWeight: FontWeight.w500,
+                fontWeight: valueTextStyle?.fontWeight ?? FontWeight.w300,
+                // textColor: AppColors.blackColor.withOpacity(0.5),
+                textColor: valueTextStyle?.color ?? AppColors.blackColor,
+                textSize: 16.sp,
+              ),
+            ),
+          ),
+      ],
+    );
+
+    Widget withExtraWidget;
+    if (extraWidget == null) {
+      withExtraWidget = rowWidget;
+    } else {
+      withExtraWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          rowWidget,
+          extraWidget ?? const SizedBox.shrink()
+        ],
+      );
+    }
     return Container(
       height: 35.h,
       alignment: Alignment.topCenter,
@@ -60,34 +121,9 @@ class MoneyOverviewItemView extends StatelessWidget {
         ? const Border(bottom: BorderSide(color: AppColors.brightGray))
         : null
       ),
-      margin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          
-          CustomText(
-            label: label,
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.w300,
-            textColor: AppColors.blackColor,
-            textSize: 16.sp,
-          ),
-
-          if (replaceValueWidget != null)
-            replaceValueWidget ?? const SizedBox.shrink()
-          else  
-            CustomText(
-              label: value,
-              fontStyle: FontStyle.normal,
-              // fontWeight: FontWeight.w500,
-              fontWeight: FontWeight.w300,
-              // textColor: AppColors.blackColor.withOpacity(0.5),
-              textColor: AppColors.blackColor,
-              textSize: 16.sp,
-            ),
-        ],
-      ),
+      // margin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
+      margin: EdgeInsets.only(top: 18.h),
+      child: withExtraWidget,
     );
   }
 }

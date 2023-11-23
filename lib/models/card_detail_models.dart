@@ -18,11 +18,13 @@ class CardDetailModel {
   final int status;
   final DateTime createdAt;
   final DateTime? updatedAt;
+  final String? viewCardUrl;
 
   CardDetailModel({required this.brand, required this.cardHolderId, required this.cardId, this.cardNumber,
   required this.createdAt, required this.currency, this.cvc, required this.expMonth,
   required this.expYear, required this.id, this.pin, required this.spendingLimitAmount, 
-  required this.status, required this.type, this.updatedAt, required this.userId});
+  required this.status, required this.type, this.updatedAt, required this.userId,
+  this.viewCardUrl});
 
   factory CardDetailModel.fromJson(Map<String, dynamic> data) {
     return CardDetailModel(
@@ -39,9 +41,15 @@ class CardDetailModel {
       status: data['status'], 
       type: data['type'], 
       userId: data['user_id'],
-      cardNumber: data['card_number'],
+      // cardNumber: data['card_number'],
+      cardNumber: data.containsKey('card_number')
+      ? data['card_number']
+      : data.containsKey('last4')
+      ? data['last4']
+      : null,
       cvc: data['cvc'],
-      updatedAt: (data['updated_at'] as String?).stringUtcToDateTime
+      updatedAt: (data['updated_at'] as String?).stringUtcToDateTime,
+      viewCardUrl: data['view_card_url']
     );
   }
 }

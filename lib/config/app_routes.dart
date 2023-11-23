@@ -21,6 +21,8 @@ class AppRoutes {
   static const String moneyWithdraw = '/money-withdraw';
   static const String distributorWithdrawal = '/distributor-withdrawal';
   static const String mobileMoneyBankCard = '/mobile-money-bank-card';
+  static const String transactionHistory = '/transaction-history';
+  static const String transactionDetail = '/transaction-detail';
 
   /// CARD NESTED NAVIGATOR ROUTE
   static const String virtualCardInDollar = '/virtual-card-in-dollar';

@@ -151,7 +151,11 @@ Map<String, String> get englishTranslation {
     'physical_card': 'Physical card',
     'order_a_card': 'Order a card',
     'physical_card_description': "Before PaySen can issue your card, you may need to provide additional identity information, such as government ID/ or proof of residence, if this is required we'll let you know by email",
-    'activate_card': 'Activate card'
+    'activate_card': 'Activate card',
+    'save': 'Save',
+    'mobile_no_empty_message': 'Mobile No should not be empty',
+    'amount_empty_message': 'Amount should not be empty',
+    'proceed': 'Proceed'
   };
 }
 
@@ -279,6 +283,8 @@ Map<String, String> get frenchTranslation {
     'physical_card': '',
     'order_a_card': '',
     'physical_card_description': "",
-    'activate_card': ''
+    'activate_card': '',
+    'save': '',
+    'proceed': ''
   };
 }
