@@ -32,29 +32,33 @@ class VirtualCardInDollarScreen extends StatelessWidget {
     
           SizedBox(height: 24.h,),
     
-          const MoneyOverview(
+          MoneyOverview(
             containerBGColor: AppColors.whiteColor,
             moneyOverviewItems: [
     
               MoneyOverviewItemView(
                 label: 'validity',
                 value: '4 Years',
+                mainContainerMargin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
               ),
     
               MoneyOverviewItemView(
                 label: 'price',
                 value: 'Free',
+                mainContainerMargin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
               ),
     
               MoneyOverviewItemView(
                 label: 'transaction_fee',
                 value: '0 Fee',
+                mainContainerMargin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
               ),
     
               MoneyOverviewItemView(
                 label: 'transaction_limit',
                 value: 'Unlimited',
                 showBorder: false,
+                mainContainerMargin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
               ),
     
             ],

@@ -46,6 +46,7 @@ class MoneyOverviewItemView extends StatelessWidget {
   final TextStyle? valueTextStyle;
   final Widget? replaceValueWidget;
   final Widget? extraWidget;
+  final EdgeInsetsGeometry? mainContainerMargin;
 
   const MoneyOverviewItemView({
     super.key,
@@ -55,7 +56,8 @@ class MoneyOverviewItemView extends StatelessWidget {
     this.replaceValueWidget,
     this.labelTextStyle,
     this.valueTextStyle,
-    this.extraWidget
+    this.extraWidget,
+    this.mainContainerMargin
   });
 
   @override
@@ -66,7 +68,7 @@ class MoneyOverviewItemView extends StatelessWidget {
       children: [
         
         Padding(
-          padding: EdgeInsets.only(left: 18.w),
+          padding: mainContainerMargin != null ? EdgeInsets.zero : EdgeInsets.only(left: 18.w),
           child: CustomText(
             label: label,
             fontStyle: labelTextStyle?.fontStyle ?? FontStyle.normal,
@@ -78,13 +80,13 @@ class MoneyOverviewItemView extends StatelessWidget {
 
         if (replaceValueWidget != null)
           Padding(
-            padding: EdgeInsets.only(right: 18.w),
+            padding: mainContainerMargin != null ? EdgeInsets.zero : EdgeInsets.only(right: 18.w),
             child: replaceValueWidget ?? const SizedBox.shrink(),
           )
         else  
           Flexible(
             child: Padding(
-              padding: EdgeInsets.only(right: 18.w),
+              padding: mainContainerMargin != null ? EdgeInsets.zero : EdgeInsets.only(right: 18.w),
               child: CustomText(
                 label: value,
                 maximumLines: 1,
@@ -122,7 +124,7 @@ class MoneyOverviewItemView extends StatelessWidget {
         : null
       ),
       // margin: EdgeInsets.only(left: 18.w, right: 18.w, top: 18.h),
-      margin: EdgeInsets.only(top: 18.h),
+      margin: mainContainerMargin ?? EdgeInsets.only(top: 18.h),
       child: withExtraWidget,
     );
   }
