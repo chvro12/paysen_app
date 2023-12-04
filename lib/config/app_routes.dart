@@ -27,6 +27,7 @@ class AppRoutes {
   /// CARD NESTED NAVIGATOR ROUTE
   static const String virtualCardInDollar = '/virtual-card-in-dollar';
   static const String physicalCard = '/physical-card';
+  static const String getDelivered = '/get-delivered';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;
@@ -43,7 +44,7 @@ class AppRoutes {
     } else if (settings.name!.toLowerCase() == signupRoute) {
       route = SignupScreen(loginModels: args as LoginModels);
     } else if (settings.name!.toLowerCase() == dashboard) {
-      route = DashboardScreen(initialIndex: args as int?,);
+      route = DashboardScreen();
     } else {
       throw Exception('Unknown route defined.');
     }

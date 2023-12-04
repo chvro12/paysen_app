@@ -50,12 +50,12 @@ dependencies:
   readmore: ^2.2.0
   get: ^4.6.6
   pinput: ^3.0.1
-  overlay_progress_indicator: ^0.0.2
   fluttertoast: ^8.2.2
   permission_handler: ^11.0.1
   image_picker: ^1.0.4
   intl: ^0.18.1
   qr_code_scanner: ^1.0.1
+  flutter_svprogresshud: ^1.0.0
 
 dev_dependencies:
   flutter_test:

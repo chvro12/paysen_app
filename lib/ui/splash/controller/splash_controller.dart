@@ -15,7 +15,6 @@ class SplashController extends GetxController {
       String redirectRoute;
       if (value) {
         redirectRoute = AppRoutes.onboardRoute;
-        Navigator.pushReplacementNamed(Get.context!, AppRoutes.onboardRoute);
       } else {
         redirectRoute = AppRoutes.dashboard;
       }

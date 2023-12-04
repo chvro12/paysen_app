@@ -1,43 +1,24 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svprogresshud/flutter_svprogresshud.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:overlay_progress_indicator/overlay_progress_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import '../components/index.dart';
 
 typedef CustomListItemBuilder<T> = Widget Function(BuildContext context, int index, T value);
 
 mixin ProgressHUDMixin {
 
-  void show(BuildContext context) {
-    OverlayProgressIndicator.show(
-      context: context,
-      backgroundColor: Colors.black45,
-      child: Container(
-        height: 0.15.sh,
-        width: 0.15.sh,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        alignment: Alignment.center,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CircularProgressIndicator(),
-            CustomText(label: 'please_wait'),
-          ],
-        ),
-      ),
-    );
+  void show() {
+    SVProgressHUD.show();
   }
 
   void dismiss() {
-    OverlayProgressIndicator.hide();
+    Future.delayed(const Duration(seconds: 2)).then((value) {
+      SVProgressHUD.dismiss();
+    });
   }
 }
 

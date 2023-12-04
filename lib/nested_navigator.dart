@@ -4,6 +4,7 @@ import 'config/app_routes.dart';
 import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/cards/cards_screen.dart';
+import 'ui/cards/modules/get_delivered/get_delivered_screen.dart';
 import 'ui/cards/modules/physical_card/physical_card_screen.dart';
 import 'ui/cards/modules/virtual_card_in_dollar/virtual_card_in_dollar_screen.dart';
 import 'ui/home/home_screen.dart';
@@ -22,7 +23,7 @@ class WalletNestedNavigator extends StatelessWidget {
   const WalletNestedNavigator({
     super.key,
     required this.showTopBottomSheet,
-    required this.showWithdrawaBottomSheet
+    required this.showWithdrawaBottomSheet,
   });
 
   @override
@@ -60,7 +61,9 @@ class WalletNestedNavigator extends StatelessWidget {
 
 class CardNestedNavigator extends StatelessWidget {
 
-  const CardNestedNavigator({super.key});
+  final ValueChanged<bool> showOrderCardBottomSheet;
+
+  const CardNestedNavigator({super.key, required this.showOrderCardBottomSheet});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +77,11 @@ class CardNestedNavigator extends StatelessWidget {
         } else if (settings.name == AppRoutes.virtualCardInDollar) {
           route = VirtualCardInDollarScreen();
         } else if (settings.name == AppRoutes.physicalCard) {
-          route = const PhysicalCardScreen();
+          route = PhysicalCardScreen(
+            showOrderCardBottomSheet: showOrderCardBottomSheet,
+          );
+        } else if (settings.name == AppRoutes.getDelivered) {
+          route = GetDeliveredScreen();
         } else {
           throw Exception('Unknown route defined.');
         }

@@ -10,13 +10,12 @@ import 'controller/dashboard_controller.dart';
 
 class DashboardScreen extends StatelessWidget {
 
-  final int? initialIndex;
+  DashboardScreen({super.key});
 
-  const DashboardScreen({super.key, this.initialIndex});
+  final dashboardController = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
-    final dashboardController = Get.put(DashboardController(initialIndex));
     return WillPopScope(
       onWillPop: dashboardController.onSystemBackButtonPressed,
       child: Scaffold(
@@ -51,6 +50,24 @@ class DashboardScreen extends StatelessWidget {
                   label2: 'distributor_withdrawal',
                   onPressed2: () {
                     walletNavigatorKey.currentState?.pushNamed(AppRoutes.distributorWithdrawal);
+                  },
+                )),
+              ),
+
+              Positioned(
+                bottom: 0.0,
+                child: Obx(() => !dashboardController.showOrderCardBottomSheet.value
+                ? const SizedBox.shrink()
+                : TwoOptionsBottomSheetWithoutIMG(
+                  header: 'delivery_options',
+                  subHeader: 'delivery_options_description',
+                  label1: 'self_pick_up',
+                  onPressed1: () {
+                    ToastUtils.showToast('service_not_available');
+                  },
+                  label2: 'get_delivered',
+                  onPressed2: () {
+                    cardsNavigatorKey.currentState?.pushNamed(AppRoutes.getDelivered);
                   },
                 )),
               ),

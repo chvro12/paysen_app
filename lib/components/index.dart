@@ -19,3 +19,4 @@ export 'two_options_bottom_sheet.dart';
 export 'mobile_number_change_view.dart';
 export 'money_overview.dart';
 export 'gradient_elevated_button.dart';
+export 'two_options_bottom_sheet_without_image.dart';

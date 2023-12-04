@@ -33,7 +33,7 @@ class LoginController extends GetxController with ProgressHUDMixin {
   Future<void> onLoginPressed(BuildContext context) async {
     String phone = mobileNoController.text.trim();
     
-    show(context);
+    show();
     final checkMobileResponse = await _authRepo.checkMobile('221', phone);
     dismiss();
     ToastUtils.showToast(checkMobileResponse.message);

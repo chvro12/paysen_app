@@ -39,6 +39,7 @@ class AppAssets {
   static const String galleryIcon = '$_prefixIcons/gallery-icon.png';
   static const String noTransactionIcon = '$_prefixIcons/no-transaction-icon.png';
   static const String paysenLogo1 = '$_prefix/paysen-logo1.png';
+  static const String paySenPhysicalCard = '$_prefix/paysen_physical_card.png';
 
   /// CARD SCREEN
   static const String addCircleIcon = '$_prefixIcons/add-circle-icon.png';

@@ -12,6 +12,12 @@ extension ServerUTCDate on String? {
   }
 }
 
+extension ServerEpochTimestamp on int {
+  DateTime get epochToDateTime {
+    return DateTime.fromMillisecondsSinceEpoch(this);
+  }
+}
+
 extension ReadableDate on DateTime {
   String humanReadableFormat(String format) {
     return DateFormat(format).format(this);

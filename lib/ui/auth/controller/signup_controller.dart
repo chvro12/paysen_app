@@ -183,7 +183,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
       return;
     }
 
-    show(context);
+    show();
 
     UserModels userModels = loginModels.userModels!.copyWith(
       firstName: firstName,

@@ -25,7 +25,9 @@ class EndpointReqFailDialog extends StatelessWidget {
     );
     return AlertDialog.adaptive(
       titleTextStyle: textStyle,
+      backgroundColor: AppColors.whiteColor,
       title: Text(title),
+      content: Text(description),
       contentTextStyle: textStyle.copyWith(
         fontSize: 14.sp,
         fontWeight: FontWeight.w300

@@ -70,9 +70,11 @@ class UserModels {
     userModels = userModels.copyWith(
       otp: data['otp'],
       emailOtp: data['email_otp'],
-      cardDetail: CardDetailModel.fromJson(data['card_details'])
+      cardDetail: data.containsKey('card_details')
+      ? CardDetailModel.fromJson(data['card_details'])
+      : null
     );
-    return userModels;
+    return userModels;  
   }
 
   factory UserModels.fromJson(Map<String, dynamic> data) {

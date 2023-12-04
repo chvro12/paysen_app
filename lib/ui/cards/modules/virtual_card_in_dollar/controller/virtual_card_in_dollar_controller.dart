@@ -11,7 +11,7 @@ class VirtualCardInDollarController extends GetxController with ProgressHUDMixin
 
   Future<void> onGenerateVirtualCard(BuildContext context) async {
     try {
-      show(context);
+      show();
       final virtualCardDetail = await _cardRepo.issueVirtualCard();
       if (virtualCardDetail != null) {
         ToastUtils.showToast(virtualCardDetail.message);

@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:paysen/components/index.dart';
 
+import '../../../components/index.dart';
 import '../../../config/app_assets.dart';
 import '../../../config/app_colors.dart';
 
 class CreditCardView extends StatelessWidget {
 
-  final String last4CardNo;
+  final String cardNo;
   final String cardHolderName;
   final String validThru;
 
   const CreditCardView({
     super.key,
-    required this.last4CardNo,
+    required this.cardNo,
     required this.cardHolderName,
     required this.validThru
   });
 
   @override
   Widget build(BuildContext context) {
+    List<String> cardNumbers = [];
+    int value = (cardNo.length / 4).round();
+    for (int i = 0; i < value; i++) {
+      int temp = i * 4;
+      cardNumbers.add(cardNo.substring(temp, temp + 4));
+    }
     return Container(
       height: 0.26.sh,
       width: double.infinity,
@@ -65,52 +71,17 @@ class CreditCardView extends StatelessWidget {
             right: 0.05.sw,
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              children: [
-
-                Expanded(
-                  child: CustomText(
-                    label: '****',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.whiteColor,
-                    textSize: 22.sp,
-                    textLetterSpacing: 2.0,
-                  ),
-                ),
-
-                Expanded(
-                  child: CustomText(
-                    label: '****',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.whiteColor,
-                    textSize: 22.sp,
-                    textLetterSpacing: 2.0,
-                  ),
-                ),
-
-                Expanded(
-                  child: CustomText(
-                    label: '****',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.whiteColor,
-                    textSize: 22.sp,
-                    textLetterSpacing: 2.0,
-                  ),
-                ),
-                
-                Expanded(
-                  child: CustomText(
-                    label: last4CardNo,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.whiteColor,
-                    textSize: 22.sp,
-                    textLetterSpacing: 2.0,
-                  ),
-                )
-              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: cardNumbers.map((e) {
+                return CustomText(
+                  label: e,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w500,
+                  textColor: AppColors.whiteColor,
+                  textSize: 22.sp,
+                  textLetterSpacing: 2.0,
+                );
+              }).toList(),
             ),
           ),
 

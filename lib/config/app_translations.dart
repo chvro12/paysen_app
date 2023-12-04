@@ -155,7 +155,28 @@ Map<String, String> get englishTranslation {
     'save': 'Save',
     'mobile_no_empty_message': 'Mobile No should not be empty',
     'amount_empty_message': 'Amount should not be empty',
-    'proceed': 'Proceed'
+    'proceed': 'Proceed',
+    'delivery_options': 'Delivery options',
+    'delivery_options_description': 'Please choose the option which suits you better',
+    'self_pick_up': 'Self pick up',
+    'get_delivered': 'Get delivered',
+    'get_delivered_description': 'Please fill this form so we will be able to send this card to you',
+    'full_name': 'Full name',
+    'signup_group3': 'SHIPPING & CONTACTS',
+    'city_town': 'City Town',
+    'street': 'Street',
+    'street_number': 'Street number',
+    'country': 'Country',
+    'select_country': 'Select Country',
+    'paysen_physical_card': 'PAYSEN PHYSICAL CARD',
+    'debit_card_fee': 'Debit Card Fee',
+    'get_delivered_terms_and_conditions_initial': 'I agree to the PaySen ',
+    'get_delivered_terms_and_conditions_mid': 'Terms and Conditions ',
+    'get_delivered_terms_and_conditions_end': 'and PaySen Card',
+    'order_now': 'Order now',
+    'new_order_success_title': 'Thank you for ordering',
+    'new_order_success_description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
+    'go_back': 'Go back'
   };
 }
 
@@ -285,6 +306,22 @@ Map<String, String> get frenchTranslation {
     'physical_card_description': "",
     'activate_card': '',
     'save': '',
-    'proceed': ''
+    'proceed': '',
+    'delivery_options': '',
+    'delivery_options_description': '',
+    'self_pick_up': '',
+    'get_delivered': '',
+    'signup_group3': '',
+    'country': '',
+    'select_country': '',
+    'paysen_physical_card': '',
+    'debit_card_fee': '',
+    'get_delivered_terms_and_conditions_initial': '',
+    'get_delivered_terms_and_conditions_mid': '',
+    'get_delivered_terms_and_conditions_end': '',
+    'order_now': '',
+    'new_order_success_title': '',
+    'new_order_success_description': '',
+    'go_back': ''
   };
 }

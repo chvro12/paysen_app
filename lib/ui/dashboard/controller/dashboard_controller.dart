@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../config/app_assets.dart';
+import '../../../config/app_utils.dart';
 import '../../../main.dart';
 import '../../../nested_navigator.dart';
+import '../../account/models/profile_models.dart';
+import '../../account/repository/account_repo.dart';
 
-class DashboardController extends GetxController {
+class DashboardController extends GetxController with ProgressHUDMixin {
 
   DashboardController([int? initialIndex]) {
     if (initialIndex != null) {
@@ -20,7 +23,9 @@ class DashboardController extends GetxController {
       showTopBottomSheet: onTopupBottomSheetChanged,
       showWithdrawaBottomSheet: onWithdrawBottomSheetChanged
     ),
-    const CardNestedNavigator(),
+    CardNestedNavigator(
+      showOrderCardBottomSheet: onOrderCardBottomSheetChanged,
+    ),
     const SupportNestedNavigator(),
     const AccountNestedNavigator()
   ];
@@ -39,8 +44,11 @@ class DashboardController extends GetxController {
     {'title': 'account'.tr, 'active_icon': AppAssets.accountActiveIcon, 'inactive_icon': AppAssets.accountInactiveIcon},
   ];
 
+  Rxn<ProfileModels> profileModels = Rxn();
+
   final showWithdrawaBottomSheet = false.obs,
-         showTopBottomSheet = false.obs;
+         showTopBottomSheet = false.obs, 
+         showOrderCardBottomSheet = false.obs;
   bool disableWallet = false;       
   final selectedBottomNavigationBarIndex = 0.obs;
 
@@ -49,6 +57,7 @@ class DashboardController extends GetxController {
 
     onTopupBottomSheetChanged(false);
     onWithdrawBottomSheetChanged(false);
+    onOrderCardBottomSheetChanged(false);
 
     update();
   }
@@ -63,6 +72,11 @@ class DashboardController extends GetxController {
     update();
   }
 
+  void onOrderCardBottomSheetChanged(bool value) {
+    showOrderCardBottomSheet.value = value;
+    update();
+  }
+
   Future<bool> onSystemBackButtonPressed() {
     if (_navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.canPop() == true) {
       _navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.pop(_navigatorKeys[selectedBottomNavigationBarIndex.value].currentContext);
@@ -70,5 +84,23 @@ class DashboardController extends GetxController {
       SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
     }
     return Future.value(false);
+  }
+
+  Future<void> fetchUserProfileDetails() async {
+    show();
+
+    final AccountRepo accountRepo = AccountRepo();
+    profileModels.value = await accountRepo.getProfile();
+    if (profileModels.value != null && profileModels.value!.userModels.cardDetail == null) {
+      onBottomNavigationBarItemChanged(1);
+    }
+
+    dismiss();
+  }
+
+  @override
+  void onInit() {
+    fetchUserProfileDetails();
+    super.onInit();
   }
 }

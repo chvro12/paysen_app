@@ -6,12 +6,9 @@ import 'package:paysen/config/app_enums.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
-import '../../config/app_routes.dart';
-import '../../main.dart';
 import '../cards/components/credit_card_view.dart';
-import '../transaction/components/transaction_item_view.dart';
+import '../dashboard/controller/dashboard_controller.dart';
 import 'components/withdraw_topup_view.dart';
-import 'controller/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -24,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     required this.showWithdrawaBottomSheet
   });
 
-  final homeController = Get.put(HomeController());
+  final DashboardController dashboardController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,45 +41,55 @@ class HomeScreen extends StatelessWidget {
       
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.04.sw),
-              child: CustomHeader(
-                showBackButton: false,
-                headerLabel: 'Samba Thiam',
-                headerFontSize: 20.sp,
-                childBeforeTitle: CircleAvatar(
-                  radius: 24.0,
-                  backgroundColor: AppColors.transparent,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.whiteColor),
-                      shape: BoxShape.circle,
-                      color: AppColors.quaternaryColor
+              child: Obx(() {
+                String? profileAvatar;
+                String username = '';
+                if (dashboardController.profileModels.value != null) {
+                  username = '${dashboardController.profileModels.value!.userModels.firstName} ${dashboardController.profileModels.value!.userModels.lastName}';
+                  profileAvatar = dashboardController.profileModels.value!.userModels.avatar;
+                }
+                return CustomHeader(
+                  showBackButton: false,
+                  headerLabel: username,
+                  headerFontSize: 20.sp,
+                  childBeforeTitle: CircleAvatar(
+                    radius: 24.0,
+                    backgroundColor: AppColors.transparent,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.whiteColor),
+                        shape: BoxShape.circle,
+                        color: AppColors.quaternaryColor
+                      ),
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: profileAvatar == null 
+                      ? Image.asset(AppAssets.fabPaysenLogo)
+                      : Image.network(profileAvatar),
                     ),
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: Image.asset(AppAssets.fabPaysenLogo),
                   ),
-                ),
-                actionButton: [
-                  CircularIconButton(
-                    assetIMG: AppAssets.notificationIcon,
-                    onCircularBtnPressed: () {},
-                  ),
-                ],
-              ),
+                  actionButton: [
+                    CircularIconButton(
+                      assetIMG: AppAssets.notificationIcon,
+                      onCircularBtnPressed: () {},
+                    ),
+                  ],
+                );
+              }),
             ),
       
             SizedBox(height: 12.h,),
       
             Obx(() {
-              String? last4CardNo, cardHolderName, validThru;
-              if (homeController.profileDetails.value?.userModels.cardDetail != null) {
-                final dateTime = DateTime(int.parse(homeController.profileDetails.value!.userModels.cardDetail!.expYear));
-                last4CardNo = homeController.profileDetails.value!.userModels.cardDetail!.cardNumber;
-                cardHolderName = '${homeController.profileDetails.value!.userModels.firstName} ${homeController.profileDetails.value!.userModels.lastName}';
-                validThru = '${homeController.profileDetails.value!.userModels.cardDetail!.expMonth}/${dateTime.humanReadableFormat('yy')}';
+              String? cardNo, cardHolderName, validThru;
+              if (dashboardController.profileModels.value?.userModels.cardDetail != null) {
+                final dateTime = DateTime(int.parse(dashboardController.profileModels.value!.userModels.cardDetail!.expYear));
+                cardNo = dashboardController.profileModels.value!.userModels.cardDetail!.cardNumber;
+                cardHolderName = '${dashboardController.profileModels.value!.userModels.firstName} ${dashboardController.profileModels.value!.userModels.lastName}';
+                validThru = '${dashboardController.profileModels.value!.userModels.cardDetail!.expMonth}/${dateTime.humanReadableFormat('yy')}';
               }
               return CreditCardView(
-                last4CardNo: last4CardNo ?? '',
+                cardNo: cardNo ?? '',
                 cardHolderName: cardHolderName ?? '',
                 validThru: validThru ?? '',
               );
@@ -134,74 +141,74 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                 
-                      SizedBox(height: 12.h,),
+                      // SizedBox(height: 12.h,),
                 
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
                 
-                          CustomText(
-                            label: 'transactions',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            textColor: AppColors.blackColor,
-                            textSize: 22.sp,
-                          ),
+                      //     CustomText(
+                      //       label: 'transactions',
+                      //       fontStyle: FontStyle.normal,
+                      //       fontWeight: FontWeight.w500,
+                      //       textColor: AppColors.blackColor,
+                      //       textSize: 22.sp,
+                      //     ),
                 
-                          GestureDetector(
-                            onTap: () => walletNavigatorKey.currentState?.pushNamed(AppRoutes.transactionHistory),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                CustomText(
-                                  label: 'view_all_history',
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w500,
-                                  textColor: AppColors.persianIndigo,
-                                  textSize: 14.sp,
-                                ),
-                                SizedBox(width: 0.01.sw,),
-                                Image.asset(
-                                  AppAssets.arrowRightIcon,
-                                  color: AppColors.persianIndigo,
-                                )
-                              ],
-                            ),
-                          )
+                      //     GestureDetector(
+                      //       onTap: () => walletNavigatorKey.currentState?.pushNamed(AppRoutes.transactionHistory),
+                      //       child: Row(
+                      //         mainAxisSize: MainAxisSize.min,
+                      //         children: [
+                      //           CustomText(
+                      //             label: 'view_all_history',
+                      //             fontStyle: FontStyle.normal,
+                      //             fontWeight: FontWeight.w500,
+                      //             textColor: AppColors.persianIndigo,
+                      //             textSize: 14.sp,
+                      //           ),
+                      //           SizedBox(width: 0.01.sw,),
+                      //           Image.asset(
+                      //             AppAssets.arrowRightIcon,
+                      //             color: AppColors.persianIndigo,
+                      //           )
+                      //         ],
+                      //       ),
+                      //     )
                 
-                        ],
-                      ),
+                      //   ],
+                      // ),
                 
-                      SizedBox(height: 12.h,),
+                      // SizedBox(height: 12.h,),
                 
-                      CustomChoiceChip(
-                        label: 'this_month', 
-                        isSelected: true,
-                        chipBGColor: AppColors.mediumPurple,
-                        chipSelectedBGColor: AppColors.mediumPurple,
-                        chipLabelStyle: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500
-                        ),
-                        chipPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-                        onValueSelected: (value) {},
-                      ),
+                      // CustomChoiceChip(
+                      //   label: 'this_month', 
+                      //   isSelected: true,
+                      //   chipBGColor: AppColors.mediumPurple,
+                      //   chipSelectedBGColor: AppColors.mediumPurple,
+                      //   chipLabelStyle: TextStyle(
+                      //     color: AppColors.whiteColor,
+                      //     fontSize: 12.sp,
+                      //     fontWeight: FontWeight.w500
+                      //   ),
+                      //   chipPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                      //   onValueSelected: (value) {},
+                      // ),
                 
-                      SizedBox(height: 12.h,),
+                      // SizedBox(height: 12.h,),
 
-                      CustomListviewBuilder<Map<String, dynamic>>(
-                        listOfItems: homeController.dummyTransaction,
-                        scrollPhysics: const NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        customListItemBuilder: (context, index, value) {
-                          return TransactionItemView(
-                            amount: value['amount'],
-                            type: value['type'],
-                          );
-                        },
-                      )
+                      // CustomListviewBuilder<Map<String, dynamic>>(
+                      //   listOfItems: homeController.dummyTransaction,
+                      //   scrollPhysics: const NeverScrollableScrollPhysics(),
+                      //   scrollDirection: Axis.vertical,
+                      //   customListItemBuilder: (context, index, value) {
+                      //     return TransactionItemView(
+                      //       amount: value['amount'],
+                      //       type: value['type'],
+                      //     );
+                      //   },
+                      // )
                       
                     ],
                   ),

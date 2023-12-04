@@ -77,7 +77,14 @@ class CardsScreen extends StatelessWidget {
                     assetIMG: AppAssets.createPhysicalCardIcon,
                     label: 'create_activate_physical_card',
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.physicalCard);
+                      showDialog(
+                        context: context,
+                        builder: (context) => const EndpointReqFailDialog(
+                          description: 'Service temporarily unavailable for a short update. Thank you for your understanding', 
+                          title: 'Service Pause'
+                        )
+                      );
+                      // Navigator.pushNamed(context, AppRoutes.physicalCard);
                     },
                   )
             
