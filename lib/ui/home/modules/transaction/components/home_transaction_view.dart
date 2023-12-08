@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../components/index.dart';
-import '../../../config/app_assets.dart';
-import '../../../config/app_colors.dart';
-import '../../../config/app_enums.dart';
-import '../../../config/app_routes.dart';
-import '../../../main.dart';
-import '../../transaction/components/transaction_item_view.dart';
-import '../models/transaction_models.dart';
-import '../modules/transaction_history/controller/transaction_history_controller.dart';
+import '../../../../../components/index.dart';
+import '../../../../../config/app_assets.dart';
+import '../../../../../config/app_colors.dart';
+import '../../../../../config/app_enums.dart';
+import '../../../../../config/app_routes.dart';
+import '../../../../../main.dart';
+import '../../../../transaction/components/transaction_item_view.dart';
+import '../../../models/transaction_models.dart';
+import '../controller/transaction_history_controller.dart';
 
 class HomeTransactionView extends StatelessWidget {
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../components/index.dart';
-import '../../../config/app_assets.dart';
-import '../../../config/app_colors.dart';
+import '../../../../../components/index.dart';
+import '../../../../../config/app_assets.dart';
+import '../../../../../config/app_colors.dart';
 
 class NoTransactionView extends StatelessWidget {
 

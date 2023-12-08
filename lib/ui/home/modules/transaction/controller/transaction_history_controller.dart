@@ -7,7 +7,7 @@ import '../../../../../config/app_routes.dart';
 import '../../../../../config/app_utils.dart';
 import '../../../models/transaction_models.dart';
 import '../../../repository/transaction_repo.dart';
-import '../../transaction_details/controller/transaction_detail_controller.dart';
+import 'transaction_detail_controller.dart';
 
 class TransactionHistoryController extends GetxController with GetSingleTickerProviderStateMixin, ProgressHUDMixin {
 

@@ -6,9 +6,9 @@ import '../../../../components/index.dart';
 import '../../../../config/app_colors.dart';
 import '../../../../config/app_enums.dart';
 import '../../../transaction/components/transaction_item_view.dart';
-import '../../components/no_transaction_view.dart';
-import '../../components/transaction_between_date_view.dart';
 import '../../models/transaction_models.dart';
+import 'components/no_transaction_view.dart';
+import 'components/transaction_between_date_view.dart';
 import 'controller/transaction_history_controller.dart';
 
 class TransactionHistoryScreen extends StatelessWidget {

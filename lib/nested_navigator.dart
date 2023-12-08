@@ -14,8 +14,8 @@ import 'ui/home/modules/distributor_withdrawal/distributor_withdrawal_screen.dar
 import 'ui/home/modules/mobile_money_bank_card/controller/mobile_money_bank_card_controller.dart';
 import 'ui/home/modules/mobile_money_bank_card/mobile_money_bank_card_screen.dart';
 import 'ui/home/modules/mobile_money_with_withdrawal/mobile_money_with_withdrawal_screen.dart';
-import 'ui/home/modules/transaction_details/transaction_detail_screen.dart';
-import 'ui/home/modules/transaction_history/transaction_history_screen.dart';
+import 'ui/home/modules/transaction/transaction_detail_screen.dart';
+import 'ui/home/modules/transaction/transaction_history_screen.dart';
 import 'ui/support/support_screen.dart';
 
 class WalletNestedNavigator extends StatelessWidget {

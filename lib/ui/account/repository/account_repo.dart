@@ -1,6 +1,5 @@
 import 'package:paysen/services/shared_pref_service.dart';
 
-import '../../../models/stripe_credentials_models.dart';
 import '../../../services/http_methods/http_methods_repo_impl.dart';
 import '../models/profile_models.dart';
 
@@ -23,14 +22,6 @@ class AccountRepo {
     });
     if (response != null) {
       return ProfileModels.fromJson(response);
-    }
-    return null;
-  }
-
-  Future<StripeCredentialsModels?> getStripeCredentials() async {
-    final response = await _httpMethodsReoImpl.fetch('stripe-credentials');
-    if (response != null) {
-      return StripeCredentialsModels.fromJson(response);
     }
     return null;
   }

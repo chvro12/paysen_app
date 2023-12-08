@@ -9,9 +9,9 @@ import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
 import '../cards/components/credit_card_view.dart';
 import '../dashboard/controller/dashboard_controller.dart';
-import 'components/home_transaction_view.dart';
 import 'components/withdraw_topup_view.dart';
 import 'controller/home_controller.dart';
+import 'modules/transaction/components/home_transaction_view.dart';
 
 class HomeScreen extends StatelessWidget {
 
