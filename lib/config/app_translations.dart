@@ -180,7 +180,9 @@ Map<String, String> get englishTranslation {
     'service_unavailable_title': 'Service Pause',
     'service_unavailable_description': 'Service temporarily unavailable for a short update. Thank you for your understanding',
     'amount_greater_message': 'Amount should be greater than 100 XOF',
-    'amount_lesser_message': 'Amount should be less than 1500000 XOF'
+    'amount_lesser_message': 'Amount should be less than 1500000 XOF',
+    'orange_money': 'Orange money',
+    'wave': 'Wave',
   };
 }
 
@@ -326,6 +328,8 @@ Map<String, String> get frenchTranslation {
     'order_now': '',
     'new_order_success_title': '',
     'new_order_success_description': '',
-    'go_back': ''
+    'go_back': '',
+    'orange_money': '',
+    'wave': ''
   };
 }

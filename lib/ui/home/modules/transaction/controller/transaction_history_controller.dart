@@ -7,7 +7,6 @@ import '../../../../../config/app_routes.dart';
 import '../../../../../config/app_utils.dart';
 import '../../../models/transaction_models.dart';
 import '../../../repository/transaction_repo.dart';
-import 'transaction_detail_controller.dart';
 
 class TransactionHistoryController extends GetxController with GetSingleTickerProviderStateMixin, ProgressHUDMixin {
 
@@ -60,7 +59,6 @@ class TransactionHistoryController extends GetxController with GetSingleTickerPr
   }
 
   void onTransactionSelect(TransactionModel value, BuildContext context) {
-    Get.delete<TransactionDetailController>();
     Navigator.pushNamed(context, AppRoutes.transactionDetail, arguments: value.clientTransactionReference);
   }
 

@@ -13,7 +13,10 @@ import 'ui/home/home_screen.dart';
 import 'ui/home/modules/distributor_withdrawal/distributor_withdrawal_screen.dart';
 import 'ui/home/modules/mobile_money_bank_card/controller/mobile_money_bank_card_controller.dart';
 import 'ui/home/modules/mobile_money_bank_card/mobile_money_bank_card_screen.dart';
+import 'ui/home/modules/mobile_money_with_withdrawal/controller/mobile_money_with_withdrawal_controller.dart';
 import 'ui/home/modules/mobile_money_with_withdrawal/mobile_money_with_withdrawal_screen.dart';
+import 'ui/home/modules/transaction/controller/transaction_detail_controller.dart';
+import 'ui/home/modules/transaction/controller/transaction_history_controller.dart';
 import 'ui/home/modules/transaction/transaction_detail_screen.dart';
 import 'ui/home/modules/transaction/transaction_history_screen.dart';
 import 'ui/support/support_screen.dart';
@@ -45,15 +48,18 @@ class WalletNestedNavigator extends StatelessWidget {
           );
 
         } else if (settings.name == AppRoutes.moneyWithdraw) {
-          route = MobileMoneyWithWithdrawalScreen();
+          Get.delete<MobileMoneyWithWithdrawalController>();
+          route = const MobileMoneyWithWithdrawalScreen();
         } else if (settings.name == AppRoutes.distributorWithdrawal) {
           route = const DistributorWithdrawalScreen();
         } else if (settings.name == AppRoutes.mobileMoneyBankCard) {
           Get.delete<MobileMoneyBankCardController>();
           route = const MobileMoneyBankCardScreen();
         } else if (settings.name == AppRoutes.transactionHistory) {
+          Get.delete<TransactionHistoryController>();
           route = const TransactionHistoryScreen();
         } else if (settings.name == AppRoutes.transactionDetail) {
+          Get.delete<TransactionDetailController>();
           route = TransactionDetailScreen(clientTransactionReference: args as String,);
         } else {
           throw Exception('Unknown route defined.');

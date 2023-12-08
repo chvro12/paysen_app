@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../config/app_logger.dart';
 import '../../../../../config/app_utils.dart';
-import '../../../../../services/shared_pref_service.dart';
+import '../../../../dashboard/controller/dashboard_controller.dart';
 import '../../checkout/checkout_screen.dart';
 
 class MobileMoneyBankCardController extends GetxController {
@@ -41,9 +41,9 @@ class MobileMoneyBankCardController extends GetxController {
   }
 
   Future<void> _initialize() async {
-    final userModels = await SharedPrefService.userAuthentication;
-    if (userModels != null) {
-      mobileNoController.text = userModels.phone;
+    final DashboardController dashboardController = Get.find();
+    if (dashboardController.profileModels.value != null) {
+      mobileNoController.text = dashboardController.profileModels.value!.userModels.phone;
     }
   }
 
@@ -78,7 +78,7 @@ class MobileMoneyBankCardController extends GetxController {
       await Get.to(() => CheckoutScreen(amount: amount,));
 
     } catch (exception) {
-      AppLogger.e(exception.toString(), exception, className: 'mobile_money_bank_card_controller', methodName: 'onAddMoneyPressed');
+      AppLogger.e(exception.toString(), exception, className: 'MobileMoneyBankCardController', methodName: 'onAddMoneyPressed');
     }
   }
 }

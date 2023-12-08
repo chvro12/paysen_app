@@ -35,6 +35,7 @@ class MobileMoneyBankCardScreen extends StatelessWidget {
 
                   Obx(() => MobileNumberChangeView(
                     mobileNoWithCountryCode: '+221', 
+                    isFieldEnabled: false,
                     onMobileNoChange: mobileMoneyBankCardController.onMobileNoChange, 
                     onAmountChange: mobileMoneyBankCardController.onAmountChange, 
                     editingController: mobileMoneyBankCardController.amountController,

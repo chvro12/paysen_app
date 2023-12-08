@@ -15,6 +15,7 @@ class MobileNumberChangeView extends StatelessWidget {
   final TextEditingController mobileNoController;
   final bool useSpacer;
   final bool isUpdatingMobileNo;
+  final bool isFieldEnabled;
 
   const MobileNumberChangeView({
     super.key,
@@ -24,7 +25,8 @@ class MobileNumberChangeView extends StatelessWidget {
     required this.editingController,
     this.useSpacer = true,
     required this.isUpdatingMobileNo,
-    required this.mobileNoController
+    required this.mobileNoController,
+    this.isFieldEnabled = true
   });
 
   @override
@@ -79,6 +81,7 @@ class MobileNumberChangeView extends StatelessWidget {
                       Flexible(
                         child: TextField(
                           autocorrect: false,
+                          enabled: isFieldEnabled,
                           controller: mobileNoController,
                           decoration: InputDecoration(
                             alignLabelWithHint: true,
