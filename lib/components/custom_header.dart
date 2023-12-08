@@ -24,8 +24,10 @@ class CustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: Get.mediaQuery.padding,
-      height: 0.08.sh,
+      padding: Get.mediaQuery.padding.copyWith(
+        bottom: 0.0
+      ),
+      height: 88.h,
       alignment: Alignment.bottomCenter,
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -35,6 +37,8 @@ class CustomHeader extends StatelessWidget {
           Flexible(
             child: Row(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
                 if (showBackButton)

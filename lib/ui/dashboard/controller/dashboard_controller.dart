@@ -87,7 +87,7 @@ class DashboardController extends GetxController with ProgressHUDMixin {
   }
 
   Future<void> fetchUserProfileDetails() async {
-    show();
+    show(Get.context!);
 
     final AccountRepo accountRepo = AccountRepo();
     profileModels.value = await accountRepo.getProfile();
@@ -95,7 +95,7 @@ class DashboardController extends GetxController with ProgressHUDMixin {
       onBottomNavigationBarItemChanged(1);
     }
 
-    dismiss();
+    dismiss(Get.context!);
   }
 
   @override

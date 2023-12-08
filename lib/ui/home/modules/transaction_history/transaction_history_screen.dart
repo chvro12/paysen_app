@@ -3,21 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../components/index.dart';
-import '../../../../config/app_assets.dart';
 import '../../../../config/app_colors.dart';
-import '../../../../config/app_routes.dart';
-import '../../../../main.dart';
+import '../../../../config/app_enums.dart';
 import '../../../transaction/components/transaction_item_view.dart';
+import '../../components/no_transaction_view.dart';
+import '../../components/transaction_between_date_view.dart';
+import '../../models/transaction_models.dart';
 import 'controller/transaction_history_controller.dart';
 
 class TransactionHistoryScreen extends StatelessWidget {
 
-  TransactionHistoryScreen({super.key});
-
-  final TransactionHistoryController transactionHistoryController = Get.put(TransactionHistoryController());
+  const TransactionHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TransactionHistoryController transactionHistoryController = Get.put(TransactionHistoryController());
     return Container(
       color: AppColors.whiteColor,
       child: Column(
@@ -30,10 +30,10 @@ class TransactionHistoryScreen extends StatelessWidget {
             showBackButton: true,
           ),
 
-          SizedBox(height: 24.h,),
+          SizedBox(height: 12.h,),
 
           SizedBox(
-            height: 50.h,
+            height: 40.h,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(transactionHistoryController.transactionHistoryTab.length, (index) {
@@ -75,14 +75,14 @@ class TransactionHistoryScreen extends StatelessWidget {
           Container(
             height: 30.h,
             margin: EdgeInsets.symmetric(horizontal: 8.w),
-            child: CustomListviewBuilder<String>(
+            child: CustomListviewBuilder<TransactionFilter>(
               listOfItems: transactionHistoryController.transactionHistoryFilter,
               scrollDirection: Axis.horizontal,
               customListItemBuilder: (context, index, originalValue) {
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: 4.w),
                   child: Obx(() => CustomChoiceChip(
-                    label: originalValue, 
+                    label: originalValue.readableFromFilter, 
                     onValueSelected: (value) => transactionHistoryController.onChangedTransactionHistoryFilter(originalValue),
                     isSelected: transactionHistoryController.selectedTransactionHistoryFilter.value == originalValue,
                     chipBGColor: AppColors.tertiaryColor.withOpacity(0.3),
@@ -104,139 +104,49 @@ class TransactionHistoryScreen extends StatelessWidget {
 
           SizedBox(height: 24.h,),
 
-          Obx(() => transactionHistoryController.selectedTransactionHistoryFilter.value == 'Today'
-          ? Flexible(
-            child: CustomListviewBuilder<Map<String, dynamic>>(
-              listOfItems: transactionHistoryController.dummyTransaction,
-              scrollDirection: Axis.vertical,
-              padding: EdgeInsets.only(left: 8.w, right: 8.w, bottom: 88.h),
-              customListItemBuilder: (context, index, value) {
-                return TransactionItemView(
-                  amount: value['amount'],
-                  type: value['type'],
-                  onTransactionSelect: () => walletNavigatorKey.currentState?.pushNamed(AppRoutes.transactionDetail),
-                );
-              },
-            ),
-          )
-          : const SizedBox.shrink()),
-
-          /// WHEN NO DATA FOUND FROM SERVER
-          Obx(() => transactionHistoryController.selectedTransactionHistoryFilter.value == 'Yesterday'
-          ? Expanded(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-              
-                    Container(
-                      width: 80.w,
-                      decoration: const BoxDecoration(
-                        gradient: AppColors.linearGradient2,
-                        shape: BoxShape.circle
-                      ),
-                      child: Image.asset(AppAssets.noTransactionIcon),
-                    ),
-              
-                    SizedBox(height: 50.h,),
-              
-                    CustomText(
-                      label: 'no_transactions_title',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      textColor: AppColors.blackColor,
-                      textSize: 20.sp,
-                    ),
-              
-                    SizedBox(height: 20.h,),
-              
-                    CustomText(
-                      label: 'no_transactions_description',
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w300,
-                      textColor: AppColors.blackColor,
-                      textAlignment: TextAlign.center,
-                      textSize: 18.sp,
-                    ),
-              
-                  ],
+          Obx(() => transactionHistoryController.selectedTransactionHistoryFilter.value == TransactionFilter.custom
+          ? Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 12.w),
+                child: TransactionBetweenDateView(
+                  fromDate: transactionHistoryController.fromDate.value,
+                  onFromDate: () => transactionHistoryController.onFromDateSelect(context),
+                  onToDate: () => transactionHistoryController.onToDateSelect(context),
+                  toDate: transactionHistoryController.toDate.value,
                 ),
               ),
-            ),
+
+              SizedBox(height: 24.h,),
+            ],
           )
           : const SizedBox.shrink()),
 
-          Obx(() => transactionHistoryController.selectedTransactionHistoryFilter.value == 'Custom'
-          ? Flexible(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 12.w),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      border: Border.all(color: AppColors.borderColor),
-                      shape: BoxShape.rectangle,
-                      color: AppColors.cultured
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 12.w),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-
-                        Flexible(
-                          flex: 2,
-                          child: GestureDetector(
-                            onTap: () => transactionHistoryController.onFromDateSelect(context),
-                            child: CustomText(
-                              label: transactionHistoryController.fromDate.value,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              textColor: AppColors.blackColor,
-                              textSize: 16.sp,
-                            ),
-                          )
-                        ),
-
-                        Flexible(
-                          child: CustomText(
-                            label: '-',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            textColor: AppColors.blackColor,
-                            textSize: 16.sp,
-                          )
-                        ),
-
-                        Flexible(
-                          flex: 2,
-                          child: GestureDetector(
-                            onTap: () => transactionHistoryController.onToDateSelect(context),
-                            child: CustomText(
-                              label: transactionHistoryController.toDate.value,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              textColor: AppColors.blackColor,
-                              textSize: 16.sp,
-                            ),
-                          )
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+          Obx(() => transactionHistoryController.mainTransactionModel.value == null
+          ? const SizedBox.shrink()
+          : transactionHistoryController.mainTransactionModel.value!.userTransactionList.isEmpty
+          ? const Expanded(child: NoTransactionView())
+          : Expanded(
+            child: CustomListviewBuilder<TransactionModel>(
+              listOfItems: transactionHistoryController.mainTransactionModel.value!.userTransactionList,
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.only(left: 8.w, right: 8.w, bottom: 88.h),
+              scrollController: transactionHistoryController.scrollController,
+              customListItemBuilder: (context, index, value) {
+                return TransactionItemView(
+                  amount: value.amount,
+                  type: value.cardTransactionType,
+                  transactionTimestamp: value.transactionTimestamp.humanReadableFormat('MMM dd, yyyy'),
+                  onTransactionSelect: () => transactionHistoryController.onTransactionSelect(value, context),
+                  showPaginationLoader: transactionHistoryController.showPaginationLoader
+                  ? transactionHistoryController.mainTransactionModel.value!.userTransactionList.length - 1 == index
+                  : false,
+                );
+              }
             ),
-          )
-          : const SizedBox.shrink())
-
+          )),
         ],
       ),
     );

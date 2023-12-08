@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui/auth/login_screen.dart';
 import '../ui/auth/models/login_models.dart';
+import '../ui/home/modules/checkout/checkout_screen.dart';
 import '../ui/dashboard/dashboard_screen.dart';
 import '../ui/onboarding/onboard_screen.dart';
 import '../ui/auth/otp_screen.dart';
@@ -28,6 +29,7 @@ class AppRoutes {
   static const String virtualCardInDollar = '/virtual-card-in-dollar';
   static const String physicalCard = '/physical-card';
   static const String getDelivered = '/get-delivered';
+  static const String checkout = '/checkout';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;
@@ -45,6 +47,8 @@ class AppRoutes {
       route = SignupScreen(loginModels: args as LoginModels);
     } else if (settings.name!.toLowerCase() == dashboard) {
       route = DashboardScreen();
+    } else if (settings.name!.toLowerCase() == checkout) {
+      route = CheckoutScreen(amount: args as double,);
     } else {
       throw Exception('Unknown route defined.');
     }

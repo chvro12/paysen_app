@@ -8,11 +8,13 @@ class EndpointReqFailDialog extends StatelessWidget {
 
   final String title;
   final String description;
+  final VoidCallback? onBtnPressed;
 
   const EndpointReqFailDialog({
     super.key, 
     required this.description, 
-    required this.title
+    required this.title,
+    this.onBtnPressed
   });
 
   @override
@@ -26,8 +28,8 @@ class EndpointReqFailDialog extends StatelessWidget {
     return AlertDialog.adaptive(
       titleTextStyle: textStyle,
       backgroundColor: AppColors.whiteColor,
-      title: Text(title),
-      content: Text(description),
+      title: Text(title.tr),
+      content: Text(description.tr),
       contentTextStyle: textStyle.copyWith(
         fontSize: 14.sp,
         fontWeight: FontWeight.w300
@@ -35,7 +37,12 @@ class EndpointReqFailDialog extends StatelessWidget {
       actions: [
         CustomTextButton(
           label: 'ok',
-          onPressed: () => Get.back(),
+          onPressed: () {
+            Get.back();
+            if (onBtnPressed != null) {
+              onBtnPressed!();
+            }
+          },
         )
       ],
     );

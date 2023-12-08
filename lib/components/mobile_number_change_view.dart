@@ -64,12 +64,14 @@ class MobileNumberChangeView extends StatelessWidget {
         
                       SizedBox(width: 12.w,),
         
-                      CustomText(
-                        // label: mobileNoWithCountryCode,
-                        label: '+221',
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        textSize: 18.sp,
+                      Container(
+                        margin: const EdgeInsets.only(top: 4),
+                        child: CustomText(
+                          label: '+221',
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          textSize: 18.sp,
+                        ),
                       ),
 
                       SizedBox(width: 4.w,),
@@ -107,14 +109,17 @@ class MobileNumberChangeView extends StatelessWidget {
                   ),
                 ),
         
-                GestureDetector(
-                  onTap: onMobileNoChange,
-                  child: CustomText(
-                    label: !isUpdatingMobileNo ? 'change' : 'save',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.tertiaryColor,
-                    textSize: 18.sp,
+                Visibility(
+                  visible: false,
+                  child: GestureDetector(
+                    onTap: onMobileNoChange,
+                    child: CustomText(
+                      label: !isUpdatingMobileNo ? 'change' : 'save',
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      textColor: AppColors.tertiaryColor,
+                      textSize: 18.sp,
+                    ),
                   ),
                 )
         
@@ -167,10 +172,10 @@ class MobileNumberChangeView extends StatelessWidget {
                 Flexible(
                   child: TextField(
                     autocorrect: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       alignLabelWithHint: true,
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 6.h),
+                      // contentPadding: EdgeInsets.only(top: 6.h),
                       disabledBorder: InputBorder.none,
                       counterText: '',
                       enabledBorder: InputBorder.none,

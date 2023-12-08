@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -137,9 +135,10 @@ class SignupController extends GetxController with ProgressHUDMixin {
       alertDialogWidget = null;
     }
     if (alertDialogWidget != null) {
-      showDialog(context: context, builder: (context) => alertDialogWidget ?? const SizedBox.shrink(),);
+      Get.dialog(alertDialogWidget);
       return;
     }
+    // ignore: use_build_context_synchronously
     _onMediaOptionBottomSheet(context);
   }
 
@@ -183,7 +182,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
       return;
     }
 
-    show();
+    show(Get.context!);
 
     UserModels userModels = loginModels.userModels!.copyWith(
       firstName: firstName,
@@ -201,7 +200,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
     final registerModels = await _authRepo.register(userModels.toJson(selectedGenderDropDownModels.value!), avatarFiles);
     ToastUtils.showToast(registerModels.message);
     if (!registerModels.isSuccess) return;
-    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginRoute, (route) => false);
-    dismiss();
+    Get.offAllNamed(AppRoutes.loginRoute);
+    dismiss(Get.context!);
   }
 }

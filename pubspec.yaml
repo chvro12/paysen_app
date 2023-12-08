@@ -41,7 +41,7 @@ dependencies:
   firebase_messaging: ^14.6.8
   geolocator: ^10.1.0
   google_maps_flutter: ^2.5.0
-  flutter_screenutil: ^5.9.0
+  flutter_screenutil: 5.9.0
   package_info_plus: ^4.1.0
   device_info_plus: ^9.0.3
   logger: ^2.0.2
@@ -55,7 +55,13 @@ dependencies:
   image_picker: ^1.0.4
   intl: ^0.18.1
   qr_code_scanner: ^1.0.1
-  flutter_svprogresshud: ^1.0.0
+  cinetpay: ^1.0.7
+  uuid: ^4.2.1
+  loader_overlay: ^3.0.4
+  screenshot: ^2.1.0
+  path_provider: ^2.1.1
+  share_plus: ^7.2.1
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:

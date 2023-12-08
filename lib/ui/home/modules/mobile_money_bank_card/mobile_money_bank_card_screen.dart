@@ -8,12 +8,11 @@ import 'controller/mobile_money_bank_card_controller.dart';
 
 class MobileMoneyBankCardScreen extends StatelessWidget {
 
-  MobileMoneyBankCardScreen({super.key});
-
-  final mobileMoneyBankCardController = Get.put(MobileMoneyBankCardController());
+  const MobileMoneyBankCardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final mobileMoneyBankCardController = Get.put(MobileMoneyBankCardController());
     return Container(
       color: AppColors.whiteColor,
       child: Column(
@@ -68,7 +67,7 @@ class MobileMoneyBankCardScreen extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 12.w),
                     child: CustomElevatedButton(
                       btnLabel: 'send',
-                      onBtnPressed: () {},
+                      onBtnPressed: () => mobileMoneyBankCardController.onAddMoneyPressed(context),
                     ),
                   ),
                 ],

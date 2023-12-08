@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,9 @@ import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
 import '../cards/components/credit_card_view.dart';
 import '../dashboard/controller/dashboard_controller.dart';
+import 'components/home_transaction_view.dart';
 import 'components/withdraw_topup_view.dart';
+import 'controller/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -25,6 +28,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.put(HomeController());
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -65,7 +69,12 @@ class HomeScreen extends StatelessWidget {
                       width: double.infinity,
                       child: profileAvatar == null 
                       ? Image.asset(AppAssets.fabPaysenLogo)
-                      : Image.network(profileAvatar),
+                      : CachedNetworkImage(
+                        imageUrl: profileAvatar,
+                        errorWidget: (BuildContext context, String url, Object error) {
+                          return Image.asset(AppAssets.fabPaysenLogo);
+                        },
+                      ),
                     ),
                   ),
                   actionButton: [
@@ -141,74 +150,13 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                 
-                      // SizedBox(height: 12.h,),
+                      SizedBox(height: 12.h,),
                 
-                      // Row(
-                      //   mainAxisSize: MainAxisSize.max,
-                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                
-                      //     CustomText(
-                      //       label: 'transactions',
-                      //       fontStyle: FontStyle.normal,
-                      //       fontWeight: FontWeight.w500,
-                      //       textColor: AppColors.blackColor,
-                      //       textSize: 22.sp,
-                      //     ),
-                
-                      //     GestureDetector(
-                      //       onTap: () => walletNavigatorKey.currentState?.pushNamed(AppRoutes.transactionHistory),
-                      //       child: Row(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         children: [
-                      //           CustomText(
-                      //             label: 'view_all_history',
-                      //             fontStyle: FontStyle.normal,
-                      //             fontWeight: FontWeight.w500,
-                      //             textColor: AppColors.persianIndigo,
-                      //             textSize: 14.sp,
-                      //           ),
-                      //           SizedBox(width: 0.01.sw,),
-                      //           Image.asset(
-                      //             AppAssets.arrowRightIcon,
-                      //             color: AppColors.persianIndigo,
-                      //           )
-                      //         ],
-                      //       ),
-                      //     )
-                
-                      //   ],
-                      // ),
-                
-                      // SizedBox(height: 12.h,),
-                
-                      // CustomChoiceChip(
-                      //   label: 'this_month', 
-                      //   isSelected: true,
-                      //   chipBGColor: AppColors.mediumPurple,
-                      //   chipSelectedBGColor: AppColors.mediumPurple,
-                      //   chipLabelStyle: TextStyle(
-                      //     color: AppColors.whiteColor,
-                      //     fontSize: 12.sp,
-                      //     fontWeight: FontWeight.w500
-                      //   ),
-                      //   chipPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-                      //   onValueSelected: (value) {},
-                      // ),
-                
-                      // SizedBox(height: 12.h,),
-
-                      // CustomListviewBuilder<Map<String, dynamic>>(
-                      //   listOfItems: homeController.dummyTransaction,
-                      //   scrollPhysics: const NeverScrollableScrollPhysics(),
-                      //   scrollDirection: Axis.vertical,
-                      //   customListItemBuilder: (context, index, value) {
-                      //     return TransactionItemView(
-                      //       amount: value['amount'],
-                      //       type: value['type'],
-                      //     );
-                      //   },
-                      // )
+                      Flexible(
+                        child: Obx(() => homeController.mainTransactionModel.value == null
+                        ? const SizedBox.shrink()
+                        : HomeTransactionView(mainTransactionModel: homeController.mainTransactionModel.value!)),
+                      )
                       
                     ],
                   ),

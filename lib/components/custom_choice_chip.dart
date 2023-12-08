@@ -36,6 +36,11 @@ class CustomChoiceChip extends StatelessWidget {
         textColor: chipLabelStyle?.color ?? AppColors.whiteColor,
       ),
       selected: isSelected,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide.none
+      ),
+      side: BorderSide.none,
       backgroundColor: chipBGColor ?? AppColors.tertiaryColor.withOpacity(0.3),
       elevation: chipElevation,
       labelPadding: chipLabelPadding,

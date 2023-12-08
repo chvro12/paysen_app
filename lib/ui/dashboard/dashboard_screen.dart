@@ -16,6 +16,7 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: dashboardController.onSystemBackButtonPressed,
       child: Scaffold(
@@ -49,7 +50,14 @@ class DashboardScreen extends StatelessWidget {
                   assetIMG2: AppAssets.distributorWithdrawalIcon,
                   label2: 'distributor_withdrawal',
                   onPressed2: () {
-                    walletNavigatorKey.currentState?.pushNamed(AppRoutes.distributorWithdrawal);
+                    // walletNavigatorKey.currentState?.pushNamed(AppRoutes.distributorWithdrawal);
+                    showDialog(
+                      context: context,
+                      builder: (context) => const EndpointReqFailDialog(
+                        description: 'service_unavailable_description', 
+                        title: 'service_unavailable_title'
+                      )
+                    );
                   },
                 )),
               ),
@@ -86,7 +94,13 @@ class DashboardScreen extends StatelessWidget {
                   assetIMG2: AppAssets.couponsIcon,
                   label2: 'coupons',
                   onPressed2: () {
-                    ToastUtils.showToast('service_not_available');
+                    showDialog(
+                      context: context,
+                      builder: (context) => const EndpointReqFailDialog(
+                        description: 'service_unavailable_description', 
+                        title: 'service_unavailable_title'
+                      )
+                    );
                   },
                 )),
               )

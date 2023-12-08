@@ -63,9 +63,9 @@ class TwoOptionsBottomSheet extends StatelessWidget {
           fit: StackFit.loose,
           children: [
     
-            // Container(
-            //   color: AppColors.bottomSheetBarrierColor,
-            // ),
+            Container(
+              color: AppColors.bottomSheetBarrierColor,
+            ),
     
             Positioned(
               bottom: 0.0,

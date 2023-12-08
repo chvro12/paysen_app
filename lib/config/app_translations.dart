@@ -176,7 +176,11 @@ Map<String, String> get englishTranslation {
     'order_now': 'Order now',
     'new_order_success_title': 'Thank you for ordering',
     'new_order_success_description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-    'go_back': 'Go back'
+    'go_back': 'Go back',
+    'service_unavailable_title': 'Service Pause',
+    'service_unavailable_description': 'Service temporarily unavailable for a short update. Thank you for your understanding',
+    'amount_greater_message': 'Amount should be greater than 100 XOF',
+    'amount_lesser_message': 'Amount should be less than 1500000 XOF'
   };
 }
 

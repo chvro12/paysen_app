@@ -80,8 +80,8 @@ class CardsScreen extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => const EndpointReqFailDialog(
-                          description: 'Service temporarily unavailable for a short update. Thank you for your understanding', 
-                          title: 'Service Pause'
+                          description: 'service_unavailable_description', 
+                          title: 'service_unavailable_title'
                         )
                       );
                       // Navigator.pushNamed(context, AppRoutes.physicalCard);

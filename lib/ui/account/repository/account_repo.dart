@@ -1,3 +1,5 @@
+import 'package:paysen/services/shared_pref_service.dart';
+
 import '../../../models/stripe_credentials_models.dart';
 import '../../../services/http_methods/http_methods_repo_impl.dart';
 import '../models/profile_models.dart';
@@ -7,6 +9,18 @@ class AccountRepo {
 
   Future<ProfileModels?> getProfile() async {
     final response = await _httpMethodsReoImpl.fetch('profile');
+    if (response != null) {
+      return ProfileModels.fromJson(response);
+    }
+    return null;
+  }
+
+  Future<ProfileModels?> postRefreshToken() async {
+    final userModels = await SharedPrefService.userAuthentication;
+    if (userModels == null) return null;
+    final response = await _httpMethodsReoImpl.create('refresh-token', {
+      'email': userModels.email
+    });
     if (response != null) {
       return ProfileModels.fromJson(response);
     }

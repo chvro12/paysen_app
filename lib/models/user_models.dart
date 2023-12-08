@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../config/app_enums.dart';
 import 'card_detail_models.dart';
+import 'card_holder_detail_models.dart';
 import 'dropdown_models.dart';
 
 class UserModels {
@@ -19,7 +20,15 @@ class UserModels {
   String? emailOtp;
 
   final String apiToken;
+
+  /// TEMPORARY VARIABLE
+  final String? address;
+  final String? houseNo;
+  final String? postalCode;
+  final String? country;
+
   final String activity;
+  final DateTime? dob;
   final Gender gender;
   final int isActive;
   final String lang;
@@ -34,6 +43,7 @@ class UserModels {
   final DropdownModels? cityDetails;
   final String? planDetails;
   final CardDetailModel? cardDetail;
+  final CardHolderDetailModels? cardHolderDetails;
   
   UserModels({
     required this.id,
@@ -61,7 +71,13 @@ class UserModels {
     this.emailVerify,
     this.cityDetails,
     this.planDetails,
-    this.cardDetail
+    this.cardDetail,
+    this.address,
+    this.cardHolderDetails, 
+    this.country,
+    this.dob,
+    this.houseNo,
+    this.postalCode,
   });
 
 
@@ -90,8 +106,15 @@ class UserModels {
       otp: data['otp'],
       emailOtp: data['email_otp'],
       apiToken: data['api_token'], 
+      address: data['address'],
+      houseNo: data['house_no'],
+      postalCode: data['postal_code'],
+      country: data['country'],
       city: data['city'].toString(),
       activity: data['activity'], 
+      dob: data.containsKey('dob') 
+      ? (data['dob'] as String).tryParseWithDateFormat('yyyy-MM-dd')
+      : null,
       gender: (data['gender'] as String).stringToGender, 
       isActive: data['is_active'], 
       lang: data['lang'], 
@@ -108,6 +131,9 @@ class UserModels {
       planDetails: data['plan_details'],
       cardDetail: data.containsKey('card_details')
       ? CardDetailModel.fromJson(data['card_details'])
+      : null,
+      cardHolderDetails: data.containsKey('card_holder_details')
+      ? CardHolderDetailModels.fromJson(data['card_holder_details'])
       : null
     );
   }

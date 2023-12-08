@@ -8,6 +8,7 @@ class CustomListviewBuilder<T> extends StatelessWidget {
   final Axis scrollDirection; 
   final CustomListItemBuilder<T> customListItemBuilder;
   final EdgeInsetsGeometry? padding;
+  final ScrollController? scrollController;
 
   const CustomListviewBuilder({
     super.key,
@@ -15,7 +16,8 @@ class CustomListviewBuilder<T> extends StatelessWidget {
     this.scrollPhysics,
     this.scrollDirection = Axis.vertical,
     required this.customListItemBuilder,
-    this.padding
+    this.padding,
+    this.scrollController
   });
 
   @override
@@ -26,6 +28,7 @@ class CustomListviewBuilder<T> extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       scrollDirection: scrollDirection,
       shrinkWrap: true,
+      controller: scrollController,
       itemBuilder: (context, index) {
         return customListItemBuilder(context, index, listOfItems[index]);
       },

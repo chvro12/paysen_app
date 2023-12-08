@@ -1,25 +1,25 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svprogresshud/flutter_svprogresshud.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 typedef CustomListItemBuilder<T> = Widget Function(BuildContext context, int index, T value);
 
 mixin ProgressHUDMixin {
 
-  void show() {
-    SVProgressHUD.show();
+  void show(BuildContext context) {
+    context.loaderOverlay.show();
   }
 
-  void dismiss() {
-    Future.delayed(const Duration(seconds: 2)).then((value) {
-      SVProgressHUD.dismiss();
-    });
+  void dismiss(BuildContext context) {
+    context.loaderOverlay.hide();
   }
+
+  bool overlayVisible(BuildContext context) => context.loaderOverlay.visible;
 }
 
 class ToastUtils {

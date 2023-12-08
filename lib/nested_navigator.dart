@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'config/app_routes.dart';
 import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/cards/cards_screen.dart';
+import 'ui/home/modules/checkout/checkout_screen.dart';
 import 'ui/cards/modules/get_delivered/get_delivered_screen.dart';
 import 'ui/cards/modules/physical_card/physical_card_screen.dart';
 import 'ui/cards/modules/virtual_card_in_dollar/virtual_card_in_dollar_screen.dart';
 import 'ui/home/home_screen.dart';
 import 'ui/home/modules/distributor_withdrawal/distributor_withdrawal_screen.dart';
+import 'ui/home/modules/mobile_money_bank_card/controller/mobile_money_bank_card_controller.dart';
 import 'ui/home/modules/mobile_money_bank_card/mobile_money_bank_card_screen.dart';
 import 'ui/home/modules/mobile_money_with_withdrawal/mobile_money_with_withdrawal_screen.dart';
 import 'ui/home/modules/transaction_details/transaction_detail_screen.dart';
@@ -33,6 +36,7 @@ class WalletNestedNavigator extends StatelessWidget {
       initialRoute: AppRoutes.initialRoute,
       onGenerateRoute: (settings) {
         Widget route;
+        Object? args = settings.arguments;
         if (settings.name == AppRoutes.initialRoute) {
           
           route = HomeScreen(
@@ -45,11 +49,12 @@ class WalletNestedNavigator extends StatelessWidget {
         } else if (settings.name == AppRoutes.distributorWithdrawal) {
           route = const DistributorWithdrawalScreen();
         } else if (settings.name == AppRoutes.mobileMoneyBankCard) {
-          route = MobileMoneyBankCardScreen();
+          Get.delete<MobileMoneyBankCardController>();
+          route = const MobileMoneyBankCardScreen();
         } else if (settings.name == AppRoutes.transactionHistory) {
-          route = TransactionHistoryScreen();
+          route = const TransactionHistoryScreen();
         } else if (settings.name == AppRoutes.transactionDetail) {
-          route = TransactionDetailScreen();
+          route = TransactionDetailScreen(clientTransactionReference: args as String,);
         } else {
           throw Exception('Unknown route defined.');
         }
@@ -72,6 +77,7 @@ class CardNestedNavigator extends StatelessWidget {
       initialRoute: AppRoutes.initialRoute,
       onGenerateRoute: (settings) {
         Widget route;
+        Object? args = settings.arguments;
         if (settings.name == AppRoutes.initialRoute) {
           route = CardsScreen();
         } else if (settings.name == AppRoutes.virtualCardInDollar) {
@@ -82,6 +88,8 @@ class CardNestedNavigator extends StatelessWidget {
           );
         } else if (settings.name == AppRoutes.getDelivered) {
           route = GetDeliveredScreen();
+        } else if (settings.name == AppRoutes.checkout) {
+          route = CheckoutScreen(amount: args as double);
         } else {
           throw Exception('Unknown route defined.');
         }
