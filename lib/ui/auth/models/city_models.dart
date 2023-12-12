@@ -4,7 +4,7 @@ import '../../../models/common_api_response.dart';
 
 class CityModels extends CommonApiResponse {
 
-  final List<DropdownModels> cityList;
+  final List<CommonModels> cityList;
 
   CityModels(super.isSuccess, super.message, {required this.cityList});
 
@@ -12,7 +12,7 @@ class CityModels extends CommonApiResponse {
     return CityModels(
       data['is_success'], 
       data['message'], 
-      cityList: (data['data'] as List).map((e) => DropdownModels.fromJson(e)).toList()
+      cityList: (data['data'] as List).map((e) => CommonModels.fromJson(e)).toList()
     );
   }
 }

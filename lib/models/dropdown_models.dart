@@ -1,12 +1,12 @@
-class DropdownModels {
+class CommonModels {
   
   final int id;
   final String name;
 
-  DropdownModels(this.id, this.name);
+  CommonModels(this.id, this.name);
 
-  factory DropdownModels.fromJson(Map<String, dynamic> data) {
-    return DropdownModels(data['id'], data['name']);
+  factory CommonModels.fromJson(Map<String, dynamic> data) {
+    return CommonModels(data['id'], data['name']);
   }
 
   Map<String, dynamic> toJson() {

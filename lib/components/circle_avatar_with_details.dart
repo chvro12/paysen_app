@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paysen/components/index.dart';
 import 'package:paysen/config/app_colors.dart';
+
+import '../config/app_assets.dart';
 
 class CircleAvatarWithDetails extends StatelessWidget {
 
@@ -29,23 +32,31 @@ class CircleAvatarWithDetails extends StatelessWidget {
     
           CircleAvatar(
             radius: 38.w,
-            child: profilePic == null 
-            ? const SizedBox.shrink()
-            : Container(
+            child: Container(
               padding: const EdgeInsets.all(4.0),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColors.whiteColor
+                // color: AppColors.whiteColor
               ),
               child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(profilePic!),
-                  fit: BoxFit.cover
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: profilePic != null
+                  ? null
+                  : const DecorationImage(
+                    image: AssetImage(AppAssets.fabPaysenLogo),
+                    fit: BoxFit.cover
+                  )
+                ),
+                child: profilePic != null
+                ? CachedNetworkImage(
+                  imageUrl: profilePic!,
+                  errorWidget: (BuildContext context, String url, Object error) {
+                    return Image.asset(AppAssets.fabPaysenLogo);
+                  },
                 )
+                : const SizedBox.shrink(),
               ),
-            ),
             ),
           ),
 

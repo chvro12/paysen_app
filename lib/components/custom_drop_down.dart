@@ -10,9 +10,9 @@ class CustomDropDown extends StatelessWidget {
   
   final String header;
   final bool applyBottomMargin;
-  final DropdownModels? selectedValue;
-  final List<DropdownModels> items;
-  final ValueChanged<DropdownModels?> onDropDownValueChanged;
+  final CommonModels? selectedValue;
+  final List<CommonModels> items;
+  final ValueChanged<CommonModels?> onDropDownValueChanged;
   final String dropDownHint;
 
   const CustomDropDown({
@@ -57,7 +57,7 @@ class CustomDropDown extends StatelessWidget {
           SizedBox(
             height: 0.024.sh,
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<DropdownModels>(
+              child: DropdownButton<CommonModels>(
                 isExpanded: true,
                 isDense: true,
                 padding: EdgeInsets.zero,
@@ -80,7 +80,7 @@ class CustomDropDown extends StatelessWidget {
                   fontStyle: FontStyle.normal
                 ),
                 items: items.map((e) {
-                  return DropdownMenuItem<DropdownModels>(
+                  return DropdownMenuItem<CommonModels>(
                     value: e,
                     enabled: true,
                     child: Text(e.name),

@@ -68,6 +68,8 @@ class AppAssets {
   static const String mobileMoneyOrBankCardIcon = '$_prefixIcons/mobile-money-or-bank-card-icon.png';
   static const String couponsIcon = '$_prefixIcons/coupons-icon.png';
 
+  static const String changePlanIMG = '$_prefix/change_plan_IMG.png';
+
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';
   static const String fabPaysenLogo = '$_prefixBottomNavigation/fab-paysen.png';

@@ -14,7 +14,7 @@ class GetDeliveredController extends GetxController {
   final streetController = TextEditingController();
 
   var cityModels = Rx<CityModels?>(null);
-  var selectedCityDropDownModels = Rx<DropdownModels?>(null);
+  var selectedCityDropDownModels = Rx<CommonModels?>(null);
 
   @override
   void onInit() {
@@ -25,11 +25,11 @@ class GetDeliveredController extends GetxController {
     super.onInit();
   }
 
-  void onCountrySelected(DropdownModels? value) {
+  void onCountrySelected(CommonModels? value) {
 
   }
 
-  void onCitySelected(DropdownModels? value) {
+  void onCitySelected(CommonModels? value) {
     selectedCityDropDownModels.value = value;
     update();
   }

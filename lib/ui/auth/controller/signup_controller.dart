@@ -26,14 +26,14 @@ class SignupController extends GetxController with ProgressHUDMixin {
   final emailController = TextEditingController();
   final activityController = TextEditingController();
 
-  final List<DropdownModels> genderList = [
-    DropdownModels(1, 'Male'),
-    DropdownModels(2, 'Female')
+  final List<CommonModels> genderList = [
+    CommonModels(1, 'Male'),
+    CommonModels(2, 'Female')
   ];
 
   var cityModels = Rx<CityModels?>(null);
-  var selectedCityDropDownModels = Rx<DropdownModels?>(null);
-  var selectedGenderDropDownModels = Rx<DropdownModels?>(null);
+  var selectedCityDropDownModels = Rx<CommonModels?>(null);
+  var selectedGenderDropDownModels = Rx<CommonModels?>(null);
 
   final profileIMG = Rx<File?>(null);
 
@@ -55,12 +55,12 @@ class SignupController extends GetxController with ProgressHUDMixin {
     super.onClose();
   }
 
-  void onCitySelected(DropdownModels? value) {
+  void onCitySelected(CommonModels? value) {
     selectedCityDropDownModels.value = value;
     update();
   }
 
-  void onGenderSelected(DropdownModels? value) {
+  void onGenderSelected(CommonModels? value) {
     selectedGenderDropDownModels.value = value;
     update();
   }

@@ -32,6 +32,10 @@ extension ServerEpochTimestamp on int {
   DateTime get epochToDateTime {
     return DateTime.fromMillisecondsSinceEpoch(this * 1000);
   }
+
+  bool get serverResponseIntToBool {
+    return this == 1;
+  }
 }
 
 extension ReadableDate on DateTime {

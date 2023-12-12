@@ -6,18 +6,18 @@ import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
 import '../../config/app_routes.dart';
+import '../../main.dart';
 import '../../services/shared_pref_service.dart';
 import 'components/other_modules_view.dart';
 import 'controller/account_controller.dart';
 
 class AccountScreen extends StatelessWidget {
 
-  AccountScreen({super.key});
-
-  final accountController = Get.put(AccountController());
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.put(AccountController());
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,24 +46,22 @@ class AccountScreen extends StatelessWidget {
             ),
             height: Get.height,
             width: Get.width,
-            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 18.w),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              padding: EdgeInsets.only(bottom: 80.h),
+              padding: EdgeInsets.only(bottom: 98.h, top: 12.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
 
-                  CustomText(
-                    label: 'RENEWAL DATE: 13-09-2023 AT 10:50',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    textColor: AppColors.quartz,
-                    textSize: 12.sp,
-                  ),
-
-                  SizedBox(height: 12.h,),
+                  // CustomText(
+                  //   label: 'RENEWAL DATE: 13-09-2023 AT 10:50',
+                  //   fontStyle: FontStyle.normal,
+                  //   fontWeight: FontWeight.w500,
+                  //   textColor: AppColors.quartz,
+                  //   textSize: 12.sp,
+                  // ),
 
                   Obx(() => CustomAccountUserFilterView(
                     accountUserType: accountController.accountUserType,
@@ -89,7 +87,10 @@ class AccountScreen extends StatelessWidget {
                         OtherModulesView(
                           assetIMG: AppAssets.changePlanIcon, 
                           label: 'change_plan',
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                            accountNavigatorKey.currentState?.pushNamed(AppRoutes.changePlan);
+                          },
                         ),
 
                         SizedBox(height: 12.h,),

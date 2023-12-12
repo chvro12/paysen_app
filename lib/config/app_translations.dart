@@ -183,6 +183,8 @@ Map<String, String> get englishTranslation {
     'amount_lesser_message': 'Amount should be less than 1500000 XOF',
     'orange_money': 'Orange money',
     'wave': 'Wave',
+    'change_plan2': 'Change plan',
+    'subscribe': 'Subscribe'
   };
 }
 

@@ -40,8 +40,8 @@ class UserModels {
   final String? planExpiredDate;
   final String? companyName;
   final String? emailVerify;
-  final DropdownModels? cityDetails;
-  final String? planDetails;
+  final CommonModels? cityDetails;
+  final CommonModels? planDetails;
   final CardDetailModel? cardDetail;
   final CardHolderDetailModels? cardHolderDetails;
   
@@ -121,14 +121,16 @@ class UserModels {
       fcmToken: data['fcm_token'], 
       platform: data['platform'],
       device: data['device'],
-      planId: data['plan_id'],
+      planId: data['plan_id'].toString(),
       planExpiredDate: data['plan_expired_date'],
       companyName: data['company_name'],
       emailVerify: data['email_verify'],
       cityDetails: data['city_details'] is Map<String, dynamic>
-      ? DropdownModels.fromJson(data['city_details'])
+      ? CommonModels.fromJson(data['city_details'])
       : null,
-      planDetails: data['plan_details'],
+      planDetails: data.containsKey('plan_details') && data['plan_details'] is Map<String, dynamic>
+      ? CommonModels.fromJson(data['plan_details'])
+      : null,
       cardDetail: data.containsKey('card_details')
       ? CardDetailModel.fromJson(data['card_details'])
       : null,
@@ -168,7 +170,7 @@ class UserModels {
     };
   }
 
-  Map<String, String> toJson(DropdownModels dropdownModels) {
+  Map<String, String> toJson(CommonModels dropdownModels) {
     return {
       'country_code': countryCode,
       'phone': phone,
@@ -207,8 +209,8 @@ class UserModels {
     String? planExpiredDate,
     String? companyName,
     String? emailVerify,
-    DropdownModels? cityDetails,
-    String? planDetails,
+    CommonModels? cityDetails,
+    CommonModels? planDetails,
     CardDetailModel? cardDetail,
   }) {
     return UserModels(

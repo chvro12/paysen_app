@@ -10,7 +10,7 @@ class AppColors {
   static const quaternaryColor = Color(0xff4695FA);
   static const background = Color(0xffE6F4FD);
   static const onBackground = Color(0xff3A3A3A);
-  static const borderColor = Color(0xffE7EBF4);
+  static const borderColor = Color(0xffE7ECF4);
   static const whiteColor = Color(0xffFFFFFF);
   static const blackColor = Color(0xff000000);
   static const errorColor = Color(0xffD8000C);
