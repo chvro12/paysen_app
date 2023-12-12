@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 class LocalizationService extends Translations {
   
-  static const Locale enLocale = Locale('en', 'US');
-  static const Locale frLocale = Locale('fr', 'SN');
+  static const Locale enLocale = Locale('en');
+  static const Locale frLocale = Locale('fr');
   
   @override
   Map<String, Map<String, String>> get keys => {
@@ -184,7 +184,8 @@ Map<String, String> get englishTranslation {
     'orange_money': 'Orange money',
     'wave': 'Wave',
     'change_plan2': 'Change plan',
-    'subscribe': 'Subscribe'
+    'subscribe': 'Subscribe',
+    'select_lanuguage': 'Select language'
   };
 }
 

@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:paysen/config/app_colors.dart';
-import 'package:paysen/config/app_routes.dart';
-import 'package:paysen/config/app_translations.dart';
-import 'package:paysen/services/shared_pref_service.dart';
+
+import 'config/app_colors.dart';
+import 'config/app_routes.dart';
+import 'config/app_translations.dart';
+import 'services/shared_pref_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

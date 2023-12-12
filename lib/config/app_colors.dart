@@ -38,6 +38,7 @@ class AppColors {
   static const lightSilver = Color(0xFFD9D9D9);
   static const bottomSheetBarrierColor = Colors.black54;
   static const gray = Color(0xFF808080);
+  static const charlestonGreen = Color(0xFF292D32);
 
   static const linearGradient1 = LinearGradient(
     colors: [

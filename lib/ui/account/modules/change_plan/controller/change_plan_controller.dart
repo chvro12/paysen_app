@@ -36,6 +36,7 @@ class ChangePlanController extends GetxController with ProgressHUDMixin {
       if (profileModels != null) {
         if (profileModels.isSuccess) {
           ToastUtils.showToast(profileModels.message);
+          Get.delete<ChangePlanController>();
           accountNavigatorKey.currentState?.pop();
         }
       }

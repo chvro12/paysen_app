@@ -5,9 +5,6 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
-import '../../config/app_routes.dart';
-import '../../main.dart';
-import '../../services/shared_pref_service.dart';
 import 'components/other_modules_view.dart';
 import 'controller/account_controller.dart';
 
@@ -74,93 +71,35 @@ class AccountScreen extends StatelessWidget {
                   Flexible(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: [
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.profileDetailsIcon, 
-                          label: 'profile_details',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.changePlanIcon, 
-                          label: 'change_plan',
-                          onPressed: () {
-                            
-                            accountNavigatorKey.currentState?.pushNamed(AppRoutes.changePlan);
-                          },
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.selectLanguageIcon, 
-                          label: 'select_language',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.changePasscodeIcon, 
-                          label: 'change_passcode',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.inviteFriendsIcon, 
-                          label: 'invite_friends',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.verificationStatusIcon, 
-                          label: 'verification_status',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.merchantDetailsIcon, 
-                          label: 'merchant_details',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.requestCryptoAccountIcon, 
-                          label: 'request_crypto_account',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.termsAndConditionsIcon, 
-                          label: 'terms_and_conditions',
-                          onPressed: () {},
-                        ),
-
-                        SizedBox(height: 12.h,),
-
-                        OtherModulesView(
-                          assetIMG: AppAssets.logoutIcon, 
-                          label: 'logout',
-                          onPressed: () async {
-                            await SharedPrefService.clearSharedPrefs();
-                            Get.offAllNamed(AppRoutes.loginRoute);
-                          },
-                        ),
-
-                      ],
+                      children: accountController.otherModulesList.map((e) {
+                        String assetIMG;
+                        if (e == 'profile_details') {
+                          assetIMG = AppAssets.profileDetailsIcon;
+                        } else if (e == 'change_plan') {
+                          assetIMG = AppAssets.changePlanIcon;
+                        } else if (e == 'select_language') {
+                          assetIMG = AppAssets.selectLanguageIcon;
+                        } else if (e == 'change_passcode') {
+                          assetIMG = AppAssets.changePasscodeIcon;
+                        } else if (e == 'invite_friends') {
+                          assetIMG = AppAssets.inviteFriendsIcon;
+                        } else if (e == 'verification_status') {
+                          assetIMG = AppAssets.verificationStatusIcon;
+                        } else if (e == 'merchant_details') {
+                          assetIMG = AppAssets.merchantDetailsIcon;
+                        } else if (e == 'request_crypto_account') {
+                          assetIMG = AppAssets.requestCryptoAccountIcon;
+                        } else if (e == 'terms_and_conditions') {
+                          assetIMG = AppAssets.termsAndConditionsIcon;
+                        } else {
+                          assetIMG = AppAssets.logoutIcon;
+                        }
+                        return OtherModulesView(
+                          assetIMG: assetIMG, 
+                          label: e,
+                          onPressed: () => accountController.onOtherModuleSelect(e),
+                        );
+                      }).toList(),
                     ),
                   )
 

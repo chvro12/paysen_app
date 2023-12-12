@@ -25,6 +25,7 @@ class OtherModulesView extends StatelessWidget {
       child: Container(
         height: 64.h,
         alignment: Alignment.topCenter,
+        margin: EdgeInsets.only(bottom: 12.h),
         decoration: const BoxDecoration(
           shape: BoxShape.rectangle,
           border: Border(bottom: BorderSide(color: AppColors.brightGray))

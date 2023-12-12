@@ -32,7 +32,8 @@ class AppRoutes {
   static const String checkout = '/checkout';
 
   /// ACCOUNT NESTED NAVIGATOR ROUTE
-  static const String changePlan = '/change-plane';
+  static const String changePlan = '/change-plan';
+  static const String changeLanguage = '/change-language';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;
