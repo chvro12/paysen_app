@@ -84,6 +84,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } else if (val == 'request_crypto_account') {
 
     } else if (val == 'terms_and_conditions') {
+      _resetTermsAndConditionValue();
       _fetchTermsAndConditions();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.termsAndCondition);
     } else {
@@ -362,6 +363,10 @@ class AccountController extends GetxController with ProgressHUDMixin {
 
   /// VARIABLES CONNECTED WITH TERMS AND CONDITION SCREEN
   Rxn<TermsAndConditionModels> termsAndConditionModel = Rxn(null);
+
+  void _resetTermsAndConditionValue() {
+    termsAndConditionModel.value = null;
+  }
 
   Future<void> _fetchTermsAndConditions() async {
     show(Get.context!);
