@@ -113,6 +113,8 @@ class ProfileDetailScreen extends StatelessWidget {
           ),
         ),
 
+        SizedBox(height: 110.h,),
+
       ],
     );
   }

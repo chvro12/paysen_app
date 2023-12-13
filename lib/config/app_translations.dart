@@ -200,7 +200,18 @@ Map<String, String> get englishTranslation {
     'update': 'Update',
     'id_and_key': 'ID & key',
     'urls': 'URLs',
-    'docs': 'Docs'
+    'docs': 'Docs',
+    'id_key': 'ID key',
+    'shop_id': 'Shop ID',
+    'type_id': 'Type ID',
+    'your_key': 'Your key',
+    'generate_new_key': 'Generate new key',
+    'check_order_url': 'Check order URL',
+    'notify_url': 'Notify URL',
+    'success_url': 'Success URL',
+    'fail_url': 'Fail URL',
+    'link_url': 'Link URL',
+    'type_here': 'Type here'
   };
 }
 

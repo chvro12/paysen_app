@@ -36,72 +36,72 @@ class CommonProfileComponents extends StatelessWidget {
             child: Container(
               color: AppColors.cultured,
               child: SingleChildScrollView(
-                  padding: EdgeInsets.only(bottom: 108.h),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                          
-                      Flexible(
+                padding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    
+                    Flexible(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                      
+                          SizedBox(height: 12.h,),
+                      
+                          SizedBox(
+                            width: Get.width,
+                            child: CircleAvatarWithDetails(
+                              profilePic: accountController.profileDetails.value?.userModels.avatar,
+                              countryCode: accountController.profileDetails.value?.userModels.countryCode,
+                              mobileNo: accountController.profileDetails.value?.userModels.phone,
+                              name: '${accountController.profileDetails.value?.userModels.firstName} ${accountController.profileDetails.value?.userModels.lastName}',
+                            ),
+                          ),
+                      
+                          SizedBox(height: 12.h,),
+                      
+                        ],
+                      ),
+                    ),
+                
+                    Flexible(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: AppColors.whiteColor,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(40)
+                          )
+                        ),
+                        padding: EdgeInsets.only(top: 24.h, left: 12.w, right: 12.w),
+                        width: Get.width,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Obx(() => CustomAccountUserFilterView(
+                              accountUserType: accountController.accountUserType,
+                              onAccountUserTypeChanged: accountController.onAccountUserTypeChanged,
+                              selectedUserType: accountController.selectedUserType.value,
+                            )),
                         
-                            SizedBox(height: 12.h,),
-                        
-                            SizedBox(
-                              width: Get.width,
-                              child: CircleAvatarWithDetails(
-                                profilePic: accountController.profileDetails.value?.userModels.avatar,
-                                countryCode: accountController.profileDetails.value?.userModels.countryCode,
-                                mobileNo: accountController.profileDetails.value?.userModels.phone,
-                                name: '${accountController.profileDetails.value?.userModels.firstName} ${accountController.profileDetails.value?.userModels.lastName}',
+                            SizedBox(height: 24.h,),
+              
+                            Flexible(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: subChildren,
                               ),
-                            ),
-                        
-                            SizedBox(height: 12.h,),
-                        
+                            )
                           ],
                         ),
                       ),
-                  
-                      Flexible(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(40)
-                            )
-                          ),
-                          padding: EdgeInsets.only(top: 24.h, left: 12.w, right: 12.w),
-                          width: Get.width,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Obx(() => CustomAccountUserFilterView(
-                                accountUserType: accountController.accountUserType,
-                                onAccountUserTypeChanged: accountController.onAccountUserTypeChanged,
-                                selectedUserType: accountController.selectedUserType.value,
-                              )),
-                          
-                              SizedBox(height: 24.h,),
-                
-                              Flexible(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: subChildren,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                      
-                    ],
-                  ),
+                    )
+                    
+                  ],
                 ),
+              ),
             ),
           )
         ],

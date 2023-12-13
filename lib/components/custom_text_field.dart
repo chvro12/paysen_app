@@ -26,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   final Color containerBorderColor;
   final bool disbaledInputField;
   final Widget? customSuffix;
+  final bool obscureValue;
 
   const CustomTextField({
     super.key,
@@ -46,7 +47,8 @@ class CustomTextField extends StatelessWidget {
     this.applyGap = true,
     this.containerBorderColor = AppColors.borderColor,
     this.disbaledInputField = false,
-    this.customSuffix
+    this.customSuffix,
+    this.obscureValue = false
   });
 
   @override
@@ -95,6 +97,7 @@ class CustomTextField extends StatelessWidget {
                   Flexible(
                     child: TextField(
                       autocorrect: true,
+                      obscureText: obscureValue,
                       controller: editingController,
                       enabled: !disbaledInputField,
                       decoration: InputDecoration(

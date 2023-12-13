@@ -39,6 +39,8 @@ class AppRoutes {
   static const String inviteFriends = '/invite-friends';
   static const String verificationStatus = '/verification-status';
   static const String merchantDetail = '/merchant-detail';
+  static const String idKey = '$merchantDetail/id-key';
+  static const String urls = '$merchantDetail/urls';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

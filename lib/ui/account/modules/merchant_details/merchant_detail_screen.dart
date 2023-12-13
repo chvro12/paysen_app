@@ -19,7 +19,7 @@ class MerchantDetailScreen extends StatelessWidget {
 
         Flexible(
           child: SizedBox(
-            height: Get.height,
+            height: Get.height / 2,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: accountController.merchantDetailModuleList.map((e) {

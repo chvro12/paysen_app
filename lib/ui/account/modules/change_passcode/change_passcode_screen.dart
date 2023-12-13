@@ -68,6 +68,8 @@ class ChangePasscode extends StatelessWidget {
           ),
         ),
 
+        SizedBox(height: 108.h,),
+
       ],
     );
   }

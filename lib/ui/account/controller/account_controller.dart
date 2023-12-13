@@ -302,6 +302,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
   void _resetInviteFriendsCodeDefaultValue() {
     inviteFriendsCodeController.clear();
   }
+
   void _initializeInviteFriendsValues() {
     inviteFriendsCodeController.text = 'PSN-R-d1o0sr';
   }
@@ -315,11 +316,45 @@ class AccountController extends GetxController with ProgressHUDMixin {
 
   void onMerchantDetailModuleSelect(String val) async {
     if (val == 'id_and_key') {
-      
+      _resetIdsAndKeysDefaultValue();
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.idKey);
     } else if (val == 'urls') {
-      
+      _resetURLsDefaultValue();
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.urls);
     } else if (val == 'docs') {     
       
     }
+  }
+
+  /// VARIABLES CONNECTED WITH ID KEYS SCREEN
+  final shopIdController = TextEditingController();
+  final yourKeyController = TextEditingController();
+  final RxBool obscureYourKey = RxBool(true);
+
+  void _resetIdsAndKeysDefaultValue() {
+    shopIdController.clear();
+    yourKeyController.clear();
+    obscureYourKey.value = true;
+  }
+
+  void onObscreYourKeyChanged() {
+    obscureYourKey.value = !obscureYourKey.value;
+  }
+
+  void onGenerateNewKeyPressed() {}
+
+  /// VARIABLES CONNECTED WITH URLs SCREEN
+  final checkOrderURLController = TextEditingController();
+  final notifyURLController = TextEditingController();
+  final successURLController = TextEditingController();
+  final failURLController = TextEditingController();
+  final linkURLController = TextEditingController();
+
+  void _resetURLsDefaultValue() {
+    checkOrderURLController.clear();
+    notifyURLController.clear();
+    successURLController.clear();
+    failURLController.clear();
+    linkURLController.clear();
   }
 }

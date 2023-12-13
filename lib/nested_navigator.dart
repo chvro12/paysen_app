@@ -9,6 +9,8 @@ import 'ui/account/modules/change_passcode/change_passcode_screen.dart';
 import 'ui/account/modules/change_plan/change_plan_screen.dart';
 import 'ui/account/modules/invite_friends/invite_friends_screen.dart';
 import 'ui/account/modules/merchant_details/merchant_detail_screen.dart';
+import 'ui/account/modules/merchant_details/modules/id_key/id_key_screen.dart';
+import 'ui/account/modules/merchant_details/modules/urls/url_screen.dart';
 import 'ui/account/modules/profile_details/profile_detail_screen.dart';
 import 'ui/account/modules/verification_status/verification_status_screen.dart';
 import 'ui/cards/cards_screen.dart';
@@ -160,6 +162,10 @@ class AccountNestedNavigator extends StatelessWidget {
           route = const VerificationStatus();
         } else if (settings.name == AppRoutes.merchantDetail) {
           route = const MerchantDetailScreen();
+        } else if (settings.name == AppRoutes.idKey) {
+          route = const IdKeyScreen();
+        } else if (settings.name == AppRoutes.urls) {
+          route = const UrlScreen();
         } else {
           throw Exception('Unknown route defined.');
         }
