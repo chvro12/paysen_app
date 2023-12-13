@@ -38,6 +38,7 @@ class AppRoutes {
   static const String changePasscode = '/change-passcode';
   static const String inviteFriends = '/invite-friends';
   static const String verificationStatus = '/verification-status';
+  static const String merchantDetail = '/merchant-detail';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

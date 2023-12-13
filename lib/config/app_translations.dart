@@ -197,7 +197,10 @@ Map<String, String> get englishTranslation {
     'invite_code': 'Invite code',
     'total_invited_users': 'Total invited users',
     'paysen': 'PaySen',
-    'update': 'Update'
+    'update': 'Update',
+    'id_and_key': 'ID & key',
+    'urls': 'URLs',
+    'docs': 'Docs'
   };
 }
 

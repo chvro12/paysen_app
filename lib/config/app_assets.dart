@@ -71,6 +71,9 @@ class AppAssets {
   static const String inviteFriendsIMG = '$_prefix/invite_friends_IMG.png';
   static const String clipboardTextCopyIcon = '$_prefixIcons/clipboard_text_copy_icon.png';
   static const String verificationStatusIMG = '$_prefix/verification_status_IMG.png';
+  static const String idAndKeyIcon = '$_prefixIcons/id_and_key_icon.png';
+  static const String merchantDetailUrlIcon = '$_prefixIcons/merchant_detail_url_icon.png';
+  static const String merchantDetailDocsIcon = '$_prefixIcons/merchant_detail_docs_icon.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

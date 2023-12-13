@@ -32,7 +32,6 @@ class CommonProfileComponents extends StatelessWidget {
             showBackButton: true,
           ),
 
-
           Expanded(
             child: Container(
               color: AppColors.cultured,

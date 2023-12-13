@@ -79,7 +79,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } else if (val == 'verification_status') {
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.verificationStatus);
     } else if (val == 'merchant_details') {
-
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.merchantDetail);
     } else if (val == 'request_crypto_account') {
 
     } else if (val == 'terms_and_conditions') {
@@ -304,5 +304,22 @@ class AccountController extends GetxController with ProgressHUDMixin {
   }
   void _initializeInviteFriendsValues() {
     inviteFriendsCodeController.text = 'PSN-R-d1o0sr';
+  }
+
+  /// VARIABLES CONNECTED WITH MERCHANT DETAIL SCREEN
+  final List<String> merchantDetailModuleList = [
+    'id_and_key',
+    'urls',
+    'docs',
+  ];
+
+  void onMerchantDetailModuleSelect(String val) async {
+    if (val == 'id_and_key') {
+      
+    } else if (val == 'urls') {
+      
+    } else if (val == 'docs') {     
+      
+    }
   }
 }
