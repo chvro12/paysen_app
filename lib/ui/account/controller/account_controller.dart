@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../components/index.dart';
 import '../../../config/app_logger.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
@@ -66,10 +67,11 @@ class AccountController extends GetxController with ProgressHUDMixin {
       _fetchPlanDetails();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.changePlan);
     } else if (val == 'select_language') {     
-      fetchLanguageList(); 
+      _fetchLanguageList(); 
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.changeLanguage);
     } else if (val == 'change_passcode') {
-
+      _resetChangePasscodeValues();
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.changePasscode);
     } else if (val == 'invite_friends') {
 
     } else if (val == 'verification_status') {
@@ -171,7 +173,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
     }
   }
 
-  Future<void> fetchLanguageList() async {
+  Future<void> _fetchLanguageList() async {
 
     show(Get.context!);
 
@@ -274,4 +276,21 @@ class AccountController extends GetxController with ProgressHUDMixin {
   final currentPasscode = TextEditingController();
   final addNewPasscode = TextEditingController();
   final confirmPasscode = TextEditingController();
+
+  void _resetChangePasscodeValues() {
+    currentPasscode.clear();
+    addNewPasscode.clear();
+    confirmPasscode.clear();
+  }
+
+  Future<void> onChangePasscodeSave(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (context) => const EndpointReqFailDialog(
+        description: 'service_unavailable_description', 
+        title: 'service_unavailable_title'
+      )
+    );
+    accountNavigatorKey.currentState?.pop();
+  }
 }

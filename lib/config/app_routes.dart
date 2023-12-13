@@ -35,6 +35,7 @@ class AppRoutes {
   static const String profileDetails = '/profile-details';
   static const String changePlan = '/change-plan';
   static const String changeLanguage = '/change-language';
+  static const String changePasscode = '/change-passcode';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

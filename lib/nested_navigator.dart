@@ -5,6 +5,7 @@ import 'config/app_routes.dart';
 import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/account/modules/change_language/change_language_screen.dart';
+import 'ui/account/modules/change_passcode/change_passcode_screen.dart';
 import 'ui/account/modules/change_plan/change_plan_screen.dart';
 import 'ui/account/modules/profile_details/profile_detail_screen.dart';
 import 'ui/cards/cards_screen.dart';
@@ -148,6 +149,8 @@ class AccountNestedNavigator extends StatelessWidget {
           route = const ChangePlanScreen();
         } else if (settings.name == AppRoutes.changeLanguage) {
           route = const ChangeLanguageScreen();
+        } else if (settings.name == AppRoutes.changePasscode) {
+          route = const ChangePasscode();
         } else {
           throw Exception('Unknown route defined.');
         }
