@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 import '../../../../components/index.dart';
 import '../../../../config/app_colors.dart';
+import '../../controller/account_controller.dart';
 import '../../models/language_models.dart';
 import 'components/change_language_item_view.dart';
-import 'controller/change_language_controller.dart';
 
 class ChangeLanguageScreen extends StatelessWidget {
 
@@ -14,7 +14,7 @@ class ChangeLanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final changeLanguageController = Get.put(ChangeLanguageControler());
+    final AccountController accountController = Get.find();
     return Container(
       color: AppColors.whiteColor,
       child: Column(
@@ -26,7 +26,7 @@ class ChangeLanguageScreen extends StatelessWidget {
             showBackButton: true,
           ),
 
-          Obx(() => changeLanguageController.mainLanguageModels.value == null || changeLanguageController.mainLanguageModels.value!.data.isEmpty
+          Obx(() => accountController.mainLanguageModels.value == null || accountController.mainLanguageModels.value!.data.isEmpty
           ? const SizedBox.shrink()
           : Flexible(
             child: Column(
@@ -35,13 +35,13 @@ class ChangeLanguageScreen extends StatelessWidget {
 
                 Expanded(
                   child: CustomListviewBuilder<LanguageModels>(
-                    listOfItems: changeLanguageController.mainLanguageModels.value!.data,
+                    listOfItems: accountController.mainLanguageModels.value!.data,
                     padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 24.h),
                     customListItemBuilder: (context, index, val) {
                       return Obx(() => ChangeLanguageItemView(
-                        isSelected: changeLanguageController.selectedLanguageModels.value != null && changeLanguageController.selectedLanguageModels.value == val,
+                        isSelected: accountController.selectedLanguageModels.value != null && accountController.selectedLanguageModels.value == val,
                         languageModels: val,
-                        onLanguageChanged: () => changeLanguageController.onLanguageChanged(val),
+                        onLanguageChanged: () => accountController.onLanguageChanged(val),
                       ));
                     },
                   ),
@@ -53,7 +53,7 @@ class ChangeLanguageScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 12.w),
                   child: CustomElevatedButton(
                     btnLabel: 'subscribe',
-                    onBtnPressed: changeLanguageController.sendChangeLanguage,
+                    onBtnPressed: accountController.sendChangeLanguage,
                   ),
                 ),
 

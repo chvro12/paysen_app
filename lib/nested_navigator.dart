@@ -6,6 +6,7 @@ import 'main.dart';
 import 'ui/account/account_screen.dart';
 import 'ui/account/modules/change_language/change_language_screen.dart';
 import 'ui/account/modules/change_plan/change_plan_screen.dart';
+import 'ui/account/modules/profile_details/profile_detail_screen.dart';
 import 'ui/cards/cards_screen.dart';
 import 'ui/home/modules/checkout/checkout_screen.dart';
 import 'ui/cards/modules/get_delivered/get_delivered_screen.dart';
@@ -141,6 +142,8 @@ class AccountNestedNavigator extends StatelessWidget {
         Widget route;
         if (settings.name == AppRoutes.initialRoute) {
           route = const AccountScreen();
+        } else if (settings.name == AppRoutes.profileDetails) {
+          route = const ProfileDetailScreen();
         } else if (settings.name == AppRoutes.changePlan) {
           route = const ChangePlanScreen();
         } else if (settings.name == AppRoutes.changeLanguage) {

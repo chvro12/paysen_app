@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../components/index.dart';
 import '../../../../config/app_assets.dart';
 import '../../../../config/app_colors.dart';
+import '../../controller/account_controller.dart';
 import 'components/change_plan_item_view.dart';
 import 'components/change_plan_tab_view.dart';
-import 'controller/change_plan_controller.dart';
 
 class ChangePlanScreen extends StatelessWidget {
 
@@ -13,7 +14,7 @@ class ChangePlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final changePlanController = Get.put(ChangePlanController());
+    final AccountController accountController = Get.find();
     return Container(
       color: AppColors.whiteColor,
       child: Column(
@@ -30,21 +31,21 @@ class ChangePlanScreen extends StatelessWidget {
             height: 180,
           ),
 
-          Obx(() => changePlanController.userPlanModels.value == null
+          Obx(() => accountController.userPlanModels.value == null
           ? const SizedBox.shrink()
           : ChangePlanTabView(
-            selectedUserPlanModels: changePlanController.selectedUserPlanModels.value,
-            mainUserPlanModels: changePlanController.userPlanModels.value!,
-            onUserPlanModelChanged: changePlanController.onUserPlanChanged,
+            selectedUserPlanModels: accountController.selectedUserPlanModels.value,
+            mainUserPlanModels: accountController.userPlanModels.value!,
+            onUserPlanModelChanged: accountController.onUserPlanChanged,
           )),
 
-          Obx(() => changePlanController.selectedUserPlanModels.value == null
+          Obx(() => accountController.selectedUserPlanModels.value == null
           ? const SizedBox.shrink()
           : Flexible(
             child: ChangePlanItemView(
-              features: changePlanController.selectedUserPlanModels.value!.features,
-              selectedUserPlanModels: changePlanController.selectedUserPlanModels.value,
-              onSubscibeToPlan: changePlanController.sendChangePlan,
+              features: accountController.selectedUserPlanModels.value!.features,
+              selectedUserPlanModels: accountController.selectedUserPlanModels.value,
+              onSubscibeToPlan: accountController.sendChangePlan,
             ),
           )),
         ],

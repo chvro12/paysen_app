@@ -8,6 +8,7 @@ import '../config/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
 
+  final double? containerHeight;
   final String header;
   final TextEditingController editingController;
   final TextInputType? textInputType;
@@ -21,6 +22,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction? inputAction;
   final String inputFieldHint;
   final bool applyBottomMargin;
+  final bool applyGap;
+  final Color containerBorderColor;
 
   const CustomTextField({
     super.key,
@@ -36,7 +39,10 @@ class CustomTextField extends StatelessWidget {
     this.capitalization = TextCapitalization.none,
     this.inputAction,
     required this.inputFieldHint,
-    this.applyBottomMargin = true
+    this.applyBottomMargin = true,
+    this.containerHeight,
+    this.applyGap = true,
+    this.containerBorderColor = AppColors.borderColor
   });
 
   @override
@@ -50,10 +56,11 @@ class CustomTextField extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.borderColor),
+        border: Border.all(color: containerBorderColor),
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(12.0)
       ),
+      height: containerHeight,
       alignment: Alignment.center,
       padding: EdgeInsets.all(0.04.sw),
       margin: applyBottomMargin 
@@ -73,7 +80,8 @@ class CustomTextField extends StatelessWidget {
             textSize: 16.sp,
           ),
 
-          SizedBox(height: 0.01.sh,),
+          if (applyGap) 
+            SizedBox(height: 0.01.sh,),
 
           Flexible(
             child: TextField(

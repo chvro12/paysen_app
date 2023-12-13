@@ -66,4 +66,19 @@ class AccountRepo {
     }
     return null;
   }
+
+  Future<ProfileModels?> postUpdateProfile(String firstName, String lastName, String email, String companyName) async {
+    final userModels = await SharedPrefService.userAuthentication;
+    if (userModels == null) return null;
+    final response = await _httpMethodsReoImpl.create('update-profile', { 
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
+      'company_name': companyName
+    });
+    if (response != null) {
+      return ProfileModels.fromJson(response);
+    }
+    return null;
+  }
 }

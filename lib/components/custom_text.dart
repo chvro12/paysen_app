@@ -17,6 +17,7 @@ class CustomText extends StatelessWidget {
   final FontStyle? fontStyle;
   final FontWeight? fontWeight;
   final double? textLetterSpacing;
+  final Color? textDecorationColor;
 
   const CustomText({
     super.key,
@@ -31,7 +32,8 @@ class CustomText extends StatelessWidget {
     this.textSize,
     this.fontStyle = FontStyle.normal,
     this.fontWeight = FontWeight.w400,
-    this.textLetterSpacing
+    this.textLetterSpacing,
+    this.textDecorationColor
   });
 
   @override
@@ -43,6 +45,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlignment,
       style: TextStyle(
         color: textColor,
+        decorationColor: textDecorationColor,
         decoration: textDecoration,
         decorationStyle: textDecorationStyle,
         decorationThickness: textDecorationThickness,

@@ -135,6 +135,7 @@ Map<String, String> get englishTranslation {
     'first_name_empty_message': 'First name should not be empty',
     'last_name_empty_message': 'Last name should not be empty',
     'email_empty_message': 'Email should not be empty',
+    'company_name_empty_message': 'Company name should not be empty',
     'activity_empty_message': 'Activity should not be empty',
     'gender_not_selected': 'Please select gender',
     'city_not_selected': 'Please select city',
@@ -185,7 +186,18 @@ Map<String, String> get englishTranslation {
     'wave': 'Wave',
     'change_plan2': 'Change plan',
     'subscribe': 'Subscribe',
-    'select_lanuguage': 'Select language'
+    'select_lanuguage': 'Select language',
+    'company_name': 'Company name',
+    'invite': 'Invite',
+    'send_verification_code': 'Send verification code',
+    'current_passcode': 'Current pass-code',
+    'add_new_passcode': 'Add new pass-code',
+    'confirm_passcode': 'Confirm new pass-code',
+    'invite_friends_description': 'Give 1000 CFA on the card price & get a 1000CFA commission',
+    'invite_code': 'Invite code',
+    'total_invited_users': 'Total invited users',
+    'paysen': 'PaySen',
+    'update': 'Update'
   };
 }
 

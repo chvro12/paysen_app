@@ -32,6 +32,7 @@ class AppRoutes {
   static const String checkout = '/checkout';
 
   /// ACCOUNT NESTED NAVIGATOR ROUTE
+  static const String profileDetails = '/profile-details';
   static const String changePlan = '/change-plan';
   static const String changeLanguage = '/change-language';
 
