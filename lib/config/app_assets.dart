@@ -70,6 +70,7 @@ class AppAssets {
   static const String changePlanIMG = '$_prefix/change_plan_IMG.png';
   static const String inviteFriendsIMG = '$_prefix/invite_friends_IMG.png';
   static const String clipboardTextCopyIcon = '$_prefixIcons/clipboard_text_copy_icon.png';
+  static const String verificationStatusIMG = '$_prefix/verification_status_IMG.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

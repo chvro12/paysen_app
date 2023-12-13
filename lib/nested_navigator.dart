@@ -9,6 +9,7 @@ import 'ui/account/modules/change_passcode/change_passcode_screen.dart';
 import 'ui/account/modules/change_plan/change_plan_screen.dart';
 import 'ui/account/modules/invite_friends/invite_friends_screen.dart';
 import 'ui/account/modules/profile_details/profile_detail_screen.dart';
+import 'ui/account/modules/verification_status/verification_status_screen.dart';
 import 'ui/cards/cards_screen.dart';
 import 'ui/home/modules/checkout/checkout_screen.dart';
 import 'ui/cards/modules/get_delivered/get_delivered_screen.dart';
@@ -154,6 +155,8 @@ class AccountNestedNavigator extends StatelessWidget {
           route = const ChangePasscode();
         } else if (settings.name == AppRoutes.inviteFriends) {
           route = const InviteFriendScreen();
+        } else if (settings.name == AppRoutes.verificationStatus) {
+          route = const VerificationStatus();
         } else {
           throw Exception('Unknown route defined.');
         }

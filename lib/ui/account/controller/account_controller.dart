@@ -77,7 +77,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
       _initializeInviteFriendsValues();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.inviteFriends);
     } else if (val == 'verification_status') {
-
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.verificationStatus);
     } else if (val == 'merchant_details') {
 
     } else if (val == 'request_crypto_account') {
