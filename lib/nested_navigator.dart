@@ -12,6 +12,7 @@ import 'ui/account/modules/merchant_details/merchant_detail_screen.dart';
 import 'ui/account/modules/merchant_details/modules/id_key/id_key_screen.dart';
 import 'ui/account/modules/merchant_details/modules/urls/url_screen.dart';
 import 'ui/account/modules/profile_details/profile_detail_screen.dart';
+import 'ui/account/modules/terms_and_condition/terms_and_condition_screen.dart';
 import 'ui/account/modules/verification_status/verification_status_screen.dart';
 import 'ui/cards/cards_screen.dart';
 import 'ui/home/modules/checkout/checkout_screen.dart';
@@ -166,6 +167,8 @@ class AccountNestedNavigator extends StatelessWidget {
           route = const IdKeyScreen();
         } else if (settings.name == AppRoutes.urls) {
           route = const UrlScreen();
+        } else if (settings.name == AppRoutes.termsAndCondition) {
+          route = const TermsAndConditionScreen();
         } else {
           throw Exception('Unknown route defined.');
         }

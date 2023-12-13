@@ -8,6 +8,7 @@ import '../../../config/app_utils.dart';
 import '../../../main.dart';
 import '../models/language_models.dart';
 import '../models/profile_models.dart';
+import '../models/terms_and_condition_models.dart';
 import '../models/user_plan_models.dart';
 import '../repository/account_repo.dart';
 
@@ -83,7 +84,8 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } else if (val == 'request_crypto_account') {
 
     } else if (val == 'terms_and_conditions') {
-
+      _fetchTermsAndConditions();
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.termsAndCondition);
     } else {
 
     }
@@ -356,5 +358,19 @@ class AccountController extends GetxController with ProgressHUDMixin {
     successURLController.clear();
     failURLController.clear();
     linkURLController.clear();
+  }
+
+  /// VARIABLES CONNECTED WITH TERMS AND CONDITION SCREEN
+  Rxn<TermsAndConditionModels> termsAndConditionModel = Rxn(null);
+
+  Future<void> _fetchTermsAndConditions() async {
+    show(Get.context!);
+    try {
+      termsAndConditionModel.value = await _accountRepo.fetchTermsAndConditions();
+    } catch (e) {
+      AppLogger.e('exception: $e', e, className: 'AccountController', methodName: '_fetchTermsAndConditions()');
+    } finally {
+      dismiss(Get.context!);
+    }
   }
 }

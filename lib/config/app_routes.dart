@@ -41,6 +41,7 @@ class AppRoutes {
   static const String merchantDetail = '/merchant-detail';
   static const String idKey = '$merchantDetail/id-key';
   static const String urls = '$merchantDetail/urls';
+  static const String termsAndCondition = '/terms-and-condition';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

@@ -2,6 +2,7 @@ import '../../../services/http_methods/http_methods_repo_impl.dart';
 import '../../../services/shared_pref_service.dart';
 import '../models/language_models.dart';
 import '../models/profile_models.dart';
+import '../models/terms_and_condition_models.dart';
 import '../models/user_plan_models.dart';
 
 class AccountRepo {
@@ -78,6 +79,14 @@ class AccountRepo {
     });
     if (response != null) {
       return ProfileModels.fromJson(response);
+    }
+    return null;
+  }
+
+  Future<TermsAndConditionModels?> fetchTermsAndConditions() async {
+    final response = await _httpMethodsReoImpl.fetch('terms-conditions');
+    if (response != null) {
+      return TermsAndConditionModels.fromJson(response);
     }
     return null;
   }
