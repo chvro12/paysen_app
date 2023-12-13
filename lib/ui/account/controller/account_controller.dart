@@ -73,7 +73,9 @@ class AccountController extends GetxController with ProgressHUDMixin {
       _resetChangePasscodeValues();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.changePasscode);
     } else if (val == 'invite_friends') {
-
+      _resetInviteFriendsCodeDefaultValue();
+      _initializeInviteFriendsValues();
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.inviteFriends);
     } else if (val == 'verification_status') {
 
     } else if (val == 'merchant_details') {
@@ -292,5 +294,15 @@ class AccountController extends GetxController with ProgressHUDMixin {
       )
     );
     accountNavigatorKey.currentState?.pop();
+  }
+
+  /// VARIABLES CONNECTED WITH INVITE FRIENDS SCREEN
+  final inviteFriendsCodeController = TextEditingController();
+
+  void _resetInviteFriendsCodeDefaultValue() {
+    inviteFriendsCodeController.clear();
+  }
+  void _initializeInviteFriendsValues() {
+    inviteFriendsCodeController.text = 'PSN-R-d1o0sr';
   }
 }

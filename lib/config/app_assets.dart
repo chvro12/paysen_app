@@ -67,8 +67,9 @@ class AppAssets {
   static const String arrowRight2Icon = '$_prefixIcons/arrow-right2-icon.png';
   static const String mobileMoneyOrBankCardIcon = '$_prefixIcons/mobile-money-or-bank-card-icon.png';
   static const String couponsIcon = '$_prefixIcons/coupons-icon.png';
-
   static const String changePlanIMG = '$_prefix/change_plan_IMG.png';
+  static const String inviteFriendsIMG = '$_prefix/invite_friends_IMG.png';
+  static const String clipboardTextCopyIcon = '$_prefixIcons/clipboard_text_copy_icon.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

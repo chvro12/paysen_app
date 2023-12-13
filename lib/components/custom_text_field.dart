@@ -24,6 +24,8 @@ class CustomTextField extends StatelessWidget {
   final bool applyBottomMargin;
   final bool applyGap;
   final Color containerBorderColor;
+  final bool disbaledInputField;
+  final Widget? customSuffix;
 
   const CustomTextField({
     super.key,
@@ -42,7 +44,9 @@ class CustomTextField extends StatelessWidget {
     this.applyBottomMargin = true,
     this.containerHeight,
     this.applyGap = true,
-    this.containerBorderColor = AppColors.borderColor
+    this.containerBorderColor = AppColors.borderColor,
+    this.disbaledInputField = false,
+    this.customSuffix
   });
 
   @override
@@ -62,76 +66,89 @@ class CustomTextField extends StatelessWidget {
       ),
       height: containerHeight,
       alignment: Alignment.center,
-      padding: EdgeInsets.all(0.04.sw),
       margin: applyBottomMargin 
       ? EdgeInsets.only(bottom: 0.03.sh) 
       : EdgeInsets.zero,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
         children: [
 
-          CustomText(
-            label: header,
-            fontStyle: FontStyle.normal,
-            fontWeight: FontWeight.w300,
-            textColor: AppColors.blackColor.withOpacity(0.7),
-            textSize: 16.sp,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(0.04.sw),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              
+                  CustomText(
+                    label: header,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w300,
+                    textColor: AppColors.blackColor.withOpacity(0.7),
+                    textSize: 16.sp,
+                  ),
+              
+                  if (applyGap) 
+                    SizedBox(height: 0.01.sh,),
+              
+                  Flexible(
+                    child: TextField(
+                      autocorrect: true,
+                      controller: editingController,
+                      enabled: !disbaledInputField,
+                      decoration: InputDecoration(
+                        alignLabelWithHint: true,
+                        border: noneInputBorder,
+                        contentPadding: EdgeInsets.zero,
+                        counterText: '',
+                        disabledBorder: noneInputBorder,
+                        enabledBorder: noneInputBorder,
+                        enabled: true,
+                        errorBorder: noneInputBorder,
+                        focusedBorder: noneInputBorder,
+                        focusedErrorBorder: noneInputBorder,
+                        hintText: inputFieldHint.tr,
+                        hintStyle: TextStyle(
+                          color: AppColors.blackColor.withOpacity(0.5),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w300,
+                          fontStyle: FontStyle.normal
+                        ),
+                        isCollapsed: true,
+                        isDense: true,
+                      ),
+                      enableSuggestions: true,
+                      enableIMEPersonalizedLearning: true,
+                      enableInteractiveSelection: true,
+                      inputFormatters: inputFormatterList,
+                      keyboardType: textInputType,
+                      maxLength: maximumLength,
+                      maxLines: maximumLines,
+                      minLines: minimumLines,
+                      onChanged: onTextChanged,
+                      onSubmitted: onFieldSubmitted,
+                      onTap: onFieldTapped,
+                      style: TextStyle(
+                        color: AppColors.blackColor,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal
+                      ),
+                      textAlign: TextAlign.start,
+                      textCapitalization: capitalization,
+                      textInputAction: inputAction,
+                    ),
+                  )
+              
+                ],                        
+              ),
+            ),
           ),
 
-          if (applyGap) 
-            SizedBox(height: 0.01.sh,),
-
-          Flexible(
-            child: TextField(
-              autocorrect: true,
-              controller: editingController,
-              decoration: InputDecoration(
-                alignLabelWithHint: true,
-                border: noneInputBorder,
-                contentPadding: EdgeInsets.zero,
-                counterText: '',
-                disabledBorder: noneInputBorder,
-                enabledBorder: noneInputBorder,
-                enabled: true,
-                errorBorder: noneInputBorder,
-                focusedBorder: noneInputBorder,
-                focusedErrorBorder: noneInputBorder,
-                hintText: inputFieldHint.tr,
-                hintStyle: TextStyle(
-                  color: AppColors.blackColor.withOpacity(0.5),
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w300,
-                  fontStyle: FontStyle.normal
-                ),
-                isCollapsed: true,
-                isDense: true,
-              ),
-              enableSuggestions: true,
-              enableIMEPersonalizedLearning: true,
-              enableInteractiveSelection: true,
-              inputFormatters: inputFormatterList,
-              keyboardType: textInputType,
-              maxLength: maximumLength,
-              maxLines: maximumLines,
-              minLines: minimumLines,
-              onChanged: onTextChanged,
-              onSubmitted: onFieldSubmitted,
-              onTap: onFieldTapped,
-              style: TextStyle(
-                color: AppColors.blackColor,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal
-              ),
-              textAlign: TextAlign.start,
-              textCapitalization: capitalization,
-              textInputAction: inputAction,
-            ),
-          )
-
-        ],                        
+          customSuffix ?? const SizedBox.shrink()
+          
+        ],
       ),
     );
   }

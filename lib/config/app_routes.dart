@@ -36,6 +36,7 @@ class AppRoutes {
   static const String changePlan = '/change-plan';
   static const String changeLanguage = '/change-language';
   static const String changePasscode = '/change-passcode';
+  static const String inviteFriends = '/invite-friends';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

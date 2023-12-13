@@ -7,6 +7,7 @@ import 'ui/account/account_screen.dart';
 import 'ui/account/modules/change_language/change_language_screen.dart';
 import 'ui/account/modules/change_passcode/change_passcode_screen.dart';
 import 'ui/account/modules/change_plan/change_plan_screen.dart';
+import 'ui/account/modules/invite_friends/invite_friends_screen.dart';
 import 'ui/account/modules/profile_details/profile_detail_screen.dart';
 import 'ui/cards/cards_screen.dart';
 import 'ui/home/modules/checkout/checkout_screen.dart';
@@ -151,6 +152,8 @@ class AccountNestedNavigator extends StatelessWidget {
           route = const ChangeLanguageScreen();
         } else if (settings.name == AppRoutes.changePasscode) {
           route = const ChangePasscode();
+        } else if (settings.name == AppRoutes.inviteFriends) {
+          route = const InviteFriendScreen();
         } else {
           throw Exception('Unknown route defined.');
         }
