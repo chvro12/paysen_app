@@ -125,7 +125,7 @@ class RequestCryptoAccountScreen extends StatelessWidget {
                               width: 1.sw,
                               child: CustomElevatedButton(
                                 btnLabel: 'send_request',
-                                onBtnPressed: accountController.onSendRequestCryptoAccount,
+                                onBtnPressed: () => accountController.onSendRequestCryptoAccount(context),
                               ),
                             ),
                           ],

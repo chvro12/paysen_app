@@ -7,6 +7,7 @@ import '../../../config/app_logger.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
 import '../../../main.dart';
+import '../../../services/shared_pref_service.dart';
 import '../models/language_models.dart';
 import '../models/profile_models.dart';
 import '../models/terms_and_condition_models.dart';
@@ -60,7 +61,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
     update();
   }
 
-  Future<void> onOtherModuleSelect(String val) async {
+  Future<void> onOtherModuleSelect(BuildContext context, String val) async {
     if (val == 'profile_details') {
       _resetProfileDetailValues();
       _initializeDefaultValues();
@@ -83,13 +84,15 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } else if (val == 'merchant_details') {
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.merchantDetail);
     } else if (val == 'request_crypto_account') {
+      _resetReqCryptoAccountDefaultValues();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.reqCryptoAccount);
     } else if (val == 'terms_and_conditions') {
       _resetTermsAndConditionValue();
       _fetchTermsAndConditions();
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.termsAndCondition);
-    } else {
-
+    } else if (val == 'logout') {
+      SharedPrefService.clearSharedPrefs()
+      .whenComplete(() => Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginRoute, (route) => false));
     }
     _initialize();
   }
@@ -441,7 +444,24 @@ class AccountController extends GetxController with ProgressHUDMixin {
     agreedPrivacyPolicy.value = !agreedPrivacyPolicy.value;
   }
 
-  Future<void> onSendRequestCryptoAccount() async {
-    accountNavigatorKey.currentState?.pushReplacementNamed(AppRoutes.requestProcessed);
+  void _resetReqCryptoAccountDefaultValues() {
+    selectedReqCryptoItem.value = 0;
+    agreedTermsAndCondition.value = false;
+    agreedPrivacyPolicy.value = false;
+  }
+
+  Future<void> onSendRequestCryptoAccount(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => ThankYouDialog(
+        description: 'order_sent_success_description',
+        lastVal: 'check_status',
+        title: 'order_sent_success_title',
+        onLastValPressed: () {
+          Navigator.pop(dialogContext);
+          accountNavigatorKey.currentState?.popAndPushNamed(AppRoutes.requestProcessed);
+        },
+      )
+    );
   }
 }

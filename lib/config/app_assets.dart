@@ -79,6 +79,8 @@ class AppAssets {
   static const String requestCryptoAccountIMG2 = '$_prefix/request_crypto_account_IMG2.png';
   static const String requestCryptoAccountIMG3 = '$_prefix/request_crypto_account_IMG3.png';
   static const String orderRequestProcessedIMG = '$_prefix/order_request_processed_IMG.png';
+  static const String closeCircleIcon = '$_prefixIcons/close-circle-icon.png';
+  static const String whiteCheckIcon = '$_prefixIcons/white_check_icon.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

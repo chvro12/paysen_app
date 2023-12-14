@@ -222,7 +222,9 @@ Map<String, String> get englishTranslation {
     'send_request': 'Send request',
     'agree_terms_and_conditions': 'I agree with terms and conditions',
     'agree_privacy_policy': 'I agree with the PaySen privacy policy',
-    'request_is_being_processed': 'Your request is being processed'
+    'request_is_being_processed': 'Your request is being processed',
+    'order_sent_success_title': 'Your order has been sent successfully',
+    'order_sent_success_description': 'Lorem ipsum dolor sit amet, consectetur elit, sed.'
   };
 }
 

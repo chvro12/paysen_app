@@ -97,7 +97,7 @@ class AccountScreen extends StatelessWidget {
                         return OtherModulesView(
                           assetIMG: assetIMG, 
                           label: e,
-                          onPressed: () => accountController.onOtherModuleSelect(e),
+                          onPressed: () => accountController.onOtherModuleSelect(context, e),
                         );
                       }).toList(),
                     ),
