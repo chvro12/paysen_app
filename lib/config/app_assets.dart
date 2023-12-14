@@ -75,6 +75,10 @@ class AppAssets {
   static const String merchantDetailUrlIcon = '$_prefixIcons/merchant_detail_url_icon.png';
   static const String merchantDetailDocsIcon = '$_prefixIcons/merchant_detail_docs_icon.png';
   static const String termsAndConditionIMG = '$_prefix/terms_and_condition_IMG.png';
+  static const String requestCryptoAccountIMG1 = '$_prefix/request_crypto_account_IMG1.png';
+  static const String requestCryptoAccountIMG2 = '$_prefix/request_crypto_account_IMG2.png';
+  static const String requestCryptoAccountIMG3 = '$_prefix/request_crypto_account_IMG3.png';
+  static const String orderRequestProcessedIMG = '$_prefix/order_request_processed_IMG.png';
 
   /// BOTTOM NAVIGATION BAR ICONS
   static const String _prefixBottomNavigation = '$_prefixIcons/bottom-navigation';

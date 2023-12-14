@@ -211,7 +211,18 @@ Map<String, String> get englishTranslation {
     'success_url': 'Success URL',
     'fail_url': 'Fail URL',
     'link_url': 'Link URL',
-    'type_here': 'Type here'
+    'type_here': 'Type here',
+    'request_crypto_account_title2': 'Get started in few minutes',
+    'request_crypto_account_descripton2': 'If you have any questions you can reach us. Our support team is available to help you anytime.',
+    'request_crypto_account_title1': 'Buy and sell cryptocurrencies',
+    'request_crypto_account_descripton1': 'PaySen is the fastest app to buy, sell and hold cryptocurrencies in your account.',
+    'order_success_title': 'Your order has been sent successfully',
+    'order_success_description': 'Lorem ipsum dolor sit amet, consectetur elit, sed.',
+    'check_status': 'Check status',
+    'send_request': 'Send request',
+    'agree_terms_and_conditions': 'I agree with terms and conditions',
+    'agree_privacy_policy': 'I agree with the PaySen privacy policy',
+    'request_is_being_processed': 'Your request is being processed'
   };
 }
 

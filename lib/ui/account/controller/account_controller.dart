@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../components/index.dart';
+import '../../../config/app_assets.dart';
 import '../../../config/app_logger.dart';
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
@@ -82,7 +83,7 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } else if (val == 'merchant_details') {
       await accountNavigatorKey.currentState?.pushNamed(AppRoutes.merchantDetail);
     } else if (val == 'request_crypto_account') {
-
+      await accountNavigatorKey.currentState?.pushNamed(AppRoutes.reqCryptoAccount);
     } else if (val == 'terms_and_conditions') {
       _resetTermsAndConditionValue();
       _fetchTermsAndConditions();
@@ -377,5 +378,70 @@ class AccountController extends GetxController with ProgressHUDMixin {
     } finally {
       dismiss(Get.context!);
     }
+  }
+
+  /// VARIABLES CONNECTED WITH REQUEST CRYPTO ACCOUNT SCREEN
+  final pageController = PageController();
+
+  List<String> reqCryptoPageItems = [
+    AppAssets.requestCryptoAccountIMG1,
+    AppAssets.requestCryptoAccountIMG2,
+    AppAssets.requestCryptoAccountIMG3
+  ];
+
+  Map<int, List<Map<String, String>>> reqCryptoDescriptionItems = {
+    
+    0: [{
+      'title': 'request_crypto_account_title1',
+      'description': 'request_crypto_account_descripton1'
+    }],
+
+    1: [{
+      'title': 'request_crypto_account_title2',
+      'description': 'request_crypto_account_descripton2'
+    }],
+
+    2: [{
+      'title': 'Main information',
+      'description': 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+
+'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu.'
+
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+    }, {
+      'title': 'Buy , selling exchanging and transacting',
+      'description': 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+
+'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu.'
+
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+    }, {
+      'title': 'Hold your cryptocurrency',
+      'description': 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+
+'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed qu.'
+
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. '
+    }]
+  }; 
+
+  RxInt selectedReqCryptoItem = 0.obs;
+  RxBool agreedTermsAndCondition = false.obs;
+  RxBool agreedPrivacyPolicy = false.obs;
+
+  void onReqCryptoPageChanged(int val) {
+    selectedReqCryptoItem.value = val;
+  }
+
+  void onChangeTermsAndCondition() {
+    agreedTermsAndCondition.value = !agreedTermsAndCondition.value;
+  }
+
+  void onChangePrivacyPolicy() {
+    agreedPrivacyPolicy.value = !agreedPrivacyPolicy.value;
+  }
+
+  Future<void> onSendRequestCryptoAccount() async {
+    
   }
 }

@@ -80,7 +80,7 @@ class CustomHeader extends StatelessWidget {
                     label: headerLabel!,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w500,
-                    textSize: headerFontSize ?? 30.sp,
+                    textSize: headerFontSize ?? 26.sp,
                   )
               ],
             ),
