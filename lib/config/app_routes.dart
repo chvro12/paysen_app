@@ -43,6 +43,7 @@ class AppRoutes {
   static const String urls = '$merchantDetail/urls';
   static const String reqCryptoAccount = '/request-crypto-account';
   static const String termsAndCondition = '/terms-and-condition';
+  static const String requestProcessed = '$reqCryptoAccount/request-processed';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Widget route;

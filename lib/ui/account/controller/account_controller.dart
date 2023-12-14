@@ -442,6 +442,6 @@ class AccountController extends GetxController with ProgressHUDMixin {
   }
 
   Future<void> onSendRequestCryptoAccount() async {
-    
+    accountNavigatorKey.currentState?.pushReplacementNamed(AppRoutes.requestProcessed);
   }
 }
