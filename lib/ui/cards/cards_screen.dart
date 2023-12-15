@@ -77,14 +77,14 @@ class CardsScreen extends StatelessWidget {
                     assetIMG: AppAssets.createPhysicalCardIcon,
                     label: 'create_activate_physical_card',
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => const EndpointReqFailDialog(
-                          description: 'service_unavailable_description', 
-                          title: 'service_unavailable_title'
-                        )
-                      );
-                      // Navigator.pushNamed(context, AppRoutes.physicalCard);
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) => const EndpointReqFailDialog(
+                      //     description: 'service_unavailable_description', 
+                      //     title: 'service_unavailable_title'
+                      //   )
+                      // );
+                      Navigator.pushNamed(context, AppRoutes.physicalCard);
                     },
                   )
             
