@@ -16,6 +16,7 @@ import '../../../models/user_models.dart';
 import '../models/city_models.dart';
 import '../models/login_models.dart';
 import '../repository/auth_repo.dart';
+import 'login_controller.dart';
 
 class SignupController extends GetxController with ProgressHUDMixin {
 
@@ -24,6 +25,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneNoController = TextEditingController();
   final activityController = TextEditingController();
 
   final List<CommonModels> genderList = [
@@ -51,6 +53,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
     firstnameController.dispose();
     lastnameController.dispose();
     emailController.dispose();
+    phoneNoController.dispose();
     activityController.dispose();
     super.onClose();
   }
@@ -93,7 +96,8 @@ class SignupController extends GetxController with ProgressHUDMixin {
       builder: (ctx) {
         return TwoOptionsBottomSheet(
           header: 'image_option', 
-          bottomSheetHeight: 240.h,
+          useCustomBarrierColor: false,
+          bottomSheetHeight: 200.h,
           iMGColor1: AppColors.primaryColor,
           iMGColor2: AppColors.primaryColor,
           assetIMG1: AppAssets.cameraIcon, 
@@ -142,7 +146,7 @@ class SignupController extends GetxController with ProgressHUDMixin {
     _onMediaOptionBottomSheet(context);
   }
 
-  Future onRegisterPressed(BuildContext context, LoginModels loginModels) async {
+  Future onRegisterPressed(BuildContext context, LoginModels? loginModels) async {
     String firstName = firstnameController.text.trim();
     if (firstName.isEmpty) {
       ToastUtils.showToast('first_name_empty_message');
@@ -160,6 +164,12 @@ class SignupController extends GetxController with ProgressHUDMixin {
       ToastUtils.showToast('email_empty_message');
       return;
     }
+
+    String phoneNo = phoneNoController.text.trim();
+    if (phoneNo.isEmpty && loginModels == null) {
+      ToastUtils.showToast('phone_no_empty_message');
+      return;
+    }
     
     String activity = activityController.text.trim();
     if (activity.isEmpty) {
@@ -173,24 +183,50 @@ class SignupController extends GetxController with ProgressHUDMixin {
     }
 
     if (selectedCityDropDownModels.value == null) {
-      ToastUtils.showToast('last_name_empty_message');
+      ToastUtils.showToast('city_not_selected');
       return;
     }
 
     if (profileIMG.value == null) {
-      ToastUtils.showToast('last_name_empty_message');
+      ToastUtils.showToast('profile_image_not_captured');
       return;
     }
 
     show(Get.context!);
 
-    UserModels userModels = loginModels.userModels!.copyWith(
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      activity: activity,
-      gender: selectedGenderDropDownModels.value!.name.stringToGender,
-    );
+    UserModels userModels;
+
+    if (loginModels != null) {
+      
+      userModels = loginModels.userModels!.copyWith(
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        activity: activity,
+        gender: selectedGenderDropDownModels.value!.name.stringToGender,
+      );
+
+    } else {
+
+      userModels = UserModels(
+        id: 0, 
+        firstName: firstName, 
+        lastName: lastName, 
+        email: email, 
+        emailVerifiedAt: '', 
+        avatar: '', 
+        countryCode: '221', 
+        phone: phoneNo, 
+        apiToken: '', 
+        activity: activity, 
+        gender: selectedGenderDropDownModels.value!.name.stringToGender, 
+        isActive: 1, 
+        lang: 'en', 
+        fcmToken: '', 
+        city: selectedGenderDropDownModels.value!.name
+      );
+
+    }
     
     List<File> avatarFiles = [];
     if (profileIMG.value != null) {
@@ -199,8 +235,15 @@ class SignupController extends GetxController with ProgressHUDMixin {
 
     final registerModels = await _authRepo.register(userModels.toJson(selectedGenderDropDownModels.value!), avatarFiles);
     ToastUtils.showToast(registerModels.message);
-    if (!registerModels.isSuccess) return;
-    Get.offAllNamed(AppRoutes.loginRoute);
     dismiss(Get.context!);
+    if (!registerModels.isSuccess) return;
+    if (loginModels == null) {
+      final LoginController loginController = Get.find();
+      loginController.resetLoginControllerDefaultValues();
+      Get.back();
+    } else {
+      Get.delete<LoginController>();
+      Get.offAllNamed(AppRoutes.loginRoute);
+    }
   }
 }

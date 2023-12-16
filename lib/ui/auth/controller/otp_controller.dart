@@ -12,27 +12,62 @@ import '../models/login_models.dart';
 
 class OtpController extends GetxController with ProgressHUDMixin {
   
-  Future<void> onOtpSubmitted(LoginModels loginModels) async {
-    if (loginModels.userModels == null || loginModels.userModels!.otp == null) return;
+  final LoginController _loginController = Get.find();
+  final TextEditingController otpController = TextEditingController();
+  LoginModels? _loginModels;
+  String mobileNoWithCountryCode = '';
 
-    if (loginModels.userType == UserType.oldUser) {
-      final value = jsonEncode(loginModels.userModels?.toSecondJson());
-      await SharedPrefService.setUserAuthentication(value);
-      Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false);
-    } else {
-      Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: loginModels);
+  @override
+  void onInit() {
+    super.onInit();
+    if (_loginController.checkMobileResponse != null) {
+      _loginModels = _loginController.checkMobileResponse;
+      mobileNoWithCountryCode = '+${_loginModels!.userModels!.countryCode}${_loginModels!.userModels!.phone}';
     }
   }
 
-  Future<void> onOtpResend(BuildContext context, LoginModels loginModels) async {
-    if (loginModels.userModels == null) return;
+  @override
+  void onClose() {
+    otpController.dispose();
+    super.onClose();
+  }
+
+  String? onOtpValidate(String? value) {
+    if (_loginModels == null) return null;
+    String serverOtp = _loginModels!.userModels!.otp!.trim();
+    if (value != null && serverOtp.compareTo(value.trim()) != 0) {
+      return 'otp_mismatch_description'.tr;
+    }
+    return null;
+  }
+  
+  Future<void> onOtpSubmitted(String val) async {
+    if (onOtpValidate(val) == null) {
+      if (_loginModels?.userModels == null || _loginModels?.userModels!.otp == null) return;
+      if (_loginModels?.userType == UserType.oldUser) {
+        final value = jsonEncode(_loginModels?.userModels?.toSecondJson());
+        await SharedPrefService.setUserAuthentication(value);
+        Navigator.pushNamedAndRemoveUntil(Get.context!, AppRoutes.dashboard, (route) => false);
+      } else {
+        Navigator.pushNamed(Get.context!, AppRoutes.signupRoute, arguments: _loginModels!);
+      }
+    }
+  }
+
+  Future<void> onOtpResend(BuildContext context) async {
+    if (_loginModels?.userModels == null) return;
 
     FocusScope.of(context).unfocus();
     FocusManager.instance.primaryFocus?.unfocus();
     
     LoginController loginController = Get.find();
-    loginController.mobileNoController.text = loginModels.userModels!.phone;
+    loginController.mobileNoController.text = _loginModels!.userModels!.phone;
 
-    loginController.onLoginPressed(context);
+    loginController.onLoginPressed(context, navigateToOtpScreen: false, onResponseCheckMobile: (val) {
+      if (val.isSuccess) {
+        otpController.clear();
+        _loginModels = val;
+      }
+    });
   }
 }

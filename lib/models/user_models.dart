@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../config/app_enums.dart';
 import 'card_detail_models.dart';
 import 'card_holder_detail_models.dart';
@@ -94,6 +93,13 @@ class UserModels {
   }
 
   factory UserModels.fromJson(Map<String, dynamic> data) {
+    DateTime? dob;
+    if (data.containsKey('dob')) {
+      String tempDOB = data['dob'];
+      if (tempDOB.trim().isNotEmpty) {
+        dob = tempDOB.tryParseWithDateFormat('yyyy-MM-dd');
+      }
+    }
     return UserModels(
       id: data['id'], 
       firstName: data['first_name'], 
@@ -112,9 +118,7 @@ class UserModels {
       country: data['country'],
       city: data['city'].toString(),
       activity: data['activity'], 
-      dob: data.containsKey('dob') 
-      ? (data['dob'] as String).tryParseWithDateFormat('yyyy-MM-dd')
-      : null,
+      dob: dob,
       gender: (data['gender'] as String).stringToGender, 
       isActive: data['is_active'], 
       lang: data['lang'], 

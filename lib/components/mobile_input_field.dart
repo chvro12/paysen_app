@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:paysen/components/index.dart';
 
 import '../config/app_assets.dart';
 import '../config/app_colors.dart';
+import 'custom_text.dart';
 
 class MobileInputField extends StatelessWidget {
 
   final TextEditingController mobileNoController;
   final ValueChanged<String>? onFieldSubmitted;
+  final double cursorHeight;
+  final EdgeInsetsGeometry? fieldPadding;
 
   const MobileInputField({
     super.key,
     required this.mobileNoController,
-    this.onFieldSubmitted
+    this.onFieldSubmitted,
+    this.cursorHeight = 18,
+    this.fieldPadding
   });
 
   @override
@@ -94,13 +98,13 @@ class MobileInputField extends StatelessWidget {
                       fontWeight: FontWeight.w500
                     ),
                     onSubmitted: onFieldSubmitted,
-                    cursorHeight: 18.0,
-                    decoration: const InputDecoration(
+                    cursorHeight: cursorHeight,
+                    decoration: InputDecoration(
                       alignLabelWithHint: true,
                       isDense: true,
                       isCollapsed: true,
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: fieldPadding ?? EdgeInsets.zero,
                       counterText: '',
                       disabledBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,

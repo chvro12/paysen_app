@@ -23,6 +23,7 @@ class TwoOptionsBottomSheet extends StatelessWidget {
   final VoidCallback onPressed2;
   final double bottomSheetHeight;
   final VoidCallback? onCloseBottomSheet;
+  final bool useCustomBarrierColor;
 
   const TwoOptionsBottomSheet({
     super.key,
@@ -38,7 +39,8 @@ class TwoOptionsBottomSheet extends StatelessWidget {
     this.bottomSheetHeight = 320.0,
     this.iMGColor1,
     this.iMGColor2,
-    this.onCloseBottomSheet
+    this.onCloseBottomSheet,
+    this.useCustomBarrierColor = true
   });
 
   @override
@@ -63,9 +65,8 @@ class TwoOptionsBottomSheet extends StatelessWidget {
           fit: StackFit.loose,
           children: [
     
-            Container(
-              color: AppColors.bottomSheetBarrierColor,
-            ),
+            if (useCustomBarrierColor)
+              Container(color: AppColors.bottomSheetBarrierColor,),
     
             Positioned(
               bottom: 0.0,
@@ -142,7 +143,7 @@ class TwoOptionsBottomSheet extends StatelessWidget {
                             onPressed: () {
                               if (onCloseBottomSheet != null) {
                                 onCloseBottomSheet!();
-                                onPressed1();
+                                onPressed2();
                                 return;
                               }
                               

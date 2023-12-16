@@ -59,9 +59,9 @@ class AppRoutes {
     } else if (settings.name!.toLowerCase() == loginRoute) {
       route = LoginScreen();
     } else if (settings.name!.toLowerCase() == otpRoute) {
-      route = OtpScreen(loginModels: args as LoginModels);
+      route = OtpScreen();
     } else if (settings.name!.toLowerCase() == signupRoute) {
-      route = SignupScreen(loginModels: args as LoginModels);
+      route = SignupScreen(loginModels: args as LoginModels?);
     } else if (settings.name!.toLowerCase() == dashboard) {
       route = DashboardScreen();
     } else if (settings.name!.toLowerCase() == checkout) {

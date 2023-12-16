@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -61,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                                   textSize: 22.sp,
                                 ),
 
-                                SizedBox(height: 0.03.sh,),
+                                SizedBox(height: 0.01.sh,),
 
                                 CustomText(
                                   label: 'please_login_to_continue',
@@ -79,6 +80,8 @@ class LoginScreen extends StatelessWidget {
 
                           MobileInputField(
                             mobileNoController: loginController.mobileNoController,
+                            fieldPadding: const EdgeInsets.only(bottom: 4),
+                            cursorHeight: 32,
                             onFieldSubmitted: (value) {
                               if (!loginController.shouldDisableBtn.value) {
                                 loginController.onLoginPressed(context);
@@ -101,6 +104,30 @@ class LoginScreen extends StatelessWidget {
                         : () => loginController.onLoginPressed(context),
                       )),
                     ),
+
+                    SizedBox(height: 24.h,),
+
+                    Text.rich(
+                      TextSpan(
+                        text: "don't_have_an_account".tr,
+                        style: TextStyle(
+                          color: AppColors.blackColor,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w300
+                        ),
+                        children: [
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()..onTap = () => loginController.onSignupPressed(context),
+                            text: 'signup'.tr,
+                            style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w300
+                            ),
+                          )
+                        ]
+                      )
+                    )
                   ],
                 ),
               ),

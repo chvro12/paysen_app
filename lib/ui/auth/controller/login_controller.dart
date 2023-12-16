@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 
 import '../../../config/app_routes.dart';
 import '../../../config/app_utils.dart';
+import '../models/login_models.dart';
 import '../repository/auth_repo.dart';
+import 'otp_controller.dart';
+import 'signup_controller.dart';
 
 class LoginController extends GetxController with ProgressHUDMixin {
 
@@ -11,6 +14,7 @@ class LoginController extends GetxController with ProgressHUDMixin {
 
   final AuthRepo _authRepo = AuthRepo();
   final RxBool shouldDisableBtn = RxBool(true);
+  LoginModels? checkMobileResponse;
 
   @override
   void onInit() {
@@ -30,14 +34,29 @@ class LoginController extends GetxController with ProgressHUDMixin {
     update();
   }
 
-  Future<void> onLoginPressed(BuildContext context) async {
+  void resetLoginControllerDefaultValues() {
+    mobileNoController.clear();
+  }
+
+  void onSignupPressed(BuildContext context) {
+    resetLoginControllerDefaultValues();
+    Get.delete<SignupController>();
+    Navigator.pushNamed(context, AppRoutes.signupRoute);
+  }
+
+  Future<void> onLoginPressed(BuildContext context, {bool navigateToOtpScreen = true, ValueChanged<LoginModels>? onResponseCheckMobile}) async {
     String phone = mobileNoController.text.trim();
     
     show(Get.context!);
-    final checkMobileResponse = await _authRepo.checkMobile('221', phone);
+    checkMobileResponse = await _authRepo.checkMobile('221', phone);
+    if (onResponseCheckMobile != null) {
+      onResponseCheckMobile(checkMobileResponse!); 
+    }
     dismiss(Get.context!);
-    ToastUtils.showToast(checkMobileResponse.message);
-    if (!checkMobileResponse.isSuccess) return;
-    Navigator.pushNamed(Get.context!, AppRoutes.otpRoute, arguments: checkMobileResponse);
+    ToastUtils.showToast(checkMobileResponse!.message);
+    if (!checkMobileResponse!.isSuccess) return;
+    if (!navigateToOtpScreen) return;
+    Get.delete<OtpController>();
+    Navigator.pushNamed(Get.context!, AppRoutes.otpRoute);
   }
 }

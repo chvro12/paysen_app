@@ -10,15 +10,11 @@ import 'controller/signup_controller.dart';
 
 class SignupScreen extends StatelessWidget {
 
-  final LoginModels loginModels;
+  final LoginModels? loginModels;
 
-  SignupScreen({
-    super.key,
-    required this.loginModels
-  });
+  SignupScreen({ super.key, this.loginModels });
 
   final signupController = Get.put(SignupController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +123,7 @@ class SignupScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                                 textColor: AppColors.blackColor,
                                 textSize: 16.sp,
-                                textAlignment: TextAlign.center,
+                                textAlignment: TextAlign.start,
                               ),
                             )
                 
@@ -165,8 +161,19 @@ class SignupScreen extends StatelessWidget {
                             inputFieldHint: 'email_example',
                             inputAction: TextInputAction.next,
                             textInputType: TextInputType.emailAddress,
-                            applyBottomMargin: false,
-                          )
+                            applyBottomMargin: loginModels != null,
+                          ),
+
+                          if (loginModels == null)
+                            CustomTextField(
+                              header: 'phone_number',
+                              editingController: signupController.phoneNoController,
+                              inputFieldHint: 'type_phone_number_placeholder',
+                              inputAction: TextInputAction.next,
+                              textInputType: TextInputType.number,
+                              applyBottomMargin: false,
+                              maximumLength: 9,
+                            )
                 
                         ]
                       ),
