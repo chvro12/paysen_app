@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../components/index.dart';
 import '../../../../config/app_assets.dart';
 import '../../../../config/app_colors.dart';
+import '../../../../config/app_routes.dart';
 
 class PhysicalCardScreen extends StatelessWidget {
 
@@ -101,7 +102,7 @@ class PhysicalCardScreen extends StatelessWidget {
                             btnLabel: 'activate_card',
                             btnBGColor: AppColors.whiteColor,
                             btnFGColor: AppColors.primaryColor,
-                            onBtnPressed: () {},
+                            onBtnPressed: () => Navigator.pushNamed(context, AppRoutes.activateCard),
                           ),
                         ),
                       ],

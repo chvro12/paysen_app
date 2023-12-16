@@ -175,6 +175,8 @@ class TwoOptionsBottomSheet extends StatelessWidget {
 
     dashboardController.onTopupBottomSheetChanged(false);
     dashboardController.onWithdrawBottomSheetChanged(false);
+    dashboardController.onDocUploadOptionBottomSheetChanged(false);
+    dashboardController.onOrderCardBottomSheetChanged(false);
   }
 }
 

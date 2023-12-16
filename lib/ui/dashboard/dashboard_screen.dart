@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
@@ -77,6 +78,22 @@ class DashboardScreen extends StatelessWidget {
                   onPressed2: () {
                     cardsNavigatorKey.currentState?.pushNamed(AppRoutes.getDelivered);
                   },
+                )),
+              ),
+
+              Positioned(
+                bottom: 0.0,
+                child: Obx(() => !dashboardController.showDocUploadOptionBottomSheet.value
+                ? const SizedBox.shrink()
+                : TwoOptionsBottomSheetWithoutIMG(
+                  header: 'document_upload_option',
+                  useRow: false,
+                  bottomSheetHeight: 400,
+                  subHeader: 'document_upload_option_description',
+                  label1: 'pick_from_gallery',
+                  onPressed1: () => dashboardController.onIMGFromCameraOrGallery(ImageSource.gallery),
+                  label2: 'capture_from_camera',
+                  onPressed2: () => dashboardController.onIMGFromCameraOrGallery(ImageSource.camera),
                 )),
               ),
     

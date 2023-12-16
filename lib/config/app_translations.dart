@@ -156,6 +156,9 @@ Map<String, String> get englishTranslation {
     'save': 'Save',
     'mobile_no_empty_message': 'Mobile No should not be empty',
     'amount_empty_message': 'Amount should not be empty',
+    'date_of_birth_empty_message': 'Date of birth should not be empty',
+    'national_id_empty_message': 'Please select any one of the National Id',
+    'national_id_card_empty_message': 'National ID card no should not be empty',
     'proceed': 'Proceed',
     'delivery_options': 'Delivery options',
     'delivery_options_description': 'Please choose the option which suits you better',
@@ -224,7 +227,27 @@ Map<String, String> get englishTranslation {
     'agree_privacy_policy': 'I agree with the PaySen privacy policy',
     'request_is_being_processed': 'Your request is being processed',
     'order_sent_success_title': 'Your order has been sent successfully',
-    'order_sent_success_description': 'Lorem ipsum dolor sit amet, consectetur elit, sed.'
+    'order_sent_success_description': 'Lorem ipsum dolor sit amet, consectetur elit, sed.',
+    'card_arrived': 'Card arrived?',
+    'activate_card_description': 'If you have received you PaySen physical card, Please tap the button below and follow the instructions to activate card.',
+    'personal_info': 'PERSONAL INFORMATION',
+    'type_last_name_placeholder': 'Type last name here',
+    'type_first_name_placeholder': 'Type first name here',
+    'type_email_placeholder': 'Type email here',
+    'type_phone_number_placeholder': '000 0000 000',
+    'type_birth_date_placeholder': '10/01/1991',
+    'id_type': 'ID type',
+    'id_card': 'ID card',
+    'identity_document': 'IDENTITY DOCUMENT',
+    'phone_number': 'Phone number',
+    'birth_date': 'Birthdate',
+    'type_id_card_placeholder': '0000 000 0000',
+    'back_id_image': 'ID card (Back)',
+    'id_image': 'ID card (Front)',
+    'selfie_image': 'Capture your image',
+    'document_upload_option': 'Document upload options',
+    'document_upload_option_description': 'Please choose the option which suits you better',
+    'submit': 'Submit'
   };
 }
 

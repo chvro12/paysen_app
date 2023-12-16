@@ -11,6 +11,7 @@ class CustomHeader extends StatelessWidget {
   final Widget? childBeforeTitle;
   final double? headerFontSize;
   final List<Widget> actionButton;
+  final Color? backButtonColor;
 
   const CustomHeader({
     super.key, 
@@ -19,6 +20,7 @@ class CustomHeader extends StatelessWidget {
     this.childBeforeTitle,
     this.headerFontSize,
     this.actionButton = const [],
+    this.backButtonColor
   });
   
   @override
@@ -52,6 +54,7 @@ class CustomHeader extends StatelessWidget {
                             onPressed: () => Navigator.pop(context),
                             icon: const Icon(Icons.arrow_back_rounded),
                             padding: EdgeInsets.zero,
+                            color: backButtonColor,
                             visualDensity: VisualDensity.adaptivePlatformDensity,
                           ),
                         ),

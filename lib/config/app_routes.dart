@@ -30,6 +30,9 @@ class AppRoutes {
   static const String physicalCard = '/physical-card';
   static const String getDelivered = '/get-delivered';
   static const String checkout = '/checkout';
+  static const String activateCard = '/activate-card';
+  static const String cardActivateDocUpload = '$activateCard/document-upload';
+  static const String cardActivateDocPreview = '$cardActivateDocUpload/document-preview';
 
   /// ACCOUNT NESTED NAVIGATOR ROUTE
   static const String profileDetails = '/profile-details';

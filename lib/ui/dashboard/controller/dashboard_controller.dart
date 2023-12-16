@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../config/app_assets.dart';
 import '../../../config/app_utils.dart';
@@ -8,6 +11,7 @@ import '../../../main.dart';
 import '../../../nested_navigator.dart';
 import '../../account/models/profile_models.dart';
 import '../../account/repository/account_repo.dart';
+import '../../cards/modules/activate_card/controller/activate_card_controller.dart';
 
 class DashboardController extends GetxController with ProgressHUDMixin {
 
@@ -25,6 +29,7 @@ class DashboardController extends GetxController with ProgressHUDMixin {
     ),
     CardNestedNavigator(
       showOrderCardBottomSheet: onOrderCardBottomSheetChanged,
+      showDocUploadOptionBottomSheet: onDocUploadOptionBottomSheetChanged,
     ),
     const SupportNestedNavigator(),
     const AccountNestedNavigator()
@@ -48,7 +53,8 @@ class DashboardController extends GetxController with ProgressHUDMixin {
 
   final showWithdrawaBottomSheet = false.obs,
          showTopBottomSheet = false.obs, 
-         showOrderCardBottomSheet = false.obs;
+         showOrderCardBottomSheet = false.obs,
+         showDocUploadOptionBottomSheet = false.obs;
   bool disableWallet = false;       
   final selectedBottomNavigationBarIndex = 0.obs;
 
@@ -58,7 +64,7 @@ class DashboardController extends GetxController with ProgressHUDMixin {
     onTopupBottomSheetChanged(false);
     onWithdrawBottomSheetChanged(false);
     onOrderCardBottomSheetChanged(false);
-
+    onDocUploadOptionBottomSheetChanged(false);
     update();
   }
 
@@ -77,7 +83,31 @@ class DashboardController extends GetxController with ProgressHUDMixin {
     update();
   }
 
+  void onDocUploadOptionBottomSheetChanged(bool value) {
+    showDocUploadOptionBottomSheet.value = value;
+    update();
+  }
+
   Future<bool> onSystemBackButtonPressed() {
+    if (showWithdrawaBottomSheet.value) {
+      showWithdrawaBottomSheet.value = !showWithdrawaBottomSheet.value;
+      return Future.value(false);
+    }
+
+    if (showTopBottomSheet.value) {
+      showTopBottomSheet.value = !showTopBottomSheet.value;
+      return Future.value(false);
+    }
+
+    if (showOrderCardBottomSheet.value) {
+      showOrderCardBottomSheet.value = !showOrderCardBottomSheet.value;
+      return Future.value(false);
+    }
+
+    if (showDocUploadOptionBottomSheet.value) {
+      showDocUploadOptionBottomSheet.value = !showDocUploadOptionBottomSheet.value;
+      return Future.value(false);
+    }
     if (_navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.canPop() == true) {
       _navigatorKeys[selectedBottomNavigationBarIndex.value].currentState?.pop(_navigatorKeys[selectedBottomNavigationBarIndex.value].currentContext);
     } else {
@@ -102,5 +132,18 @@ class DashboardController extends GetxController with ProgressHUDMixin {
   void onInit() {
     fetchUserProfileDetails();
     super.onInit();
+  }
+
+  final ImagePicker _imagePicker = ImagePicker();
+
+  Future<void> onIMGFromCameraOrGallery(ImageSource imageSource) async {
+    final ActivateCardController activateCardController = Get.find();
+    final val = await _imagePicker.pickImage(source: imageSource);
+    if (val != null) {
+      if (activateCardController.selectedDocUploadType != null) {
+        activateCardController.uploadDocType[activateCardController.selectedDocUploadType!] = File(val.path);
+        update();
+      } 
+    }
   }
 }

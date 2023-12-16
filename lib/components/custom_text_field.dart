@@ -27,6 +27,7 @@ class CustomTextField extends StatelessWidget {
   final bool disbaledInputField;
   final Widget? customSuffix;
   final bool obscureValue;
+  final bool isReadable;
 
   const CustomTextField({
     super.key,
@@ -48,7 +49,8 @@ class CustomTextField extends StatelessWidget {
     this.containerBorderColor = AppColors.borderColor,
     this.disbaledInputField = false,
     this.customSuffix,
-    this.obscureValue = false
+    this.obscureValue = false,
+    this.isReadable = false
   });
 
   @override
@@ -100,6 +102,7 @@ class CustomTextField extends StatelessWidget {
                       obscureText: obscureValue,
                       controller: editingController,
                       enabled: !disbaledInputField,
+                      readOnly: isReadable,
                       decoration: InputDecoration(
                         alignLabelWithHint: true,
                         border: noneInputBorder,

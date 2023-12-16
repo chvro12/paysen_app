@@ -17,6 +17,10 @@ import 'ui/account/modules/request_crypto_account/request_processed_screen.dart'
 import 'ui/account/modules/terms_and_condition/terms_and_condition_screen.dart';
 import 'ui/account/modules/verification_status/verification_status_screen.dart';
 import 'ui/cards/cards_screen.dart';
+import 'ui/cards/modules/activate_card/activate_card_screen.dart';
+import 'ui/cards/modules/activate_card/components/activate_card_third_stepper.dart';
+import 'ui/cards/modules/activate_card/components/document_preview.dart';
+import 'ui/cards/modules/activate_card/controller/activate_card_controller.dart';
 import 'ui/home/modules/checkout/checkout_screen.dart';
 import 'ui/cards/modules/get_delivered/get_delivered_screen.dart';
 import 'ui/cards/modules/physical_card/physical_card_screen.dart';
@@ -85,8 +89,13 @@ class WalletNestedNavigator extends StatelessWidget {
 class CardNestedNavigator extends StatelessWidget {
 
   final ValueChanged<bool> showOrderCardBottomSheet;
+  final ValueChanged<bool> showDocUploadOptionBottomSheet;
 
-  const CardNestedNavigator({super.key, required this.showOrderCardBottomSheet});
+  const CardNestedNavigator({
+    super.key, 
+    required this.showOrderCardBottomSheet,
+    required this.showDocUploadOptionBottomSheet
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +117,15 @@ class CardNestedNavigator extends StatelessWidget {
           route = GetDeliveredScreen();
         } else if (settings.name == AppRoutes.checkout) {
           route = CheckoutScreen(amount: args as double);
+        } else if (settings.name == AppRoutes.activateCard) {
+          Get.delete<ActivateCardController>();
+          route = ActivateCardScreen(isSecondStepper: (args as bool?) ?? false,);
+        } else if (settings.name == AppRoutes.cardActivateDocUpload) {
+          route = ActivateCardThirdStepper(
+            showDocUploadOptionBottomSheet: showDocUploadOptionBottomSheet,
+          );
+        } else if (settings.name == AppRoutes.cardActivateDocPreview) {
+          route = const DocumentPreview();
         } else {
           throw Exception('Unknown route defined.');
         }

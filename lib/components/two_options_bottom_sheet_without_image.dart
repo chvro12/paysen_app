@@ -17,6 +17,7 @@ class TwoOptionsBottomSheetWithoutIMG extends StatelessWidget {
   final VoidCallback onPressed2;
   final double bottomSheetHeight;
   final VoidCallback? onCloseBottomSheet;
+  final bool useRow;
 
   const TwoOptionsBottomSheetWithoutIMG({
     super.key,
@@ -27,7 +28,8 @@ class TwoOptionsBottomSheetWithoutIMG extends StatelessWidget {
     required this.onPressed2,
     this.bottomSheetHeight = 320.0,
     this.onCloseBottomSheet,
-    this.subHeader = ''
+    this.subHeader = '',
+    this.useRow = true
   });
 
   @override
@@ -104,55 +106,13 @@ class TwoOptionsBottomSheetWithoutIMG extends StatelessWidget {
 
                     SizedBox(height: 32.h,),
                     
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        
-                        Expanded(
-                          child: _TwoOptionBottomSheetItemViewWithoutIMG(
-                            label: label1,
-                            onPressed: () {
-                              if (onCloseBottomSheet != null) {
-                                onCloseBottomSheet!();
-                                onPressed1();
-                                return;
-                              }
-
-                              try {
-                                _onCloseTwoOptionBottomSheet();
-                              } on Exception catch (e) {
-                                AppLogger.e('Exception: $e', e);  
-                              }
-                              onPressed1();
-                            },
-                          ),
-                        ),
-                        
-                        SizedBox(width: 8.w,),
-                        
-                        Expanded(
-                          child: _TwoOptionBottomSheetItemViewWithoutIMG(
-                            label: label2,
-                            onPressed: () {
-                              if (onCloseBottomSheet != null) {
-                                onCloseBottomSheet!();
-                                onPressed1();
-                                return;
-                              }
-                              
-                              try {
-                                _onCloseTwoOptionBottomSheet();
-                              } on Exception catch (e) {
-                                AppLogger.e('Exception: $e', e);  
-                              }
-                              onPressed2();
-                            },
-                          ),
-                        )
-    
-                      ],
-                    )
-    
+                    if (useRow)
+                      Row(children: _rowAndColumn(SizedBox(width: 8.w,)),)
+                    else
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: _rowAndColumn(SizedBox(height: 18.h,)),
+                      ),
                   ],
                 ),
               ),
@@ -170,6 +130,53 @@ class TwoOptionsBottomSheetWithoutIMG extends StatelessWidget {
     dashboardController.onTopupBottomSheetChanged(false);
     dashboardController.onWithdrawBottomSheetChanged(false);
     dashboardController.onOrderCardBottomSheetChanged(false);
+    dashboardController.onDocUploadOptionBottomSheetChanged(false);
+  }
+
+  List<Widget> _rowAndColumn(Widget gapWidget) {
+    return [
+      Flexible(
+        child: _TwoOptionBottomSheetItemViewWithoutIMG(
+          label: label1,
+          onPressed: () {
+            if (onCloseBottomSheet != null) {
+              onCloseBottomSheet!();
+              onPressed1();
+              return;
+            }
+
+            try {
+              _onCloseTwoOptionBottomSheet();
+            } on Exception catch (e) {
+              AppLogger.e('Exception: $e', e);  
+            }
+            onPressed1();
+          },
+        ),
+      ),
+      
+      gapWidget,
+      
+      Flexible(
+        child: _TwoOptionBottomSheetItemViewWithoutIMG(
+          label: label2,
+          onPressed: () {
+            if (onCloseBottomSheet != null) {
+              onCloseBottomSheet!();
+              onPressed1();
+              return;
+            }
+            
+            try {
+              _onCloseTwoOptionBottomSheet();
+            } on Exception catch (e) {
+              AppLogger.e('Exception: $e', e);  
+            }
+            onPressed2();
+          },
+        ),
+      )
+    ];
   }
 }
 
