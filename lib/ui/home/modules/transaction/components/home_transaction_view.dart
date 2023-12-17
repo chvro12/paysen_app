@@ -15,10 +15,12 @@ import '../controller/transaction_history_controller.dart';
 class HomeTransactionView extends StatelessWidget {
 
   final MainTransactionModel mainTransactionModel;
+  final ValueChanged<TransactionModel> onTransactionSelect;
 
   const HomeTransactionView({
     super.key,
-    required this.mainTransactionModel
+    required this.mainTransactionModel,
+    required this.onTransactionSelect
   });
 
   @override
@@ -104,6 +106,7 @@ class HomeTransactionView extends StatelessWidget {
               amount: value.amount,
               type: value.cardTransactionType,
               transactionTimestamp: value.transactionTimestamp.humanReadableFormat('MMM dd, yyyy'),
+              onTransactionSelect: () => onTransactionSelect(value),
             );
           },
         )

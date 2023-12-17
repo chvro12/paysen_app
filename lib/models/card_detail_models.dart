@@ -13,7 +13,7 @@ class CardDetailModel {
   final CardBillingAddress? cardBillingAddress;
   final String cardName;
   final String cardHolderId;
-  final DateTime createdAt;
+  final DateTime? createdAt;
   final String issuingAppId;
   final String cardType;
   final bool isActive;

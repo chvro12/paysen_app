@@ -1,4 +1,5 @@
 import '../config/app_enums.dart';
+import '../config/app_logger.dart';
 
 class CardHolderDetailModels {
   final CardHolderAddressDetail? cardHolderAddressDetail;
@@ -63,7 +64,7 @@ class CardHolderAddressDetail {
 
 class CardIdentityDetail {
   final bool blacklisted;
-  final DateTime dateOfBirth;
+  final DateTime? dateOfBirth;
   final String firstName;
   final Gender gender;
   final String idNo;
@@ -76,9 +77,33 @@ class CardIdentityDetail {
   required this.lastName, required this.phone});
 
   factory CardIdentityDetail.fromJson(Map<String, dynamic> data) {
+    DateTime? dob;
+    try {
+      if (data.containsKey('date_of_birth')) {
+        String tempDOB = data['date_of_birth'];
+        if (tempDOB.trim().isNotEmpty) {
+          dob = tempDOB.tryParseWithDateFormat('yyyy-MM-dd');
+        }
+      }
+    } catch (e) {
+      AppLogger.e('exception: $e', e);
+    }
+
+    if (dob == null) {
+      try {
+        if (data.containsKey('date_of_birth')) {
+          String tempDOB = data['date_of_birth'];
+          if (tempDOB.trim().isNotEmpty) {
+            dob = tempDOB.tryParseWithDateFormat('yyyy/MM/dd');
+          }
+        }
+      } catch (e) {
+        AppLogger.e('exception: $e', e);
+      }
+    }
     return CardIdentityDetail(
       blacklisted: data['blacklisted'],
-      dateOfBirth: (data['date_of_birth'] as String).tryParseWithDateFormat('yyyy-MM-dd') ?? DateTime.now(),
+      dateOfBirth: dob,
       firstName: data['first_name'],
       gender: (data['gender'] as String).stringToGender,
       idNo: data['id_no'],

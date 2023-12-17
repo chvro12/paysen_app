@@ -94,9 +94,14 @@ class UserModels {
 
   factory UserModels.fromJson(Map<String, dynamic> data) {
     DateTime? dob;
+
     if (data.containsKey('dob')) {
       String tempDOB = data['dob'];
-      if (tempDOB.trim().isNotEmpty) {
+      if (tempDOB.contains('/') && tempDOB.trim().isNotEmpty) {
+        dob = tempDOB.tryParseWithDateFormat('yyyy/MM/dd');
+      }
+
+      if (tempDOB.contains('-') && tempDOB.trim().isNotEmpty) {
         dob = tempDOB.tryParseWithDateFormat('yyyy-MM-dd');
       }
     }

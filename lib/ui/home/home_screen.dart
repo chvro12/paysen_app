@@ -155,7 +155,10 @@ class HomeScreen extends StatelessWidget {
                       Flexible(
                         child: Obx(() => homeController.mainTransactionModel.value == null
                         ? const SizedBox.shrink()
-                        : HomeTransactionView(mainTransactionModel: homeController.mainTransactionModel.value!)),
+                        : HomeTransactionView(
+                          mainTransactionModel: homeController.mainTransactionModel.value!,
+                          onTransactionSelect: (val) => homeController.onTransactionSelect(val, context),
+                        )),
                       )
                       
                     ],

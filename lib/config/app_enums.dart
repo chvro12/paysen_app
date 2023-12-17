@@ -11,19 +11,31 @@ enum TransactionFilter { all, today, yesterday, thisMonth, custom  }
 extension ServerUTCDate on String? {
   DateTime? get stringUtcToDateTime {
     if (this == null) return null;
-    final String value = DateTime.tryParse(this!)!.toString();
-    return DateFormat('yyyy-MM-dd HH:mm').parse(value);
+    try {
+      final String value = DateTime.tryParse(this!)!.toString();
+      return DateFormat('yyyy-MM-dd HH:mm').parse(value);
+    } catch (e) {
+      return null;
+    }
   }
 
   DateTime? tryParseWithDateFormat(String parseFormat) {
     if (this == null) return null;
-    return DateFormat(parseFormat).parse(this!);
+    try {
+      return DateFormat(parseFormat).parse(this!);
+    } catch (e) {
+      return null;
+    }
   }
 
   String? parseWithDateFormat(String parseFormat, String returnFormat) {
     if (this == null) return null;
-    final val = DateFormat(parseFormat).parse(this!);
-    return DateFormat(returnFormat).format(val);
+    try {
+      final val = DateFormat(parseFormat).parse(this!);
+      return DateFormat(returnFormat).format(val);
+    } catch (e) {
+      return null;
+    }
   }
 }
 

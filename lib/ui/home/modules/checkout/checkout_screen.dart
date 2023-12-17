@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 import '../../../../components/index.dart';
 import '../../../../config/app_logger.dart';
+import '../../../../main.dart';
+import '../../controller/home_controller.dart';
 import 'controller/checkout_controller.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -59,7 +61,12 @@ class CheckoutScreen extends StatelessWidget {
               builder: (context) => EndpointReqFailDialog(
                 description: 'Fund added to card successfully.', 
                 title: 'Success',
-                onBtnPressed: () => Navigator.pop(context),
+                onBtnPressed: () {
+                  final HomeController homeController = Get.find();
+                  homeController.fetchUserTransaction();
+                  Navigator.pop(context);
+                  walletNavigatorKey.currentState?.popUntil((route) => route.isFirst);
+                },
               )
             );
           }

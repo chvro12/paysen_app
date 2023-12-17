@@ -13,6 +13,7 @@ import '../../../nested_navigator.dart';
 import '../../account/models/profile_models.dart';
 import '../../account/repository/account_repo.dart';
 import '../../cards/modules/activate_card/controller/activate_card_controller.dart';
+import '../../home/controller/home_controller.dart';
 
 class DashboardController extends GetxController with ProgressHUDMixin {
 
@@ -135,7 +136,11 @@ class DashboardController extends GetxController with ProgressHUDMixin {
 
   @override
   void onInit() {
-    fetchUserProfileDetails();
+    fetchUserProfileDetails()
+    .whenComplete(() {
+      final HomeController homeController = Get.find();
+      homeController.fetchUserTransaction();
+    });
     super.onInit();
   }
 
