@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../components/index.dart';
 import '../../../config/app_assets.dart';
 import '../../../config/app_utils.dart';
 import '../../../main.dart';
@@ -59,6 +60,10 @@ class DashboardController extends GetxController with ProgressHUDMixin {
   final selectedBottomNavigationBarIndex = 0.obs;
 
   void onBottomNavigationBarItemChanged(int value) {
+    if (value == 0 && (profileModels.value != null && profileModels.value!.userModels.cardDetail == null)) {
+      Get.dialog(const EndpointReqFailDialog(description: 'card_not_created_message', title: 'unable_to_proceed'));
+      return;
+    }
     selectedBottomNavigationBarIndex.value = value;
 
     onTopupBottomSheetChanged(false);
@@ -134,11 +139,14 @@ class DashboardController extends GetxController with ProgressHUDMixin {
     super.onInit();
   }
 
-  final ImagePicker _imagePicker = ImagePicker();
-
   Future<void> onIMGFromCameraOrGallery(ImageSource imageSource) async {
     final ActivateCardController activateCardController = Get.find();
-    final val = await _imagePicker.pickImage(source: imageSource);
+    XFile? val;
+    if (imageSource == ImageSource.camera) {
+      val = await ImagePickerUtils.captureFromCamera();
+    } else if (imageSource == ImageSource.gallery) {
+      val = await ImagePickerUtils.pickFromGallery();
+    }
     if (val != null) {
       if (activateCardController.selectedDocUploadType != null) {
         activateCardController.uploadDocType[activateCardController.selectedDocUploadType!] = File(val.path);

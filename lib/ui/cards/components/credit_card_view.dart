@@ -11,12 +11,20 @@ class CreditCardView extends StatelessWidget {
   final String cardNo;
   final String cardHolderName;
   final String validThru;
+  final FontWeight cardHolderNameFontWeight;
+  final double cardHolderNameFontSize;
+  final String cardTypeLabel;
+  final bool visibleCardBrandType;
 
   const CreditCardView({
     super.key,
     required this.cardNo,
     required this.cardHolderName,
-    required this.validThru
+    required this.validThru,
+    this.cardHolderNameFontSize = 18,
+    this.cardHolderNameFontWeight = FontWeight.w500,
+    this.cardTypeLabel = 'credit_card',
+    this.visibleCardBrandType = false
   });
 
   @override
@@ -45,7 +53,7 @@ class CreditCardView extends StatelessWidget {
             top: 0.02.sh,
             left: 0.05.sw,
             child: CustomText(
-              label: 'credit_card'.tr,
+              label: cardTypeLabel.tr,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w500,
               textColor: AppColors.whiteColor,
@@ -104,40 +112,51 @@ class CreditCardView extends StatelessWidget {
             child: CustomText(
               label: cardHolderName,
               fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w500,
+              fontWeight: cardHolderNameFontWeight,
               textColor: AppColors.whiteColor,
-              textSize: 18.sp,
+              textSize: cardHolderNameFontSize.sp,
             ),
           ),
 
-          Positioned(
-            top: 0.18.sh,
-            right: 0.05.sw,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomText(
-                  label: 'VALID\nTHRU',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                  textColor: AppColors.whiteColor,
-                  textSize: 8.sp,
-                ),
-                const SizedBox(width: 2.0,),
-                Image.asset(AppAssets.creditCardMisc),
-                const SizedBox(width: 4.0,),
-                CustomText(
-                  label: validThru,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
-                  textColor: AppColors.whiteColor,
-                  textSize: 16.sp,
-                  textLetterSpacing: 2.0,
-                ),
-              ],
+          if (validThru.trim().isNotEmpty)
+            Positioned(
+              top: 0.18.sh,
+              right: 0.05.sw,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CustomText(
+                    label: 'VALID\nTHRU',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    textColor: AppColors.whiteColor,
+                    textSize: 8.sp,
+                  ),
+                  const SizedBox(width: 2.0,),
+                  Image.asset(AppAssets.creditCardMisc),
+                  const SizedBox(width: 4.0,),
+                  CustomText(
+                    label: validThru,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    textColor: AppColors.whiteColor,
+                    textSize: 16.sp,
+                    textLetterSpacing: 2.0,
+                  ),
+                ],
+              ),
             ),
-          ),
 
+          if (visibleCardBrandType) 
+            Positioned(
+              bottom: 0.02.sh,
+              right: 0.05.sw,
+              child: Image.asset(
+                AppAssets.cardTypeVisaIMG,
+                width: 50.w,
+                height: 16.h,
+              ),
+            ),
         ],
       ),
     );

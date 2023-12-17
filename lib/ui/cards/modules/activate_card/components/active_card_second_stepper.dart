@@ -69,8 +69,47 @@ class ActiveCardSecondStepper extends StatelessWidget {
               capitalization: TextCapitalization.none,
               isReadable: true,
               applyBottomMargin: false,
-              onFieldTapped: () {},
+              onFieldTapped: () => activateCardController.dateOfBirthPick(context),
             )
+  
+          ]
+        ),
+
+        SizedBox(height: 24.h,),
+
+        GroupInputField(
+          groupLabel: 'address_info',
+          multipleFields: [
+  
+            CustomTextField(
+              header: 'address',
+              editingController: activateCardController.addressController,
+              inputFieldHint: 'address_placeholder',
+              capitalization: TextCapitalization.words,
+              inputAction: TextInputAction.newline,
+              textInputType: TextInputType.multiline,
+              maximumLines: 4,
+              minimumLines: 1,
+            ),
+  
+            CustomTextField(
+              header: 'house_no',
+              editingController: activateCardController.housenoController,
+              inputFieldHint: 'houseno_placeholder',
+              capitalization: TextCapitalization.words,
+              inputAction: TextInputAction.next,
+              textInputType: TextInputType.name,
+            ),
+  
+            CustomTextField(
+              header: 'postal_code',
+              editingController: activateCardController.postalCodeController,
+              inputFieldHint: 'postalcode_placeholder',
+              inputAction: TextInputAction.next,
+              textInputType: TextInputType.number,
+              capitalization: TextCapitalization.none,
+              applyBottomMargin: false,
+            ),
   
           ]
         ),
@@ -82,7 +121,7 @@ class ActiveCardSecondStepper extends StatelessWidget {
           multipleFields: [
 
             Obx(() => CustomDropDown(
-              header: 'city',
+              header: 'national_id_type',
               selectedValue: activateCardController.selectedNationalIds.value,
               items: activateCardController.nationalIds,
               onDropDownValueChanged: activateCardController.onNationalIdsSelect,

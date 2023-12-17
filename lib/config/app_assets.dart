@@ -49,6 +49,7 @@ class AppAssets {
   static const String createPhysicalCardIcon = '$_prefixIcons/create-physical-card-icon.png';
   static const String createVirtualCardIcon = '$_prefixIcons/create-virtual-card-icon.png';
   static const String physicalCardIMG = '$_prefix/physical_card_IMG.png';
+  static const String cardTypeVisaIMG = '$_prefix/card_type_visa_IMG.png';
 
   /// SUPPORT SCREEN
   static const String supportIMG = '$_prefix/support-img.png';

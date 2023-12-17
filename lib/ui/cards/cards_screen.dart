@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../components/index.dart';
 import '../../config/app_assets.dart';
 import '../../config/app_colors.dart';
-import '../../config/app_routes.dart';
 import 'controller/card_view.dart';
 import 'controller/cards_controller.dart';
 
@@ -62,9 +61,7 @@ class CardsScreen extends StatelessWidget {
                     ],
                     assetIMG: AppAssets.createVirtualCardIcon,
                     label: 'create_a_virtual_card',
-                    onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.virtualCardInDollar);
-                    },
+                    onPressed: () => cardsController.createVirtualCardPressed(context),
                   ),
             
                   SizedBox(height: 0.04.sh,),
@@ -76,16 +73,7 @@ class CardsScreen extends StatelessWidget {
                     ],
                     assetIMG: AppAssets.createPhysicalCardIcon,
                     label: 'create_activate_physical_card',
-                    onPressed: () {
-                      // showDialog(
-                      //   context: context,
-                      //   builder: (context) => const EndpointReqFailDialog(
-                      //     description: 'service_unavailable_description', 
-                      //     title: 'service_unavailable_title'
-                      //   )
-                      // );
-                      Navigator.pushNamed(context, AppRoutes.physicalCard);
-                    },
+                    onPressed: () => cardsController.createOractivatePhysicalCardPressed(),
                   )
             
                 ],

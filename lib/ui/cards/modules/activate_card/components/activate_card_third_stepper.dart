@@ -97,7 +97,7 @@ class ActivateCardThirdStepper extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 12.w),
                     child: CustomElevatedButton(
                       btnLabel: 'submit',
-                      onBtnPressed: () {},
+                      onBtnPressed: () => activateCardController.onSubmitActivateCard(),
                     ),
                   ),
 

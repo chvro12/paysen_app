@@ -60,9 +60,13 @@ class ActivateCardScreen extends StatelessWidget {
                             validThru = '${dashboardController.profileModels.value!.userModels.cardDetail!.expMonth}/${dateTime.humanReadableFormat('yy')}';
                           }
                           return CreditCardView(
-                            cardNo: cardNo ?? '',
-                            cardHolderName: cardHolderName ?? '',
+                            cardNo: cardNo ?? '****************',
+                            cardHolderName: cardHolderName ?? 'BALANCE',
                             validThru: validThru ?? '',
+                            cardHolderNameFontSize: 16,
+                            cardHolderNameFontWeight: FontWeight.w300,
+                            cardTypeLabel: 'physical_card',
+                            visibleCardBrandType: true,
                           );
                         }),
 

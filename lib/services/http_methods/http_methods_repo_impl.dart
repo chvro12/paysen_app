@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../components/index.dart';
 import '../../config/app_logger.dart';
+import '../../config/app_routes.dart';
 import '../http_baseurl.dart';
 import '../shared_pref_service.dart';
 import 'http_methods_repo.dart';
@@ -68,6 +70,7 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
   dynamic _responseBody(http.Response response) {
     AppLogger.d('response.body: ${response.body}, response.statusCode: ${response.statusCode}');
     String endpointFailTitle = '';
+    VoidCallback? onUnauthorizeUser;
 
     switch(response.statusCode) {
       case HttpStatus.ok:
@@ -79,6 +82,11 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
         endpointFailTitle = 'Bad Request';
       case HttpStatus.unauthorized:
         endpointFailTitle = 'Unauthorized';
+        onUnauthorizeUser = () async {
+          SharedPrefService.clearSharedPrefs();
+          Get.back();
+          Get.offAllNamed(AppRoutes.loginRoute);
+        };
       case HttpStatus.forbidden:
         endpointFailTitle = 'Forbidden';
       case HttpStatus.notFound:
@@ -87,35 +95,38 @@ class HttpMethodsReoImpl implements HttpMethodsRepo {
         endpointFailTitle = 'Too Many Requests';
       default:
         endpointFailTitle = response.statusCode.toString();
-        Get.dialog(EndpointReqFailDialog(
-          description: response.body,
-          title: endpointFailTitle,
-        ));
-        break;        
+        break;  
     }
+    final responseData = jsonDecode(response.body);
+    Get.dialog(EndpointReqFailDialog(
+      description: responseData['error'],
+      title: endpointFailTitle,
+      onBtnPressed: onUnauthorizeUser,
+    ));
   }
   
   @override
-  Future fileUploading(Uri uri, Map<String, String> body, List<File> files) async {
+  Future fileUploading(Uri uri, Map<String, String> body, List<File> files, List<String> fieldName) async {
     final request = http.MultipartRequest('POST', uri);
     request.headers.addAll(await apisHeaders);
 
     request.fields.addEntries(body.entries);
     if (files.length > 1) {
       
-      for (final file in files) {
-        request.files.add(await http.MultipartFile.fromPath('avatar', file.path));
+      for (int i = 0; i < files.length; i++) {
+        request.files.add(await http.MultipartFile.fromPath(fieldName[i], files[i].path));
       }
 
     } else if (files.length == 1) {
-      request.files.add(await http.MultipartFile.fromPath('avatar', files.first.path));
+      request.files.add(await http.MultipartFile.fromPath(fieldName.first, files.first.path));
     }
 
     final response = await request.send();
-    final responsed = await http.Response.fromStream(response);
+    var responseBytes = await response.stream.toBytes();
+    var httpResponse = http.Response(utf8.decode(responseBytes), response.statusCode, headers: response.headers);
 
     AppLogger.d('path: $uri, body: $body', className: 'HttpMethodsReoImpl', methodName: 'fileUploading');
-    return _responseBody(responsed);
+    return _responseBody(httpResponse);
   }
   
   @override

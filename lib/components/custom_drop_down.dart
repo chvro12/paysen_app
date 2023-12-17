@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import '../config/app_colors.dart';
 import '../models/dropdown_models.dart';
@@ -63,14 +62,12 @@ class CustomDropDown extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 value: selectedValue,
                 icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                hint: Text(
-                  dropDownHint.tr,
-                  style: TextStyle(
-                    color: AppColors.blackColor.withOpacity(0.5),
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w300,
-                    fontStyle: FontStyle.normal
-                  ),
+                hint: CustomText(
+                  label: dropDownHint,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w300,
+                  textColor: AppColors.blackColor.withOpacity(0.5),
+                  textSize: 16.sp,
                 ),
                 borderRadius: BorderRadius.zero,
                 style: TextStyle(
@@ -83,7 +80,7 @@ class CustomDropDown extends StatelessWidget {
                   return DropdownMenuItem<CommonModels>(
                     value: e,
                     enabled: true,
-                    child: Text(e.name),
+                    child: CustomText(label: e.name),
                   );
                 }).toList(),
                 onChanged: onDropDownValueChanged,

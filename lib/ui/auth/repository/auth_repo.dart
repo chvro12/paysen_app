@@ -21,7 +21,7 @@ class AuthRepo {
   }
 
   Future<RegisterModels> register(Map<String, String> body, List<File> files) async {
-    final response = await _httpMethodsReoImpl.fileUploading(Uri.parse('${HttpBaseUrl.baseUrl}/register'), body, files);
+    final response = await _httpMethodsReoImpl.fileUploading(Uri.parse('${HttpBaseUrl.baseUrl}/register'), body, files, ['avatar']);
     return RegisterModels.fromJson(response);
   }
 }
