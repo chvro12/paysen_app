@@ -65,7 +65,7 @@ class ActivateCardScreen extends StatelessWidget {
                             validThru: validThru ?? '',
                             cardHolderNameFontSize: 16,
                             cardHolderNameFontWeight: FontWeight.w300,
-                            cardTypeLabel: 'physical_card',
+                            cardTypeLabel: 'virtual_card',
                             visibleCardBrandType: true,
                           );
                         }),

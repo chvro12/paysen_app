@@ -75,7 +75,15 @@ class SupportScreen extends StatelessWidget {
                       btnLabel: 'access_chat',
                       btnElevation: 0.0,
                       btnBorderRadius: 60.0,
-                      onBtnPressed: () {},
+                      onBtnPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const EndpointReqFailDialog(
+                            description: 'service_unavailable_description', 
+                            title: 'service_unavailable_title'
+                          )
+                        );
+                      },
                     ),
                   )
 

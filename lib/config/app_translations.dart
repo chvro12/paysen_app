@@ -12,7 +12,8 @@ class LocalizationService extends Translations {
     'fr-SN': frenchTranslation
   };
 
-  Locale get locale => Get.deviceLocale ?? enLocale;
+  // Locale get locale => Get.deviceLocale ?? enLocale;
+  Locale get locale => enLocale;
   
   Locale get fallbackLocale => enLocale;
 
